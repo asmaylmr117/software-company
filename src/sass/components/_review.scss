@@ -1,0 +1,273 @@
+/* 4.08 - Review - Start
+================================================== */
+.review_section {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
+}
+.portfolio_section:has(.portfolio_carousel) + .review_section {
+	padding-top: 490px;
+	margin-top: -375px;
+}
+
+// Review Block - Start
+.review_block {
+	z-index: 1;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	padding: 45px 30px 30px;
+	background-color: var(--bs-white);
+	border-radius: var(--bs-border-radius-sm);
+	box-shadow: 0 20px 30px 0 rgba(174, 191, 210, 0.3);
+
+	&:before {
+		opacity: 0;
+		top: 10px;
+		left: 10px;
+		right: 10px;
+		bottom: 10px;
+		content: '';
+		z-index: -1;
+		position: absolute;
+		transition: var(--bs-transition);
+		animation: borderDashedAnimation .5s infinite linear;
+		background-size: 15px 1px, 15px 1px, 1px 15px, 1px 15px;
+		background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+		background-position: left top, right bottom, left bottom, right top;
+		background-image: linear-gradient(90deg, var(--bs-primary) 50%, transparent 50%), 
+		linear-gradient(90deg, var(--bs-primary) 50%, transparent 50%), 
+		linear-gradient(0deg, var(--bs-primary) 50%, transparent 50%), 
+		linear-gradient(0deg, var(--bs-primary) 50%, transparent 50%);
+	}
+	.review_title {
+		font-size: 26px;
+		line-height: 36px;
+		margin-bottom: 18px;
+	}
+	.review_commtent {
+		font-size: 18px;
+		max-width: 470px;
+		line-height: 32px;
+		margin: 0 auto 10px;
+	}
+	.review_admin {
+		z-index: 1;
+		height: 430px;
+		display: flex;
+		margin: 0 -30px;
+		padding-top: 40px;
+		position: relative;
+		flex-direction: column;
+		&:before {
+			top: 100px;
+			left: 50%;
+			z-index: -1;
+			content: '';
+			opacity: 0.1;
+			width: 486px;
+			height: 486px;
+			position: absolute;
+			border-radius: 100%;
+			transform: translateX(-50%);
+			transition: var(--bs-transition);
+			background-image: linear-gradient(0deg, transparent 55%, var(--bs-primary));
+		}
+	}
+	.review_admin_image {
+		max-width: 330px;
+		margin: auto auto 0;
+		img {
+			transition: var(--bs-transition);
+		}
+	}
+	.review_admin_info {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 2;
+		position: absolute;
+		padding: 100px 30px 32px;
+		background-image: linear-gradient(0deg, var(--bs-white) 50%, transparent);
+	}
+	.review_admin_name {
+		font-size: 22px;
+		font-weight: 600;
+		line-height: 32px;
+		margin-bottom: 2px;
+		font-family: 'Axiforma SemiBold';
+	}
+	.review_admin_designation {
+		font-size: 12px;
+		letter-spacing: 2px;
+		color: var(--bs-dark);
+		text-transform: uppercase;
+	}
+
+	&:hover {
+		&:before {
+			opacity: 0.2;
+		}
+		.review_admin_image {
+			img {
+				transform: scale(1.06);
+			}
+		}
+		.review_admin {
+			&:before {
+				opacity: 0.6;
+			}
+		}
+	}
+}
+// Review Block - End
+
+// Review Block 2 - Start
+.review_onecol_wrapper {
+	padding: 47px 50px 50px;
+	background-color: var(--bs-white);
+	border-radius: var(--bs-border-radius);
+	box-shadow: 0 4px 23px 0 rgba(174, 191, 210, 0.3);
+}
+.review_onecol_carousel {
+	position: relative;
+	.carousel_arrows_nav {
+		gap: 10px;
+		z-index: 1;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+		align-items: center;
+		display: inline-flex;
+		button {
+			width: 40px;
+			height: 40px;
+			flex: 0 0 auto;
+			align-items: center;
+			border-radius: 100%;
+			display: inline-flex;
+			color: var(--bs-dark);
+			justify-content: center;
+			background-color: var(--bs-light);
+			&:hover {
+				color: var(--bs-white);
+				background-color: var(--bs-primary);
+			}
+		}
+	}
+}
+.review_block_2 {
+	.review_title {
+		font-size: 30px;
+		line-height: 36px;
+		margin-bottom: 45px;
+		color: var(--bs-primary);
+	}
+	.review_commtent {
+		font-size: 22px;
+		font-weight: 500;
+		margin-bottom: 59px;
+		color: var(--bs-dark);
+		font-family: 'Axiforma Medium';
+	}
+	.review_admin {
+		gap: 30px;
+		display: flex;
+		align-items: center;
+	}
+	.review_admin_image {
+		width: 107px;
+		height: 127px;
+		display: flex;
+		flex: 0 0 auto;
+		overflow: hidden;
+		padding-top: 10px;
+		align-items: flex-end;
+		justify-content: center;
+		background-color: var(--bs-light);
+		border-radius: var(--bs-border-radius);
+	}
+	.review_admin_name {
+		font-size: 20px;
+		font-weight: 600;
+		margin-bottom: 8px;
+		font-family: 'Axiforma SemiBold';
+	}
+	.review_admin_designation {
+		display: block;
+		font-size: 14px;
+		font-weight: 500;
+		margin-bottom: 24px;
+		font-family: 'Axiforma Medium';
+	}
+	.review_admin_country {
+		gap: 6px;
+		display: flex;
+		align-items: center;
+	}
+	.country_flag {
+		width: 20px;
+		height: 20px;
+		flex: 0 0 auto;
+		margin-top: -4px;
+		overflow: hidden;
+		border-radius: 100%;
+	}
+	.country_text {
+		line-height: 1;
+		font-size: 12px;
+		font-weight: 500;
+		color: var(--bs-dark);
+		font-family: 'Axiforma Medium';
+	}
+	.review_admin_logo {
+		max-width: 152px;
+	}
+}
+// Review Block 2 - End
+
+// Review Block 3 - Start
+.review_block_3 {
+	padding: 30px;
+	background-color: var(--bs-white);
+	border-radius: var(--bs-border-radius);
+	.review_commtent {
+		font-size: 17px;
+		font-weight: 600;
+		line-height: 26px;
+		margin: 25px 0 32px;
+		color: var(--bs-dark);
+		font-family: 'Axiforma SemiBold';
+	}
+	.review_admin {
+		gap: 20px;
+		display: flex;
+		align-items: center;
+		.review_admin_image {
+			width: 60px;
+			height: 60px;
+			flex: 0 0 auto;
+			overflow: hidden;
+			border-radius: 100%;
+			background-color: var(--bs-gray);
+		}
+		.review_admin_name {
+			line-height: 1;
+			font-size: 17px;
+			font-weight: 700;
+			margin-bottom: 8px;
+			font-family: "Axiforma Bold";
+		}
+		.review_admin_designation {
+			display: block;
+			line-height: 1;
+			font-size: 14px;
+			font-weight: 500;
+			font-family: "Axiforma Medium";
+		}
+	}
+}
+// Review Block 3 - End
+/* 4.08 - Review - End
+================================================== */

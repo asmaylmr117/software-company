@@ -1,0 +1,221 @@
+/* 2.04 - Order & Unorder List - Start
+================================================== */
+
+// List Default Style - Start
+[class*="unordered_list"] {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  >li {
+    float: left;
+    list-style: none;
+    display: inline-block;
+  }
+}
+.unordered_list_block {
+  display: flex;
+  flex-direction: column;
+  >li {
+    width: 100%;
+    display: block;
+  }
+}
+// List Default Style - End
+
+// Icon List - Start
+.icon_list {
+  &.unordered_list_block {
+    gap: 8px;
+  }
+  >li {
+    gap: 10px;
+    display: flex;
+    font-size: 16px;
+    line-height: 28px;
+    align-items: flex-start;
+  }
+  a {
+    gap: 10px;
+    display: inline-flex;
+    align-items: flex-start;
+    color: var(--bs-body-color);
+    &:hover {
+      color: var(--bs-primary);
+    }
+  }
+  .icon_list_icon:has(.fa-circle) {
+    font-size: 6px;
+    margin: -1px 0 0;
+    color: var(--bs-primary);
+  }
+  .icon_list_icon {
+    img {
+      width: 24px;
+      margin-top: -2px;
+    }
+  }
+}
+// Icon List - End
+
+// Category Buttons Group - Start
+.category_btns_group {
+  gap: 10px;
+  a {
+    display: flex;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 5px;
+    align-items: center;
+    padding: 8px 10px 6px;
+    justify-content: center;
+    color: var(--bs-body-color);
+    font-family: 'Axiforma Medium';
+    border: 1px solid var(--bs-border-color);
+    &:hover {
+      color: var(--bs-white);
+      border-color: var(--bs-primary);
+      background-color: var(--bs-primary);
+    }
+  }
+}
+// Category Buttons Group - End
+
+// Category List - Start
+.category_list {
+  gap: 20px;
+  >li {
+    line-height: 1;
+    font-size: 16px;
+  }
+  a {
+    color: var(--bs-body-color);
+    &:hover {
+      color: var(--bs-primary);
+    }
+  }
+}
+// Category List - End
+
+// Post Category List - Start
+.post_category_list {
+  >li {
+    border-bottom: 1px solid #CCE3FF;
+  }
+  a {
+    display: flex;
+    line-height: 1;
+    font-size: 18px;
+    position: relative;
+    align-items: center;
+    padding: 18px 0 17px;
+    color: var(--bs-body-color);
+    justify-content: space-between;
+    i {
+      top: 17px;
+      left: -10px;
+      opacity: 0;
+      font-size: 20px;
+      position: absolute;
+      color: var(--bs-primary);
+      transition: var(--bs-transition);
+    }
+    span {
+      transition: var(--bs-transition);
+    }
+    &:hover {
+      i {
+        left: 0;
+        opacity: 1;
+      }
+      span {
+        color: var(--bs-primary);
+        &:nth-child(2) {
+          transform: translateX(22px);
+        }
+      }
+    }
+  }
+}
+// Post Category List - End
+
+// Post Meta - Start
+.post_meta {
+  gap: 20px;
+  >li {
+    font-size: 16px;
+    i {
+      color: var(--bs-dark);
+    }
+    img, i {
+      margin: -2px 0 0;
+    }
+    a {
+      gap: 4px;
+      align-items: center;
+      display: inline-flex;
+      color: var(--bs-body-color);
+      &:hover {
+        color: var(--bs-dark);
+      }
+    }
+  }
+}
+// Post Meta - End
+
+// Tags List - Start
+.tags_list {
+  gap: 10px;
+  a {
+    display: block;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 8px 18px 7px;
+    color: var(--bs-body-color);
+    background-color: var(--bs-white);
+    box-shadow: 0 20px 30px 0 rgba(174, 191, 210, 0.3);
+    &:hover {
+      color: var(--bs-white);
+      background-color: var(--bs-primary);
+    }
+  }
+}
+// Tags List - End
+
+// Filter Elements Nav - Start
+.filter_elements_nav {
+  display: flex;
+  margin-bottom: 70px;
+  justify-content: center;
+  >ul {
+    gap: 3px;
+    padding: 7px;
+    background-color: var(--bs-white);
+    border-radius: var(--bs-border-radius);
+    >li {
+      line-height: 1;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--bs-dark);
+      padding: 16px 30px 13px;
+      text-transform: uppercase;
+      transition: var(--bs-transition);
+      font-family: 'Axiforma SemiBold';
+      border-radius: var(--bs-border-radius);
+      &:not(.active):hover {
+        background-color: var(--bs-light);
+      }
+      &.active {
+        color: var(--bs-white);
+        background-color: var(--bs-primary);
+      }
+    }
+  }
+}
+// Filter Elements Nav - End
+
+/* 2.04 - Order & Unorder List - End
+================================================== */

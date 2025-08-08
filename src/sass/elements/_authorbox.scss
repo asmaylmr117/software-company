@@ -1,0 +1,41 @@
+/* 2.07 - Authorbox - Start
+================================================== */
+.author_box {
+  gap: 26px;
+  z-index: 1;
+  position: relative;
+  align-items: center;
+  display: inline-flex;
+  .author_image {
+    width: 90px;
+    height: 110px;
+    flex: 0 0 auto;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 10px 2px 0 2px;
+  }
+  .author_name {
+    line-height: 1;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    font-family: 'Axiforma SemiBold';
+  }
+  .author_designation {
+    display: block;
+    line-height: 1;
+    font-size: 14px;
+    color: var(--bs-body-color);
+  }
+  .quote_icon {
+    top: 0;
+    right: 0;
+    z-index: -1;
+    max-width: 119px;
+    position: absolute;
+  }
+}
+/* 2.07 - Authorbox - End
+================================================== */

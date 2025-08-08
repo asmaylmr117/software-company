@@ -1,0 +1,65 @@
+/* 2.06 - Typography - Start
+================================================== */
+.heading_block {
+	margin-bottom: 40px;
+	.heading_text {
+		font-size: 45px;
+		line-height: 60px;
+		margin-bottom: 16px;
+		letter-spacing: -1px;
+	}
+	.heading_description {
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 30px;
+		font-family: 'Axiforma Medium';
+	}
+}
+
+.heading_focus_text:has(.badge) {
+	gap: 8px;
+	align-items: center;
+	margin-bottom: 18px;
+	display: inline-flex;
+}
+.heading_focus_text {
+	.badge {
+		font-size: 14px;
+		font-weight: 500;
+		margin-top: -3px;
+		padding: 4px 7px 3px;
+	}
+}
+.heading_focus_text.has_underline {
+	z-index: 1;
+	font-weight: 500;
+	position: relative;
+	margin-bottom: 26px;
+	color: var(--bs-dark);
+	padding: 0 36px 6px 0;
+	text-transform: uppercase;
+	background-size: auto 18px;
+	background-repeat: no-repeat;
+	font-family: 'Axiforma Medium';
+	background-position: right bottom;
+}
+
+.text-white {
+	.heading_focus_text.has_underline,
+	.heading_text {
+		color: var(--bs-white);
+	}
+	.heading_description {
+		opacity: 0.8;
+		color: var(--bs-white);
+	}
+}
+
+.text-center {
+	.heading_description {
+		margin: auto;
+		max-width: 610px;
+	}
+}
+/* 2.06 - Typography - End
+================================================== */

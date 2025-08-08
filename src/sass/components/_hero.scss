@@ -1,0 +1,475 @@
+/* 4.05 - Hero Sections - Start
+================================================== */
+
+// IT Solution - Start
+.it_solution_hero_section {
+	padding: 70px 0;
+	@media screen and (max-width: 991px) {
+		padding-top: 20px;
+	}
+	.container {
+		max-width: 1750px;
+	}
+}
+
+.it_solution_hero_content {
+	background-size: auto;
+	padding: 132px 220px 133px;
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-color: var(--bs-light);
+	border-radius: var(--bs-border-radius-sm);
+	h1 {
+		font-size: 55px;
+		line-height: 70px;
+		margin: 15px 0 20px;
+		letter-spacing: -2px;
+	}
+	p {
+		font-size: 18px;
+		line-height: 28px;
+		margin-bottom: 51px;
+	}
+}
+
+.review_short_info {
+	img {
+		max-width: 128px;
+	}
+	span {
+		line-height: 1;
+		font-size: 26px;
+		font-weight: 700;
+		margin-left: 15px;
+		color: var(--bs-primary);
+		font-family: 'Axiforma Bold';
+	}
+	.review_counter {
+		margin-top: 6px;
+		font-size: 18px;
+		b {
+			color: var(--bs-dark);
+		}
+	}
+}
+
+.review_short_info_2 {
+	display: flex;
+	align-items: center;
+	background-color: var(--bs-light);
+	border-radius: var(--bs-border-radius);
+	border: 1px solid var(--bs-border-color);
+	.review_admin_logo {
+		height: 60px;
+		width: 110px;
+		flex: 0 0 auto;
+		align-items: center;
+		display: inline-flex;
+		justify-content: center;
+		border-right: 1px solid var(--bs-white);
+		img {
+			max-width: 72px;
+		}
+	}
+	.review_info_content {
+		width: 190px;
+		flex: 0 0 auto;
+		padding: 2px 25px;
+	}
+	.rating_block {
+		margin-bottom: 8px;
+		>li {
+			font-size: 11px;
+		}
+	}
+	.review_counter {
+		line-height: 1;
+		font-size: 14px;
+	}
+}
+
+.it_solution_hero_images {
+	align-items: flex-start;
+	>li {
+		width: 50%;
+	}
+
+	.worldwide_clients {
+		background-color: #FB7929;
+		padding: 66px 85px 65px 90px;
+		border-radius: 175px 20px 0px 175px;
+		.counter_value {
+			line-height: 1;
+			font-size: 55px;
+			font-weight: 700;
+			margin: 0 0 12px;
+			color: var(--bs-white);
+			font-family: 'Axiforma Bold';
+		}
+		p {
+			font-size: 18px;
+			line-height: 28px;
+			margin-bottom: 46px;
+			color: var(--bs-white);
+		}
+	}
+.categories-container {
+    transform: translateY(-20px); /* Adjust this value to move the <li> upwards */
+}
+	.categories {
+		padding: 115px 42px;
+		border-radius: 0px 175px 0 20px;
+		background-color: var(--bs-secondary);
+		>li {
+			&:not(:first-child) {
+				margin-top: -1px;
+			}
+		}
+		a {
+			font-size: 15px;
+			align-items: center;
+			display: inline-flex;
+			color: var(--bs-white);
+			span {
+				padding: 10px 15px 6px;
+				transition: var(--bs-transition);
+				border: 1px solid var(--bs-white);
+				border-radius: var(--bs-border-radius-pill);
+			}
+			i {
+				width: 40px;
+				height: 40px;
+				flex: 0 0 auto;
+				border-radius: 100%;
+				align-items: center;
+				display: inline-flex;
+				justify-content: center;
+				transition: var(--bs-transition);
+				border: 1px solid var(--bs-white);
+			}
+
+			&:hover {
+				span,i {
+					background-color: var(--bs-primary);
+				}
+			}
+		}
+	}
+
+	.business_growth_content {
+		text-align: center;
+		padding: 50px 0 96px;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		.business_growth {
+			width: auto !important;
+			height: auto !important;
+			svg {
+				width: 260px;
+				height: 260px;
+				circle:not(.business_growth-circle-58) {
+					stroke: rgba(255, 255, 255, 0.5);
+				}
+				.business_growth-circle-58 {
+					stroke-width: 8px;
+					stroke: var(--bs-white);
+				}
+				.business_growth-text-58 {
+					line-height: 1;
+					font-size: 24px;
+					font-weight: 700;
+					fill: var(--bs-white);
+					font-family: 'Axiforma Bold';
+					transform: translateY(-10px);
+				}
+			}
+		}
+		p {
+			font-size: 14px;
+			max-width: 155px;
+			line-height: 22px;
+			margin: -122px auto 0;
+			color: var(--bs-white);
+		}
+	}
+}
+
+.avatar_group {
+	>li {
+		width: 50px;
+		height: 50px;
+		overflow: hidden;
+		border-radius: 100%;
+		align-items: center;
+		display: inline-flex;
+		justify-content: center;
+		border: 2px solid var(--bs-white);
+		&:not(:first-child) {
+			margin-left: -15px;
+		}
+		&:last-child {
+			font-size: 15px;
+			color: var(--bs-white);
+			background-color: var(--bs-primary);
+		}
+	}
+}
+// IT Solution - End
+
+// Software Company - Satrt
+.software_company_hero_section {
+	z-index: 1;
+	position: relative;
+	padding: 125px 0 125px;
+	background-color: var(--bs-dark);
+	h1 {
+		font-size: 56px;
+		line-height: 70px;
+		margin-bottom: 10px;
+	}
+	p {
+		color: #B6B8CA;
+		font-size: 16px;
+		max-width: 527px;
+		margin: 0 0 37px;
+		line-height: 28px;
+	}
+
+	[class*="shape_image_"] {
+		position: absolute;
+	}
+	.shape_image_1 {
+		top: 90px;
+		left: 152px;
+		max-width: 1130px;
+	}
+	.shape_image_2 {
+		left: 152px;
+		bottom: 23px;
+		max-width: 1130px;
+	}
+	.shape_image_3 {
+		top: 99px;
+		right: -50px;
+		max-width: 328px;
+	}
+	.shape_image_4 {
+		right: -50px;
+		bottom: 54px;
+		max-width: 328px;
+	}
+}
+
+.engine_image {
+	float: right;
+	width: 670px;
+	height: 695px;
+	position: relative;
+	margin: 0 -210px 0 0;
+	transform: translateY(30px);
+	[class*="image_wrap_"] {
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		position: absolute;
+		transform: translate(-50%, -50%);
+		img {
+			margin: auto;
+		}
+	}
+	.image_wrap_1 {
+		z-index: 4;
+		max-width: 153px;
+	}
+	.image_wrap_2 {
+		z-index: 3;
+		max-width: 448px;
+		img {
+			animation: spin 40s infinite linear;
+		}
+	}
+	.image_wrap_3 {
+		z-index: 2;
+		max-width: 566px;
+		img {
+			animation: spinReverse 40s infinite linear;
+		}
+	}
+
+}
+
+.step_list {
+	gap: 5px;
+	padding-left: 28px;
+	margin-bottom: 47px;
+	border-left: 1px solid var(--bs-primary);
+	>li {
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 28px;
+		position: relative;
+		font-family: 'Axiforma Medium';
+		&:first-child {
+			margin-top: -4px;
+		}
+		&:last-child {
+			margin-bottom: -5px;
+		}
+		&:before {
+			top: 0;
+			left: -38px;
+			font-size: 20px;
+			font-weight: 400;
+			content: '\f192';
+			position: absolute;
+			color: var(--bs-primary);
+			font-family: 'Font Awesome 5 Pro';
+		}
+	}
+}
+
+.hotline_block {
+	gap: 15px;
+	align-items: center;
+	display: inline-flex;
+	.hotline_icon {
+		width: 60px;
+		height: 60px;
+		flex: 0 0 auto;
+		font-size: 22px;
+		border-radius: 100%;
+		align-items: center;
+		display: inline-flex;
+		color: var(--bs-white);
+		justify-content: center;
+		background-color: #55D062;
+	}
+	.hotline_content {
+		display: flex;
+		flex-direction: column;
+	}
+	small {
+		color: #B6B8CA;
+		font-size: 14px;
+		font-weight: 500;
+		font-family: 'Axiforma Medium';
+	}
+	strong {
+		font-size: 18px;
+		font-weight: 500;
+		font-family: 'Axiforma SemiBold';
+	}
+}
+// Software Company - End
+
+// Business Consulting - Start
+.business_consulting_hero_section {
+	--bs-primary: #0132B8;
+	--bs-primary-rgb: 1, 50, 184;
+	padding: 170px 0 87px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	.container {
+		max-width: 1360px;
+	}
+	.shape_1 {
+		top: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		max-width: 615px;
+		position: absolute;
+		align-items: center;
+		justify-content: center;
+	}
+	h1 {
+		font-size: 80px;
+		margin-bottom: 0;
+		line-height: 95px;
+		u {
+			text-decoration-thickness: 3px;
+		}
+	}
+	p {
+		font-size: 26px;
+		line-height: 40px;
+		margin: 3px 0 41px 0;
+		color: var(--bs-dark);
+	}
+
+	.google_reviews {
+		margin-top: 55px;
+	}
+}
+
+.business_consulting_hero_image {
+	z-index: 1;
+	padding: 0 45px;
+	position: relative;
+	.hero_image {
+		border-radius: var(--bs-border-radius);
+	}
+
+	.funfact_block.capsule_layout {
+		z-index: 2;
+		position: absolute;
+		display: inline-flex;
+		&:nth-child(2) {
+			top: 77px;
+			left: -61px;
+		}
+		&:nth-child(3) {
+			left: -61px;
+			bottom: 85px;
+			.funfact_icon {
+				background-color: #FFBE16;
+			}
+		}
+		&:nth-child(4) {
+			top: 45%;
+			right: -61px;
+		}
+
+		&.middle{
+			.counter_value{
+				min-width: 145px;
+	
+				@media(max-width:991px){
+					min-width: 125px;
+				}
+			}
+		}
+	}
+}
+
+.google_reviews {
+	gap: 15px;
+	display: flex;
+	align-items: center;
+	.review_admin_logo {
+		flex: 0 0 auto;
+		max-width: 122px;
+	}
+	.rating_block {
+		gap: 4px;
+		li {
+			font-size: 15px;
+		}
+	}
+	.review_counter {
+		font-size: 16px;
+		margin-top: 4px;
+		color: var(--bs-dark);
+		b {
+			font-size: 18px;
+		}
+	}
+}
+// Business Consulting - End
+
+/* 4.05 - Hero Sections - End
+================================================== */

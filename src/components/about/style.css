@@ -1,0 +1,25 @@
+#google_translate_element {
+    display: flex;
+    align-items: center;
+}
+#google_translate_element .goog-te-combo {
+    height: 40px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+}
+@media (max-width: 767px) {
+    #google_translate_element {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    #google_translate_element .goog-te-combo {
+        width: 100%;
+        font-size: 14px;
+        height: 35px;
+    }
+}

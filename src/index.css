@@ -1,0 +1,69 @@
+/* body fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+
+@layer base {
+    
+
+    html {
+        font-family: 'Inter';
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Futura PT";
+    }
+
+    @font-face {
+        font-family: "Futura PT";
+        src: url('./fonts/FuturaPT-Bold.woff');
+    }
+
+    @font-face {
+        font-family: "Futura PT";
+        src: url('./fonts/FuturaPT-Medium.woff');
+    }
+
+    @font-face {
+        font-family: "Futura PT";
+        src: url('./fonts/FuturaPT-Demi.woff');
+    }
+
+    @font-face {
+        font-family: "Futura PT";
+        src: url('./fonts/FuturaPT-Demi.woff');
+    }
+
+    @font-face {
+        font-family: "Futura PT";
+        src: url('./fonts/FuturaPT-Heavy.woff');
+    }
+
+
+}
+
+@tailwind components;
+@tailwind utilities;
+
+
+.section-wrap{
+    @apply py-[120px] md:py-[90px] sm:py-[80px] relative  z-10
+}
+.wraper{
+    @apply mx-auto max-w-[1320px] xl:px-[12px]  lg:px-[12px] md:px-[20px] sm:px-[10px]
+}
+
+.theme-btn-2{
+    @apply text-base text-[#59C378] inline-block px-5 py-2 border border-[#496451] bg-transparent transition-all hover:bg-[#59C378] hover:border-[transparent] hover:text-white
+}
+
+.clip-your-needful-style {
+    -webkit-clip-path: polygon(0 0, 100% 0, 55% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 55% 100%, 0% 100%);
+}
+

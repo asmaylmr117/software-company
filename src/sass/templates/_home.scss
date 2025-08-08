@@ -1,0 +1,197 @@
+/* 5.05 - Home Pages - Start
+================================================== */
+// Process Technology Review Section
+.process_technology_review_section {
+	padding: 176px 0 80px;
+	overflow: hidden;
+	.shape_image_1 {
+		top: 0;
+		left: 0;
+		max-width: 196px;
+	}
+	.shape_image_2 {
+		top: 42%;
+		right: -12px;
+		max-width: 200px;
+	}
+	.shape_image_3 {
+		bottom: 0;
+		left: -8px;
+		max-width: 142px;
+	}
+	.shape_image_4 {
+		top: 0;
+		left: 0;
+		right: 0;
+		text-align: center;
+		img {
+			width: calc(100% - 530px);
+		}
+	}
+}
+
+.deals_winner_customers {
+	padding: 50px;
+	background-color: var(--bs-white);
+	border-radius: var(--bs-border-radius);
+	box-shadow: 0 4px 23px 0 rgba(174, 191, 210, 0.3);
+	.title_text {
+		font-size: 45px;
+		font-weight: 700;
+		margin-bottom: 91px;
+		font-family: 'Axiforma Bold';
+		mark {
+			font-size: 55px;
+		}
+	}
+
+	.rating_block {
+		margin: 20px 0 10px;
+	}
+	.review_short_info .review_counter {
+		font-size: 14px;
+	}
+}
+
+.web_development_technologies {
+	.iconbox_block {
+		transform: unset;
+		.iconbox_icon {
+			width: 100px;
+			height: 100px;
+			margin: 0 0 16px;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-color: transparent;
+			background-position: center top -3px;
+			background-image: url('../../images/shapes/shape_polygon.webp');
+		}
+		.iconbox_title {
+			line-height: 1;
+			font-size: 20px;
+			font-weight: 400;
+			font-family: "Axiforma Regular";
+		}
+	}
+}
+
+// Business Consulting - Start
+.index_business_consulting {
+	padding: 30px;
+	--bs-light: #F1F6FC;
+	--bs-light-rgb: 241, 246, 252;
+	main > div,
+	main > section {
+		margin-bottom: 30px;
+	}
+
+	.backtotop {
+		right: 45px;
+		bottom: 64px;
+	}
+}
+
+.empowering_services {
+	gap: 50px;
+	>li {
+		position: relative;
+		&:not(:last-child) {
+			&:before {
+				left: 46px;
+				top: 109px;
+				width: 2px;
+				content: "";
+				opacity: 0.2;
+				height: 50px;
+				position: absolute;
+				border-left: 1px dashed #0D121E;
+			}
+		}
+	}
+	.iconbox_block.layout_icon_left {
+		padding: 0;
+		transform: unset;
+		border-radius: 0;
+		box-shadow: none;
+		background-color: transparent;
+	}
+	.iconbox_block.layout_icon_left .iconbox_icon {
+		width: 96px;
+		height: 96px;
+		border-radius: 100%;
+		background-color: var(--bs-white);
+		box-shadow: 0 40px 34px 0 rgba(29, 40, 78, 0.06);
+	}
+	.iconbox_block.layout_icon_left .iconbox_icon img {
+		max-width: 40px;
+	}
+	.iconbox_block.layout_icon_left .iconbox_title {
+		font-size: 24px;
+		line-height: 32px;
+		margin-bottom: 8px;
+	}
+	.iconbox_block p {
+		font-size: 18px;
+	}
+}
+
+.business_consulting_service_section {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	.container {
+		max-width: 1630px;
+	}
+}
+
+.row.business_consulting_services {
+	margin: -7px;
+	>[class*="col-"] {
+		padding: 7px;
+	}
+
+	.iconbox_block {
+		padding: 80px 50px 72px;
+		.iconbox_title {
+			a {
+				color: var(--vs-dark);
+				&:hover {
+					color: var(--bs-primary);
+				}
+			}
+		}
+	}
+	.iconbox_block .iconbox_icon {
+		width: 96px;
+		height: 96px;
+		margin: 0 0 47px;
+		border: 1px solid #F5F5F5;
+		background-color: var(--bs-white);
+		box-shadow: 0 34px 40px 0 rgba(29, 40, 78, 0.06);
+	}
+}
+
+.review_and_about_section {
+	.container {
+		max-width: 1630px;
+	}
+
+	.slick-slider {
+		margin: -10px;
+
+		.slick-slide {
+			padding: 10px;
+		}
+	}
+}
+
+.review_bg_box {
+	background-size: 930px;
+	padding: 112px 100px 120px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border-radius: var(--bs-border-radius);
+}
+// Business Consulting - End
+/* 5.05 - Home Pages - End
+================================================== */

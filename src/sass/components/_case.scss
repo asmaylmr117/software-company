@@ -1,0 +1,70 @@
+/* 4.03 - Case - Start
+================================================== */
+.case_study_block {
+	display: flex;
+	overflow: hidden;
+	align-items: center;
+	background-color: var(--bs-white);
+	border-radius: var(--bs-border-radius);
+	position: sticky;
+	top: 100px;
+	box-shadow: 0 4px 23px 0 rgba(2, 9, 63, 0.16);
+	&:not(:last-child) {
+		margin-bottom: 30px;
+	}
+	.case_study_image {
+		order: 1;
+		flex: 0 0 auto;
+		max-width: 465px;
+	}
+	.case_study_content {
+		padding: 50px 140px 50px 80px;
+	}
+	.case_title {
+		font-size: 30px;
+		line-height: 40px;
+		margin: 16px 0 24px;
+		a {
+			color: var(--bs-dark);
+			&:hover {
+				color: var(--bs-primary);
+			}
+		}
+	}
+	p {
+		margin-bottom: 20px;
+	}
+	.icon_list {
+		gap: 10px 50px;
+		margin-bottom: 30px;
+	}
+	.case_technologies {
+		gap: 20px;
+		margin-bottom: 26px;
+		&:before {
+			font-size: 18px;
+			font-weight: 500;
+			margin-right: 40px;
+			color: var(--bs-dark);
+			display: inline-block;
+			content: attr(data-text);
+			font-family: 'Axiforma Medium';
+		}
+		>li {
+			width: 58px;
+			height: 58px;
+			flex: 0 0 auto;
+			border-radius: 100%;
+			align-items: center;
+			display: inline-flex;
+			justify-content: center;
+			background-color: var(--bs-white);
+			box-shadow: 0 4px 23px 0 rgba(174, 191, 210, 0.3);
+			img {
+				max-width: 30px;
+			}
+		}
+	}
+}
+/* 4.03 - Case - End
+================================================== */

@@ -1,0 +1,21 @@
+/* 3.03 - Page Header, Page Banner, Breadcrumb - Start
+================================================== */
+.page_banner_section {
+	z-index: 1;
+	position: relative;
+	padding: 130px 0 110px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: var(--bs-dark);
+	background-position: center center;
+	.heading_focus_text {
+		margin-bottom: 24px;
+	}
+}
+
+.page_title {
+	font-size: 55px;
+	line-height: 70px;
+}
+/* 3.03 - Page Header, Page Banner, Breadcrumb - End
+================================================== */

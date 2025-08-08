@@ -1,0 +1,20 @@
+/* 4.02 - Call To Action - Start
+================================================== */
+.calltoaction_section {
+	padding: 100px 0;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-blend-mode: overlay;
+	background-position: center center;
+	background-color: rgba(2, 8, 66, 0.8);
+
+	.heading_block .heading_text {
+		font-size: 54px;
+	}
+
+	&:has(.instant_contact_form) {
+		background-blend-mode: unset;
+	}
+}
+/* 4.02 - Call To Action - End
+================================================== */

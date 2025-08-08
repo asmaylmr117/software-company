@@ -1,0 +1,47 @@
+/* 2.11 - Social Icons - Start
+================================================== */
+.social_icons_block {
+	gap: 10px;
+	a {
+		width: 40px;
+		height: 40px;
+		display: flex;
+		flex: 0 0 auto;
+		border-radius: 5px;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--bs-white);
+		border: 1px solid var(--bs-light);
+		&:hover {
+			color: var(--bs-white);
+			border-color: var(--bs-primary);
+			background-color: var(--bs-primary);
+			img {
+				filter: invert(1);
+			}
+		}
+	}
+}
+
+.social_links_block {
+	gap: 6px;
+	a {
+		display: flex;
+		line-height: 1;
+		font-size: 12px;
+		align-items: center;
+		border-radius: 50px;
+		color: var(--bs-dark);
+		padding: 12px 16px 10px;
+		justify-content: center;
+		text-transform: uppercase;
+		border: 1px solid var(--bs-border-color);
+		&:hover {
+			color: var(--bs-white);
+			border-color: var(--bs-primary);
+			background-color: var(--bs-primary);
+		}
+	}
+}
+/* 2.11 - Social Icons - End
+================================================== */

@@ -1,0 +1,38 @@
+/* 2.02 - Backtotop Button - Start
+================================================== */
+.backtotop {
+  right: 15px;
+  z-index: 999;
+  bottom: 58px;
+  display: none;
+  position: fixed;
+  .scroll {
+    z-index: 1;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    font-size: 15px;
+    position: relative;
+    align-items: center;
+    border-radius: 100%;
+    color: var(--bs-dark);
+    justify-content: center;
+    background-color: var(--bs-white);
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 20px 30px 0 rgba(174, 191, 210, 0.3);
+    &:hover {
+      color: var(--bs-dark);
+    }
+    i {
+      animation: bttIconMover 1s infinite alternate;
+    }
+  }
+}
+
+body:has(.footer_layout_1) {
+  .backtotop {
+    bottom: 72px;
+  }
+}
+/* 2.02 - Backtotop Button - End
+================================================== */

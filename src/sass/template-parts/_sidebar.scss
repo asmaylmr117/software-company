@@ -1,0 +1,17 @@
+/* 3.04 - Sidebar - Start
+================================================== */
+.sidebar {
+	>* {
+		&:not(:last-child) {
+			margin-bottom: 70px;
+		}
+	}
+}
+.sidebar_widget_title {
+	line-height: 1;
+	font-size: 18px;
+	margin-bottom: 35px;
+	text-transform: uppercase;
+}
+/* 3.04 - Sidebar - End
+================================================== */

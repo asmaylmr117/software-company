@@ -1,0 +1,149 @@
+/* 2.14 - Accordion - Start
+================================================== */
+.accordion {
+	.accordion-item {
+		border-radius: 0;
+		border-style: solid;
+		border-color: #CCE3FF;
+		border-width: 0 0 1px;
+		background-color: transparent;
+	}
+
+	.accordion-button {
+		font-size: 20px;
+		font-weight: 500;
+		line-height: 36px;
+		padding: 16px 0 11px;
+		color: var(--bs-dark);
+		border-radius: 0 !important;
+		background-color: transparent;
+		font-family: 'Axiforma Medium';
+
+		&:hover {
+			color: var(--bs-primary);
+		}
+
+		&:after {
+			width: auto;
+			height: auto;
+			content: '\f068';
+			font-size: 16px;
+			background: none;
+			font-weight: 700;
+			font-family: 'Font Awesome 5 pro';
+		}
+
+		&.collapsed {
+			&:after {
+				content: "\2b";
+			}
+		}
+
+		&:focus {
+			box-shadow: none;
+		}
+
+		&:not(.collapsed) {
+			box-shadow: none;
+		}
+	}
+
+	.accordion-body {
+		padding: 20px 34px;
+		background-color: #CCE3FF;
+	}
+
+	p {
+		font-size: 16px;
+		line-height: 30px;
+	}
+}
+
+// FAQ Accordion
+.faq_accordion {
+	.accordion-button {
+		font-size: 24px;
+		padding: 36px 0 31px;
+
+		&:after {
+			width: 40px;
+			height: 40px;
+			font-size: 18px;
+			transform: unset;
+			line-height: 40px;
+			text-align: center;
+			border-radius: 5px;
+			background: var(--bs-white);
+			border: 1px solid var(--bs-border-color);
+			border-color: var(--bs-primary);
+			background-color: var(--bs-primary);
+			color: var(--bs-white);
+		}
+
+		&.collapsed {
+			&:after {
+				background: var(--bs-white);
+				color: var(--bs-dark);
+				border: 1px solid var(--bs-border-color);
+			}
+		}
+	}
+
+	.accordion-button[aria-expanded=true]:after {
+		color: var(--bs-white);
+		border-color: var(--bs-primary);
+		background-color: var(--bs-primary);
+	}
+
+	.accordion-body {
+		position: relative;
+		border-radius: 5px;
+		padding: 43px 50px 40px 170px;
+	}
+
+	.text_a {
+		top: 50px;
+		left: 70px;
+		line-height: 1;
+		font-size: 45px;
+		position: absolute;
+		color: var(--bs-dark);
+		font-family: 'Axiforma SemiBold';
+	}
+
+	.accordion-item,
+	.accordion-body {
+		border-color: #E3F0FF;
+	}
+
+	.accordion-item:has([aria-expanded=true]) {
+		border-color: transparent;
+	}
+
+	.accordion-button:not(.collapsed) {
+		box-shadow: none;
+	}
+}
+
+.faq_section {
+	padding-top: 170px;
+
+	.shape_image_1 {
+		top: 0;
+		right: 0;
+		width: 100%;
+
+		img {
+			width: calc(100% - 265px);
+		}
+	}
+
+	.shape_image_2 {
+		top: 0;
+		right: 0;
+		max-width: 265px;
+	}
+}
+
+/* 2.14 - Accordion - End
+================================================== */

@@ -1,0 +1,130 @@
+/* 2.12 - Counter or Funfact - Start
+================================================== */
+.funfact_block {
+	position: relative;
+	padding: 40px 40px 30px;
+	background-color: var(--bs-white);
+	border-radius: var(--bs-border-radius-sm);
+	box-shadow: 0 4px 23px 0 rgba(174, 191, 210, 0.30);
+	.funfact_icon {
+		height: 80px;
+		margin-bottom: 59px;
+		img {
+			max-height: 80px;
+		}
+	}
+	.counter_value {
+		line-height: 1;
+		font-size: 45px;
+		font-weight: 700;
+		align-items: center;
+		margin-bottom: 10px;
+		display: inline-flex;
+		color: var(--bs-dark);
+		font-family: 'Axiforma Bold';
+	}
+	.funfact_title {
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 28px;
+		color: var(--bs-body-color);
+		font-family: 'Axiforma Regular';
+	}
+
+	.bottom_line {
+		bottom: 0;
+		left: 50%;
+		width: 55%;
+		height: 4px;
+		position: absolute;
+		transform: translateX(-50%);
+	}
+}
+
+.funfact_block:has(.bottom_line) {
+	box-shadow: none;
+	padding: 75px 40px 65px;
+	border: 1px solid #E7E9EE;
+	.counter_value {
+		font-size: 65px;
+		margin-bottom: 20px;
+	}
+	.funfact_title {
+		font-size: 18px;
+		font-weight: 600;
+		font-family: 'Axiforma SemiBold';
+	}
+}
+
+.funfact_block.capsule_layout {
+	padding: 6px;
+	display: flex;
+	align-items: center;
+	border-radius: 50px;
+	justify-content: space-between;
+	box-shadow: 0px 5px 10px 0 rgba(0, 0, 0, 0.15);
+	.funfact_content {
+		gap: 10px;
+		padding: 0 40px;
+		display: inline-flex;
+		flex-direction: column;
+	}
+	.counter_value {
+		font-size: 30px;
+		font-weight: 600;
+		margin-bottom: 0px;
+		font-family: "Axiforma SemiBold";
+	}
+	.funfact_title {
+		line-height: 1;
+		font-size: 14px;
+	}
+	.funfact_icon {
+		margin: 0;
+		width: 78px;
+		height: 78px;
+		flex: 0 0 auto;
+		align-items: center;
+		border-radius: 100%;
+		display: inline-flex;
+		justify-content: center;
+		background-color: #47B16A;
+	}
+}
+
+.our_world_employees {
+	position: relative;
+	.image_wrap {
+		overflow: hidden;
+		position: relative;
+		border-radius: var(--bs-border-radius-sm);
+		&:before {
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1;
+			content: '';
+			position: absolute;
+			background: linear-gradient(0deg, var(--bs-primary), transparent 70%);
+		}
+	}
+	.content_wrap {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 2;
+		position: absolute;
+		padding: 34px 34px 37px;
+	}
+	.title_text {
+		font-size: 36px;
+		font-weight: 700;
+		line-height: 48px;
+		letter-spacing: -1px;
+		color: var(--bs-white);
+		font-family: 'Axiforma Bold';
+	}
+}
+/* 2.12 - Counter or Funfact - End
+================================================== */

@@ -1,0 +1,182 @@
+/* 5.04 - Pricing Page - Start
+================================================== */
+// Pricing Policy Section
+.pricing_policy_wrap {
+	>div {
+		&:not(:last-child) {
+			border-style: solid;
+			border-width: 0 1px 0 0;
+			border-color: var(--bs-border-color);
+		}
+		.iconbox_block {
+			margin: auto;
+		}
+		&:first-child {
+			.iconbox_block {
+				margin: auto auto auto 0;
+			}
+		}
+		&:last-child {
+			.iconbox_block {
+				margin: auto 0 auto auto;
+			}
+		}
+	}
+	.iconbox_block {
+		padding: 0;
+		transform: unset;
+		max-width: 290px;
+		box-shadow: none;
+		border-radius: 0px;
+		.iconbox_icon {
+			width: 60px;
+			height: 60px;
+		}
+		.iconbox_title {
+			font-size: 20px;
+			line-height: 26px;
+			margin-bottom: 12px;
+		}
+	}
+}
+
+// Pricing Card Block
+.pricing_toggle_btn {
+	margin-bottom: 70px;
+	button {
+		gap: 4px;
+		padding: 6px;
+		font-size: 14px;
+		font-weight: 700;
+		align-items: center;
+		border-radius: 65px;
+		display: inline-flex;
+		letter-spacing: 0.3px;
+		justify-content: center;
+		background-color: #CCE3FF;
+		text-transform: uppercase;
+		font-family: 'Axiforma Bold';
+		small {
+			font-size: 12px;
+			font-weight: 500;
+			border-radius: 29px;
+			padding: 4px 7px 2px;
+			font-family: 'Axiforma Medium';
+			background-color: var(--bs-light);
+		}
+		span {
+			padding: 14px 30px 12px;
+			&:last-child {
+				small {
+					color: var(--bs-white);
+					background-color: #FF5050;
+				}
+			}
+		}
+
+		&:not(.active) span:last-child,
+		&.active span:first-child {
+			border-radius: 32px;
+			background-color: var(--bs-white);
+			box-shadow: 0 4px 4px 0 rgba(116, 126, 148, 0.1);
+		}
+	}
+}
+.pricing_block {
+	padding: 40px;
+	position: relative;
+	background-color: var(--bs-white);
+	border-radius: var(--bs-border-radius-sm);
+	box-shadow: 0 1px 2px 0 rgba(174, 191, 210, 0.3);
+
+	.best_plan {
+		top: 0;
+		right: 40px;
+		max-width: 54px;
+		position: absolute;
+	}
+
+	.table_head {
+		gap: 30px;
+		display: flex;
+		align-items: center;
+	}
+
+	.pricing_price_value {
+		width: 244px;
+		flex: 0 0 auto;
+		line-height: 1;
+		font-size: 50px;
+		font-weight: 700;
+		text-align: center;
+		border-radius: 20px;
+		padding: 34px 15px 30px;
+		font-family: 'Axiforma Bold';
+		del {
+			font-size: 20px;
+			font-weight: 400;
+			color: var(--bs-body-color);
+			font-family: 'Axiforma Regular';
+		}
+		small {
+			font-size: 30px;
+			font-weight: 600;
+			font-family: 'Axiforma SemiBold';
+		}
+		sub {
+			display: block;
+			line-height: 1;
+			font-size: 14px;
+			font-weight: 400;
+			color: var(--bs-dark);
+			font-family: 'Axiforma Regular';
+			u {
+				font-weight: 600;
+				font-family: 'Axiforma SemiBold';
+			}
+		}
+	}
+
+	.pricing_package_title {
+		line-height: 1;
+		font-size: 26px;
+		margin-bottom: 10px;
+	}
+	.pricing_package_description {
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 23px;
+		font-family: 'Axiforma Medium';
+	}
+
+	.icon_list {
+		columns: 2;
+		display: block;
+		column-gap: 20px;
+		padding: 29px 0 25px;
+		>li {
+			padding: 5px 0;
+		}
+		i {
+			color: var(--bs-dark);
+		}
+
+		.delete {
+			opacity: .3;
+		}
+	}
+
+	.pricing_monthly {
+		display: none;
+	}
+	&.active {
+		.pricing_annually {
+			display: none;
+		}
+		.pricing_monthly {
+			display: block;
+		}
+	}
+}
+/* 5.04 - Pricing Page - End
+================================================== */

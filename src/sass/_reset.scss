@@ -1,0 +1,270 @@
+/* 1.2 - Template Reset - Start
+================================================== */
+body {
+	margin: 0;
+	padding: 0;
+	font-size: var(--bs-body-font-size);
+	font-weight: var(--bs-body-font-weight);
+	line-height: var(--bs-body-line-height);
+	font-style: normal;
+	color: var(--bs-body-color);
+	font-family: var(--bs-body-font-family);
+	background-color: var(--bs-body-bg);
+	text-rendering: optimizelegibility;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
+.page_wrapper {
+	position: relative;
+}
+
+iframe {
+	border: none;
+}
+.page_content.s2 {
+   overflow: hidden;
+}
+
+a:focus,
+a:active,
+input,
+input:hover,
+input:focus,
+input:active,
+textarea,
+textarea:hover,
+textarea:focus,
+textarea:active {
+	outline: none;
+}
+
+img:not([draggable]),
+embed,
+object,
+video {
+	height: auto;
+	max-width: 100%;
+}
+img {
+	border: none;
+	height: auto;
+	max-width: 100%;
+	user-select: none;
+	vertical-align: middle;
+}
+
+a {
+	outline: 0;
+	display: inline-block;
+	text-decoration: none;
+	transition: var(--bs-transition);
+	font-family: var(--bs-body-font-family);
+	&:active,
+	&:focus,
+	&:hover,
+	&:visited {
+		outline: 0;
+		text-decoration: none;
+	}
+}
+
+button {
+	padding: 0px;
+	border: none;
+	outline: none;
+	background: none;
+	display: inline-block;
+	transition: var(--bs-transition);
+	font-family: var(--bs-body-font-family);
+	&:focus {
+		outline: none;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+	color: var(--bs-dark);
+	font-family: var(--bs-heading-font-family);
+	&:has(b) {
+		font-weight: 300;
+		b {
+			font-weight: 700;
+		}
+	}
+	&:has(strong) {
+		font-weight: 300;
+		strong {
+			font-weight: 700;
+		}
+	}
+}
+
+b, strong {
+	font-weight: 700;
+	font-family: 'Axiforma Bold';
+}
+
+hr {
+	opacity: 1;
+	height: 1px;
+	border: none;
+	margin: 25px 0;
+	background-color: var(--bs-border-color);
+}
+
+mark {
+	padding: 0;
+	color: var(--bs-primary);
+	background-color: transparent;
+}
+
+.container {
+	max-width: 1320px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.container-fluid {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.row {
+	margin: -15px;
+}
+[class*="col-"] {
+	padding: 15px;
+}
+.xb-hidden {
+	overflow: hidden;
+}
+.pt-130 {
+	padding-top: 130px;
+}
+.pt-180 {
+	padding-top: 180px;
+}
+.pt-170 {
+	padding-top: 170px;
+}
+.pb-130 {
+	padding-bottom: 130px;
+}
+.pb-80 {
+	padding-bottom: 80px;
+}
+.dropdown-menu {
+	padding: 6px 0;
+	margin-top: 20px;
+	transition: 200ms;
+	background-color: var(--bs-white);
+	border-radius: var(--bs-border-radius);
+	border: 1px solid var(--bs-border-color);
+	box-shadow: 0 20px 40px 0 rgba(2, 8, 66, 0.1);
+	z-index: -1;
+	&:before {
+		left: 0;
+		right: 0;
+		top: -20px;
+		content: '';
+		height: 20px;
+		display: block;
+		position: absolute;
+	}
+	>li {
+		padding: 0 6px;
+		&:not(:last-child) {
+			margin-bottom: 1px;
+		}
+		>a {
+			gap: 8px;
+			display: flex;
+			font-size: 16px;
+			font-weight: 500;
+			line-height: 20px;
+			position: relative;
+			border-radius: 7px;
+			align-items: center;
+			white-space: nowrap;
+			color: var(--bs-dark);
+			padding: 12px 22px 8px;
+			justify-content: space-between;
+		}
+		&:hover,
+		&.active {
+			>a {
+				color: var(--bs-primary);
+				background-color: var(--bs-primary-bg-subtle);
+			}
+		}
+	}
+}
+.dropdown-toggle::after {
+	margin: 0;
+	border: none;
+	line-height: 1;
+	content: '\f107';
+	font-weight: 400;
+	color: var(--bs-body-color);
+	font-family: 'Font Awesome 6 Pro';
+}
+@media screen and (min-width: 992px) {
+	.dropdown-menu {
+		left: 0;
+		transform: translateY(4px);
+		>.dropdown {
+			>.dropdown-menu {
+				left: 100%;
+				transform: translateY(4px);
+			}
+		}
+	}
+	.dropdown {
+		&:hover {
+			>.dropdown-menu {
+				display: block;
+				transform: translateY(0px);
+				>.dropdown {
+					>.dropdown-menu {
+						transform: translateY(0px);
+					}
+				}
+			}
+		}
+	}
+}
+
+// Bbadge - Start
+.badge {
+	line-height: 1;
+	font-size: 10px;
+	font-weight: 500;
+	padding: 5px 10px;
+	border-radius: 3px;
+	letter-spacing: 0.5px;
+	font-family: 'Axiforma Medium';
+}
+// Bbadge - End
+
+// Overlay - Start
+.overlay {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+	position: absolute;
+}
+// Overlay - End
+
+// Section Decoration - Start
+.section_decoration {
+	z-index: 1;
+	position: relative;
+	.decoration_item {
+		z-index: -1;
+		position: absolute;
+	}
+}
+// Section Decoration - End
+/* 1.2 - Template Reset - End
+================================================== */

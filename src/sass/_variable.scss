@@ -1,0 +1,43 @@
+:root, [data-bs-theme=light] {
+	--bs-body-font-family: 'Axiforma Regular', sans-serif;
+	--bs-heading-font-family: 'Axiforma Bold', sans-serif;
+	--bs-body-font-size: 16px;
+	--bs-body-font-weight: 400;
+	--bs-body-line-height: 1.5;
+	--bs-body-color: #49515B;
+	--bs-body-color-rgb: 73, 81, 91;
+
+	--bs-primary: #0044EB;
+	--bs-secondary: #F44380;
+	--bs-dark: #020842;
+	--bs-light: #E3F0FF;
+	--bs-info: #23BABF;
+	--bs-warning: #F3A338;
+	--bs-danger: #F26F4D;
+	--bs-success: #47B16A;
+	
+	--bs-primary-rgb: 0, 68, 235;
+	--bs-secondary-rgb: 244, 67, 128;
+	--bs-dark-rgb: 2, 8, 66;
+	--bs-light-rgb: 227, 240, 255;
+	--bs-info-rgb: 35, 186, 191;
+	--bs-warning-rgb: 243, 163, 56;
+	--bs-danger-rgb: 242, 111, 77;
+	--bs-success-rgb: 71, 177, 106;
+
+	--bs-primary-bg-subtle: rgba(0, 68, 235, 0.10);
+	--bs-secondary-bg-subtle: rgba(244, 67, 128, 0.10);
+	--bs-info-bg-subtle: rgba(35, 186, 191, 0.10);
+	--bs-warning-bg-subtle: rgba(243, 163, 56, 0.10);
+	--bs-danger-bg-subtle: rgba(242, 111, 77, 0.10);
+	--bs-success-bg-subtle: rgba(71, 177, 106, 0.10);
+
+	--bs-border-color: #E3F0FF;
+	--bs-border-color-translucent: rgba(227, 240, 255, 1);
+
+	--bs-border-radius: 10px;
+	--bs-border-radius-sm: 20px;
+	--bs-border-radius-pill: 50px;
+
+	--bs-transition: 300ms ease;
+}

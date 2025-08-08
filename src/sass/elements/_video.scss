@@ -1,0 +1,116 @@
+/* 2.10 - Video - Start
+================================================== */
+.mfp-iframe-holder .mfp-content {
+	width: 100%;
+	line-height: 0;
+	max-width: 70%;
+	border: 4px solid #ffffff;
+}
+.mfp-container {
+	padding: 0 15px;
+}
+.mfp-bg {
+	opacity: 0.94;
+	background-color: #000000;
+}
+@media screen and (max-width: 1199px) {
+	.mfp-iframe-holder .mfp-content {
+		max-width: 100%;
+	}
+}
+
+// Video Button
+.video_btn {
+	gap: 10px;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 20px;
+	align-items: center;
+	display: inline-flex;
+	color: var(--bs-dark);
+	font-family: 'Axiforma Medium';
+	.btn_icon {
+		width: 58px;
+		height: 58px;
+		flex: 0 0 58px;
+		font-size: 20px;
+		padding-left: 4px;
+		border-radius: 100%;
+		align-items: center;
+		display: inline-flex;
+		color: var(--bs-dark);
+		justify-content: center;
+		transition: var(--bs-transition);
+		border: 2px solid var(--bs-white);
+		outline: 1px solid var(--bs-dark);
+	}
+	.btn_label {}
+	&:hover {
+		.btn_icon {
+			color: var(--bs-white);
+			background-color: var(--bs-dark);
+		}
+	}
+}
+
+.video_btn.ripple_effect {
+	.btn_icon {
+		z-index: 1;
+		padding: 0;
+		width: auto;
+		height: auto;
+		padding: 20px;
+		outline: none;
+		position: relative;
+		backdrop-filter: blur(10px);
+		border: 1px solid var(--bs-white);
+		background-color: rgba(255, 255, 255, 0.8);
+		box-shadow: 0 20px 30px 0 rgba(2, 8, 66, 0.5);
+		&:before,
+		&:after {
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			z-index: -1;
+			content: '';
+			position: absolute;
+			border-radius: 100%;
+			transition: all .33s ease;
+			animation: ripple 1.5s linear infinite;
+			border: 1px solid rgba(255, 255, 255, 0.5);
+		}
+		&:before {
+			animation-delay: .1s;
+		}
+		&:after {
+			animation-delay: .9s;
+		}
+		i {
+			width: 86px;
+			height: 86px;
+			flex: 0 0 auto;
+			transition: 0.2s;
+			padding-left: 4px;
+			border-radius: 100%;
+			align-items: center;
+			display: inline-flex;
+			color: var(--bs-white);
+			justify-content: center;
+			background-color: var(--bs-primary);
+		}
+	}
+}
+
+.position-relative {
+	.video_btn {
+		top: 50%;
+		left: 50%;
+		z-index: 2;
+		position: absolute;
+		transform: translate(-50%, -50%);
+	}
+}
+/* 2.10 - Video - End
+================================================== */

@@ -1,0 +1,96 @@
+/* 4.04 - Client Logo - Start
+================================================== */
+.client_logo_section {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-color: var(--bs-light);
+	background-position: center center;
+}
+
+.client_logo_carousel {
+	.slick-slide{
+		padding: 0 5px;
+	}
+}
+
+.client_logo_item {
+	height: 118px;
+	display: flex!important;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #E4EEF0;
+	transition: var(--bs-transition);
+	background-color: var(--bs-white);
+	border-radius: var(--bs-border-radius);
+	&:hover {
+		box-shadow: 0 8px 15px 0 rgba(3, 11, 76, 0.08);
+	}
+	img {
+		max-width: 124px;
+	}
+}
+.no_style {
+	.client_logo_item {
+		padding: 0;
+		border: none;
+		height: 60px;
+		border-radius: 0;
+		box-shadow: none;
+		background-color: transparent;
+	}
+}
+
+.feature_partners_section {
+	padding: 70px 0;
+	padding-bottom: 20px;
+	background-color: #0132B8;
+	overflow: hidden;
+	position: relative;
+	&::before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 22%;
+		height: 100%;
+		content: "";
+		background-color: #0132B8;
+		z-index: 2;
+	}
+	.title_text {
+		top: -40px;
+		left: 5px;
+		bottom: -40px;
+		z-index: 2;
+		padding: 0 40px;
+		font-size: 20px;
+		font-weight: 600;
+		max-width: 240px;
+		position: absolute;
+		align-items: center;
+		display: inline-flex;
+		justify-content: center;
+		background-color: #0132B8;
+		font-family: 'Axiforma SemiBold';
+	}
+	.client_logo_carousel .swiper-wrapper .swiper-slide {
+		padding: 30px 8px;
+	}
+	.client_logo_item {
+		height: 70px;
+		border: none;
+		display: flex;
+		border-radius: 5px;
+		align-items: center;
+		clip-path: polygon(84% 0, 100% 40%, 100% 100%, 0 100%, 0 0);
+		img {
+			max-width: 90px;
+		}
+	}
+
+	.slick-list {
+		overflow: unset;
+	}
+}
+/* 4.04 - Client Logo - End
+================================================== */
