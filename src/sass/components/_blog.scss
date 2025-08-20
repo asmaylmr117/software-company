@@ -1,5 +1,3 @@
-/* 4.01 - Blog - Start
-================================================== */
 .blog_section_space {
 	padding-top: 125px;
 	padding-bottom: 75px;
@@ -24,7 +22,6 @@
 }
 
 .blog-page {
-
 	.blog_post_block {
 		.blog_post_image {
 			.image_wrap {
@@ -41,31 +38,47 @@
 	}
 }
 
-// Blog Post Block
+// Blog Post Block - Updated with Fixed Image Sizing
 .blog_post_block {
 	overflow: hidden;
 	transition: var(--bs-transition);
 	background-color: var(--bs-white);
-	border-radius: var(--bs-border-radius-sm);
-	box-shadow: 0 1px 2px 0 rgba(174, 191, 210, 0.3);
+	border-radius: 12px; // زيادة البوردر راديوس
+	box-shadow: 0 4px 15px rgba(174, 191, 210, 0.3); // تحسين الظل
+	margin-bottom: 30px;
+	height: 100%; // ضمان نفس الارتفاع لجميع البطاقات
+	display: flex;
+	flex-direction: column;
 
 	&:hover {
-		box-shadow: 0 20px 30px 0 rgba(174, 191, 210, 0.3);
+		box-shadow: 0 8px 25px rgba(174, 191, 210, 0.4); // تحسين تأثير الهوفر
+		transform: translateY(-5px); // إضافة تأثير الرفع
 	}
 
 	.blog_post_image {
+		height: 250px; // ارتفاع ثابت للصور
+		overflow: hidden;
+		border-radius: 8px 8px 0 0; // بوردر راديوس للجزء العلوي فقط
+		position: relative;
+
 		.image_wrap {
 			display: block;
+			width: 100%;
+			height: 100%;
 			overflow: hidden;
 			position: relative;
 
 			img {
-				transition: var(--bs-transition);
+				width: 100%;
+				height: 100%;
+				object-fit: cover; // ضمان ملء الحاوية
+				object-position: center; // وضع الصورة في المنتصف
+				transition: transform 0.3s ease; // تأثير انتقالي ناعم
 			}
 
 			&:hover {
 				img {
-					transform: scale(1.108);
+					transform: scale(1.05); // تكبير أقل للحصول على تأثير أنيق
 				}
 			}
 
@@ -102,6 +115,15 @@
 			transform: translate(-50%, -50%) scale(0);
 			transition: transform var(--bs-transition);
 		}
+
+		// استجابة للشاشات المختلفة
+		@media (max-width: 768px) {
+			height: 200px;
+		}
+
+		@media (max-width: 576px) {
+			height: 180px;
+		}
 	}
 
 	&:hover {
@@ -117,7 +139,19 @@
 	}
 
 	.blog_post_content {
-		padding: 40px 30px;
+		padding: 25px; // تقليل البادينغ قليلاً
+		flex-grow: 1; // ملء المساحة المتبقية
+		display: flex;
+		flex-direction: column;
+
+		// استجابة للشاشات المختلفة
+		@media (max-width: 768px) {
+			padding: 20px;
+		}
+
+		@media (max-width: 576px) {
+			padding: 15px;
+		}
 	}
 
 	.post_meta_wrap {
@@ -125,13 +159,34 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: flex-start;
+		margin-bottom: 15px;
 
 		.category_btns_group {
 			gap: 3px;
+
+			li a {
+				background: var(--bs-primary);
+				color: var(--bs-white);
+				padding: 5px 12px;
+				border-radius: 15px;
+				font-size: 12px;
+				text-decoration: none;
+				display: inline-block;
+				transition: all 0.3s ease;
+
+				&:hover {
+					background: var(--bs-secondary);
+				}
+			}
 		}
 
 		.post_meta {
 			margin-top: 4px;
+
+			li {
+				font-size: 14px;
+				color: var(--bs-secondary);
+			}
 		}
 	}
 
@@ -139,17 +194,32 @@
 		font-size: 22px;
 		font-weight: 600;
 		line-height: 32px;
-		margin: 24px 0 30px;
+		margin: 15px 0;
 		letter-spacing: -0.3px;
 		font-family: 'Axiforma SemiBold';
+		flex-grow: 1; // يأخذ المساحة المتبقية
+		display: flex;
+		align-items: center;
 
 		a {
 			color: var(--bs-dark);
+			text-decoration: none;
+			display: -webkit-box;
+			-webkit-line-clamp: 2; // تحديد النص بسطرين
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			line-height: 1.4;
 
 			&:hover {
 				color: var(--bs-primary);
 			}
 		}
+	}
+
+	// تحديد مكان زر "Read More" في أسفل البطاقة
+	.btn_unfill {
+		margin-top: auto;
+		align-self: flex-start;
 	}
 }
 
@@ -173,6 +243,7 @@
 .blog_post_block.image_left_layout {
 	display: flex;
 	align-items: center;
+	height: auto; // إلغاء الارتفاع الثابت للتخطيط الجانبي
 
 	&:not(:last-child) {
 		margin-bottom: 30px;
@@ -180,18 +251,31 @@
 
 	.blog_post_image {
 		width: 312px;
+		height: 200px; // ارتفاع ثابت للتخطيط الجانبي
 		flex: 0 0 auto;
+
+		.image_wrap {
+			height: 100%;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
 	}
 
 	.blog_post_content {
 		flex: 1;
 		padding: 40px;
+		height: auto;
 	}
 
 	.blog_post_title {
 		font-size: 26px;
 		line-height: 35px;
 		margin: 20px 0 14px;
+		flex-grow: 0; // إلغاء التمدد للتخطيط الجانبي
 	}
 
 	p {
@@ -255,6 +339,7 @@
 
 .blog_post_block.content_over_layout {
 	position: relative;
+	height: auto; // إلغاء الارتفاع الثابت للمحتوى المتداخل
 
 	.image_wrap {
 		&:before {
@@ -276,15 +361,18 @@
 		z-index: 1;
 		position: absolute;
 		padding: 50px 50px 40px;
+		height: auto;
 	}
 
 	.blog_post_title {
 		font-size: 45px;
 		line-height: 58px;
 		margin: 24px 0 15px;
+		flex-grow: 0; // إلغاء التمدد للمحتوى المتداخل
 
 		a {
 			color: var(--bs-white);
+			-webkit-line-clamp: unset; // إلغاء تحديد النص
 
 			&:hover {
 				opacity: 0.8;
@@ -434,7 +522,6 @@
 				}
 			}
 		}
-
 	}
 }
 

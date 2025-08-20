@@ -5,8 +5,12 @@ import sIcon2 from '../../images/icon/c_02.svg'
 import sIcon3 from '../../images/icon/c_03.svg'
 import sIcon4 from '../../images/icon/c_04.svg'
 import Bg from '../../images/bg/counter_bg.jpg'
-
-
+ const sIcon1 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/c_01.svg'
+ const sIcon2 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/c_02.svg'
+ const sIcon3 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/c_03.svg'
+ const sIcon4 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/c_04.svg'
+ const Bg = 'https://portfolio-vercel-bi43.vercel.app/images/bg/counter_bg.jpg'
+  
 const FunFact = [
     {
         title: '20',

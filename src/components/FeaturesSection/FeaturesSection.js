@@ -1,13 +1,13 @@
 import React from 'react';
 import PartnerSection from '../PartnerSection';
 import CountUp from 'react-countup';
-import sIcon1 from '../../images/icons/icon_head.svg'
-import sIcon2 from '../../images/icons/icon_check.svg'
-import sIcon3 from '../../images/icons/icon_like.svg'
-import sIcon4 from '../../images/icons/icon_dart_board.svg'
-import Bg from '../../images/shapes/bg_pattern_1.svg'
-import serviceImage5 from '../../images/services/service_image_5.webp';
 
+import serviceImage5 from '../../images/services/service_image_5.webp';
+const sIcon1 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_head.svg'
+const sIcon2 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_check.svg'
+const sIcon3 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_like.svg'
+const sIcon4 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_dart_board.svg'
+const Bg = 'https://portfolio-vercel-bi43.vercel.app/images/shapes/bg_pattern_1.svg'
 const FunFact = [
     {
         title: '25',

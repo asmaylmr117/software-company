@@ -1,9 +1,9 @@
 import React from 'react';
 import Services from '../../../api/service'
 import { Link } from "react-router-dom";
-import Bg from '../../../images/backgrounds/bg_image_3.webp'
 
 
+const Bg = 'https://portfolio-vercel-bi43.vercel.app/images/backgrounds/bg_image_3.webp'
 const ConsultingService = (props) => {
     const ClickHandler = () => {
         window.scrollTo(10, 0);

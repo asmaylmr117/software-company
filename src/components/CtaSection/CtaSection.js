@@ -1,7 +1,7 @@
 import React from 'react';
-import Bg from '../../images/backgrounds/bg_image_3.webp'
-import { Link } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+const Bg = 'https://portfolio-vercel-bi43.vercel.app/images/backgrounds/bg_image_3.webp'
 const CtaSection = (props) => {
 
     const ClickHandler = () => {

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import fImg1 from '../../images/faq/faq_img.png'
+const fImg1 = 'https://portfolio-vercel-bi43.vercel.app/images/faq/faq_img.png'
 import {
     Accordion,
     AccordionBody,

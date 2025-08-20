@@ -1,6 +1,6 @@
 import React from 'react'
-import Bg from '../../images/shapes/bg_pattern_4.svg'
 
+const Bg = 'https://portfolio-vercel-bi43.vercel.app/images/shapes/bg_pattern_4.svg'
 
 const PageTitle = (props) => {
     return (

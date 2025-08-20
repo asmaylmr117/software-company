@@ -1,13 +1,15 @@
 import React from 'react';
-import Bg from '../../images/shapes/shape_title_under_line.svg'
-import circle1 from '../../images/hero/circle_engine_1.webp'
-import circle2 from '../../images/hero/circle_engine_2.webp'
-import circle3 from '../../images/hero/circle_engine_3.webp'
-import circle4 from '../../images/hero/circle_engine_4.webp'
-import shape1 from '../../images/hero/shape_image_1.webp'
-import shape2 from '../../images/hero/shape_image_2.webp'
-import shape3 from '../../images/hero/shape_image_3.webp'
-import shape4 from '../../images/hero/shape_image_4.webp'
+
+
+const Bg = 'https://portfolio-vercel-bi43.vercel.app/images/shapes/shape_title_under_line.svg'
+const circle1 = 'https://portfolio-vercel-bi43.vercel.app/images/hero/circle_engine_1.webp'
+const circle2 = 'https://portfolio-vercel-bi43.vercel.app/images/hero/circle_engine_2.webp'
+const circle3 = 'https://portfolio-vercel-bi43.vercel.app/images/hero/circle_engine_3.webp'
+const circle4 = 'https://portfolio-vercel-bi43.vercel.app/images/hero/circle_engine_4.webp'
+const shape1 = 'https://portfolio-vercel-bi43.vercel.app/images/hero/shape_image_1.webp'
+const shape2 = 'https://portfolio-vercel-bi43.vercel.app/images/hero/shape_image_2.webp'
+const shape3 = 'https://portfolio-vercel-bi43.vercel.app/images/hero/shape_image_3.webp'
+const shape4 = 'https://portfolio-vercel-bi43.vercel.app/images/hero/shape_image_4.webp'
 
 const Hero2 = (props) => {
 

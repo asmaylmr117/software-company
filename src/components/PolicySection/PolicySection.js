@@ -1,7 +1,8 @@
 import React from 'react';
-import sIcon1 from '../../images/icons/icon_user_check.svg'
-import sIcon2 from '../../images/icons/icon_headphone.svg'
-import sIcon3 from '../../images/icons/icon_dollar.svg'
+
+const sIcon1 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_user_check.svg'
+const sIcon2 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_headphone.svg'
+const sIcon3 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_dollar.svg'
 
 const Policy = [
     {

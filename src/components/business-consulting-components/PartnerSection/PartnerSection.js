@@ -2,13 +2,14 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import pimg1 from '../../../images/clients/client_logo_1.webp'
-import pimg2 from '../../../images/clients/client_logo_2.webp'
-import pimg3 from '../../../images/clients/client_logo_3.webp'
-import pimg4 from '../../../images/clients/client_logo_4.webp'
-import pimg5 from '../../../images/clients/client_logo_5.webp'
-import pimg6 from '../../../images/clients/client_logo_6.webp'
-import pimg7 from '../../../images/clients/client_logo_7.webp'
+const pimg1 = 'https://portfolio-vercel-bi43.vercel.app/images/clients/client_logo_1.webp'
+const pimg2 = 'https://portfolio-vercel-bi43.vercel.app/images/clients/client_logo_2.webp'
+const pimg3 = 'https://portfolio-vercel-bi43.vercel.app/images/clients/client_logo_3.webp'
+const pimg4 = 'https://portfolio-vercel-bi43.vercel.app/images/clients/client_logo_4.webp'
+const pimg5 = 'https://portfolio-vercel-bi43.vercel.app/images/clients/client_logo_5.webp'
+const pimg6 = 'https://portfolio-vercel-bi43.vercel.app/images/clients/client_logo_6.webp'
+const pimg7 = 'https://portfolio-vercel-bi43.vercel.app/images/clients/client_logo_7.webp'
+
 
 const partners = [
     {

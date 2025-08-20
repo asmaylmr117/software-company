@@ -1,10 +1,9 @@
 import React from 'react'
 import ContactForm from '../ContactFrom/ContactForm'
-import icon1 from '../../images/icons/icon_map_mark_2.svg'
-import icon2 from '../../images/icons/icon_calling_2.svg'
-import icon3 from '../../images/icons/icon_mail_3.svg'
-import icon4 from '../../images/icons/icon_calendar_2.svg'
-
+const icon1 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_map_mark_2.svg'
+const icon2 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_calling_2.svg'
+const icon3 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_mail_3.svg'
+const icon4 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_calendar_2.svg'
 
 const ContactSection = (props) => {
     return (

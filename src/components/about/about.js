@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import about1 from '../../images/about/about_image_9.webp';
-import about2 from '../../images/about/about_image_11.webp';
-import about3 from '../../images/about/about_image_10.webp';
 import ModalVideo from 'react-modal-video';
 import '../../../node_modules/react-modal-video/scss/modal-video.scss';
 
-
-const About = (props) => {
+const About = () => {
     const [isOpen, setOpen] = useState(false);
+
+    const baseUrl = 'https://portfolio-vercel-bi43.vercel.app/images/about/';
+    const images = [
+        `${baseUrl}about_image_9.webp`,
+        `${baseUrl}about_image_11.webp`,
+        `${baseUrl}about_image_10.webp`
+    ];
 
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     };
-
-    
 
     return (
         <section className="about_section section_space">
@@ -22,9 +23,16 @@ const About = (props) => {
                 <div className="row align-items-center justify-content-lg-between">
                     <div className="col-lg-6">
                         <div className="about_image_1">
-                            <img src={about1} alt="Techco - About" />
-                            <img src={about2} data-parallax='{"y" : 80, "smoothness": 6}' alt="Techco - About" />
-                            <img src={about3} data-parallax='{"y" : -80, "smoothness": 6}' alt="Techco - About" />
+                            {images.map((src, index) => (
+                                <img
+                                    key={index}
+                                    src={src}
+                                    alt={`Techco - About ${index + 1}`}
+                                    data-parallax={index === 1 ? '{"y" : 80, "smoothness": 6}' : index === 2 ? '{"y" : -80, "smoothness": 6}' : undefined}
+                                    onError={(e) => (e.target.src = '/fallback-image.webp')} // Fallback image
+                                    loading="lazy" // Optimize loading
+                                />
+                            ))}
                         </div>
                     </div>
                     <div className="col-lg-5">
@@ -68,37 +76,7 @@ const About = (props) => {
                                 </li>
                             </ul>
                             <ul className="btns_group unordered_list p-0 justify-content-start">
-                              
-                                   
-                               <li>
-                                    
-                                    <Link onClick={ClickHandler} to="/pricing" className="btn">
-                                        <span className="btn_label" data-text="Get Started">Get Started</span>
-                                        <span className="btn_icon">
-                                            <i className="fa-solid fa-arrow-up-right"></i>
-                                        </span>
-                                    </Link>
-                                </li>
                                 <li>
-                                    <span className="icon_list_icon">
-                                        <i className="fa-solid fa-circle fa-fw"></i>
-                                    </span>
-                                    <span className="icon_list_text">
-                                        Let business growth help your business grow.
-                                    </span>
-                                </li>
-                                <li>
-                                    <span className="icon_list_icon">
-                                        <i className="fa-solid fa-circle fa-fw"></i>
-                                    </span>
-                                    <span className="icon_list_text">
-                                        Helping you to get better.
-                                    </span>
-                                </li>
-                            </ul>
-                            <ul className="btns_group unordered_list p-0 justify-content-start">
-                                <li>
-                                <div id="google_translate_element"></div>
                                     <Link onClick={ClickHandler} to="/pricing" className="btn">
                                         <span className="btn_label" data-text="Get Started">Get Started</span>
                                         <span className="btn_icon">
@@ -121,7 +99,7 @@ const About = (props) => {
             </div>
             <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="7e90gBu4pas" onClose={() => setOpen(false)} />
         </section>
-    )
-}
+    );
+};
 
 export default About;

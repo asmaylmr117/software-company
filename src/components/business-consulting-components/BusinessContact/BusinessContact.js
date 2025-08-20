@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SimpleReactValidator from 'simple-react-validator';
-import Bg from '../../../images/backgrounds/bg_image_3.webp'
 
+const Bg = 'https://portfolio-vercel-bi43.vercel.app/images/backgrounds/bg_image_3.webp'
 const BusinessContact = (props) => {
 
     const [forms, setForms] = useState({
