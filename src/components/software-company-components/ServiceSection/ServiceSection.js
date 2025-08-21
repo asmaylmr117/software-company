@@ -10,6 +10,7 @@ import shape5 from '../../../images/shapes/shape_angle_2.webp';
 const ServiceSection = (props) => {
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const ClickHandler = () => {
         window.scrollTo(10, 0);
@@ -21,14 +22,46 @@ const ServiceSection = (props) => {
                 // Fetch page 1
                 const responsePage1 = await fetch('https://portfolio-vercel-bi43.vercel.app/api/services?page=1');
                 const dataPage1 = await responsePage1.json();
+                console.log('Page 1 response:', dataPage1);
                 
                 // Fetch page 2
                 const responsePage2 = await fetch('https://portfolio-vercel-bi43.vercel.app/api/services?page=2');
                 const dataPage2 = await responsePage2.json();
+                console.log('Page 2 response:', dataPage2);
+
+                // Handle different response structures for page 1
+                let servicesPage1 = [];
+                if (Array.isArray(dataPage1)) {
+                    servicesPage1 = dataPage1;
+                } else if (dataPage1.data && Array.isArray(dataPage1.data)) {
+                    servicesPage1 = dataPage1.data;
+                } else if (dataPage1.services && Array.isArray(dataPage1.services)) {
+                    servicesPage1 = dataPage1.services;
+                } else {
+                    console.warn('Unexpected page 1 response structure:', dataPage1);
+                    servicesPage1 = [];
+                }
+
+                // Handle different response structures for page 2
+                let servicesPage2 = [];
+                if (Array.isArray(dataPage2)) {
+                    servicesPage2 = dataPage2;
+                } else if (dataPage2.data && Array.isArray(dataPage2.data)) {
+                    servicesPage2 = dataPage2.data;
+                } else if (dataPage2.services && Array.isArray(dataPage2.services)) {
+                    servicesPage2 = dataPage2.services;
+                } else {
+                    console.warn('Unexpected page 2 response structure:', dataPage2);
+                    servicesPage2 = [];
+                }
 
                 // Filter services with IDs 8, 9, 10, 11 from page 1 and 6, 7 from page 2
-                const filteredPage1 = dataPage1.data.filter(service => [8, 9, 10, 11].includes(service.id));
-                const filteredPage2 = dataPage2.data.filter(service => [6, 7].includes(service.id));
+                const filteredPage1 = servicesPage1.filter(service => 
+                    service && service.id && [8, 9, 10, 11].includes(service.id)
+                );
+                const filteredPage2 = servicesPage2.filter(service => 
+                    service && service.id && [6, 7].includes(service.id)
+                );
 
                 // Combine and sort services by ID
                 const combinedServices = [...filteredPage1, ...filteredPage2].sort((a, b) => a.id - b.id);
@@ -36,22 +69,43 @@ const ServiceSection = (props) => {
                 // Map to match the expected structure
                 const formattedServices = combinedServices.map(service => ({
                     id: service.id,
-                    slug: service.slug,
-                    title: service.title,
-                    sImg: service.image || 'default-image-path', // Adjust based on actual API response
-                    features: service.features || [] // Adjust based on actual API response
+                    slug: service.slug || `service-${service.id}`,
+                    title: service.title || service.name || 'Untitled Service',
+                    sImg: service.image || service.sImg || '/images/services/default-service.webp',
+                    features: service.features || service.description ? [service.description] : []
                 }));
 
                 setServices(formattedServices);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching services:', error);
+                setError(error.message);
                 setLoading(false);
             }
         };
 
         fetchServices();
     }, []);
+
+    if (loading) {
+        return (
+            <section className="service_section pt-175 pb-80 bg-light section_decoration xb-hidden">
+                <div className="container">
+                    <div className="text-center">Loading services...</div>
+                </div>
+            </section>
+        );
+    }
+
+    if (error) {
+        return (
+            <section className="service_section pt-175 pb-80 bg-light section_decoration xb-hidden">
+                <div className="container">
+                    <div className="text-center text-danger">Error loading services: {error}</div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section className="service_section pt-175 pb-80 bg-light section_decoration xb-hidden">
@@ -65,15 +119,19 @@ const ServiceSection = (props) => {
                     </h2>
                 </div>
 
-                {loading ? (
-                    <div>Loading services...</div>
-                ) : (
-                    <div className="row">
-                        {services.map((service, srv) => (
-                            <div className="col-lg-4" key={srv}>
+                <div className="row">
+                    {services.length > 0 ? (
+                        services.map((service, srv) => (
+                            <div className="col-lg-4" key={service.id || srv}>
                                 <div className="service_block_2">
                                     <div className="service_icon">
-                                        <img src={service.sImg} alt="Techco - Service icon" />
+                                        <img 
+                                            src={service.sImg} 
+                                            alt={`${service.title} - Service icon`}
+                                            onError={(e) => {
+                                                e.target.src = '/images/services/default-service.webp';
+                                            }}
+                                        />
                                     </div>
                                     <h3 className="service_title">
                                         <Link onClick={ClickHandler} to={`/service-single/${service.slug}`}>
@@ -81,22 +139,37 @@ const ServiceSection = (props) => {
                                         </Link>
                                     </h3>
                                     <ul className="icon_list unordered_list_block">
-                                        {service.features.map((feature, featureitem) => (
-                                            <li key={featureitem}>
+                                        {service.features && service.features.length > 0 ? (
+                                            service.features.map((feature, featureitem) => (
+                                                <li key={featureitem}>
+                                                    <span className="icon_list_icon">
+                                                        <i className="fa-regular fa-circle-dot"></i>
+                                                    </span>
+                                                    <span className="icon_list_text">
+                                                        {feature}
+                                                    </span>
+                                                </li>
+                                            ))
+                                        ) : (
+                                            <li>
                                                 <span className="icon_list_icon">
                                                     <i className="fa-regular fa-circle-dot"></i>
                                                 </span>
                                                 <span className="icon_list_text">
-                                                    {feature}
+                                                    Professional service available
                                                 </span>
                                             </li>
-                                        ))}
+                                        )}
                                     </ul>
                                 </div>
                             </div>
-                        ))}
-                    </div>
-                )}
+                        ))
+                    ) : (
+                        <div className="col-12 text-center">
+                            <p>No services available at the moment.</p>
+                        </div>
+                    )}
+                </div>
             </div>
 
             <div className="decoration_item shape_image_1">
