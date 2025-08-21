@@ -18,24 +18,7 @@ const BlogSection = (props) => {
           throw new Error('Failed to fetch blogs');
         }
         const data = await response.json();
-        
-        // Debug: Log the response structure
-        console.log('API Response:', data);
-        
-        // Handle different possible response structures
-        let blogData = [];
-        if (Array.isArray(data)) {
-          blogData = data;
-        } else if (data.blogs && Array.isArray(data.blogs)) {
-          blogData = data.blogs;
-        } else if (data.data && Array.isArray(data.data)) {
-          blogData = data.data;
-        } else {
-          console.warn('Unexpected API response structure:', data);
-          blogData = [];
-        }
-        
-        setBlogs(blogData);
+        setBlogs(data.blogs);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -52,31 +35,16 @@ const BlogSection = (props) => {
   };
 
   if (loading) {
-    return (
-      <section className="blog_section section_space bg-light">
-        <div className="container">
-          <div className="text-center">Loading blogs...</div>
-        </div>
-      </section>
-    );
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return (
-      <section className="blog_section section_space bg-light">
-        <div className="container">
-          <div className="text-center text-danger">Error loading blogs: {error}</div>
-        </div>
-      </section>
-    );
+    return <div>Error: {error}</div>;
   }
 
-  // Ensure blogs is an array before using slice
-  const blogsToDisplay = Array.isArray(blogs) ? blogs.slice(3, 6) : [];
-
   // Define dynamic paths for Bg and icon1
-  const bgImage = `${baseUrl}/images/shapes/bg_pattern_1.svg`;
-  const iconCalendar = `${baseUrl}/images/icons/icon_calendar.svg`;
+  const bgImage = `${baseUrl}/images/shapes/bg_pattern_1.svg`; // Fixed path for background
+  const iconCalendar = `${baseUrl}/images/icons/icon_calendar.svg`; // Fixed path for icon
 
   return (
     <section className="blog_section section_space bg-light" style={{ backgroundImage: `url(${bgImage})` }}>
@@ -92,72 +60,60 @@ const BlogSection = (props) => {
         </div>
 
         <div className="row">
-          {blogsToDisplay.length > 0 ? (
-            blogsToDisplay.map((blog, Bitem) => (
-              <div className="col-lg-4" key={blog.id || Bitem}>
-                <div className="blog_post_block">
-                  <div className="blog_post_image">
-                    <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`} className="image_wrap">
-                      <img
-                        src={`${baseUrl}${blog.screens || '/images/blog/default-image.webp'}`}
-                        alt={blog.title || 'Blog post'}
-                        onError={(e) => {
-                          e.target.src = `${baseUrl}/images/blog/default-image.webp`;
-                          console.error(`Image load failed for ${blog.screens}:`, e);
-                        }}
-                        style={{
-                          width: '100%',
-                          height: '220px',
-                          objectFit: 'cover',
-                          borderRadius: '10px',
-                        }}
-                      />
-                    </Link>
+          {blogs.slice(3, 6).map((blog, Bitem) => (
+            <div className="col-lg-4" key={Bitem}>
+              <div className="blog_post_block">
+                <div className="blog_post_image">
+                  <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`} className="image_wrap">
+                    <img
+                      src={`${baseUrl}${blog.screens}`} // Use the full relative path from API
+                      alt={blog.title}
+                      onError={(e) => {
+                        e.target.src = `${baseUrl}/images/blog/default-image.webp`; // Fallback image
+                        console.error(`Image load failed for ${blog.screens}:`, e);
+                      }}
+                      style={{
+                        width: '100%',
+                        height: '220px',
+                        objectFit: 'cover',
+                        borderRadius: '10px',
+                      }}
+                    />
+                  </Link>
+                </div>
+                <div className="blog_post_content">
+                  <div className="post_meta_wrap">
+                    <ul className="category_btns_group unordered_list">
+                      <li><Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>{blog.thumb}</Link></li>
+                    </ul>
+                    <ul className="post_meta unordered_list">
+                      <li>
+                        <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
+                          <img src={iconCalendar} alt="Icon Calendar" /> {blog.create_at}
+                        </Link>
+                      </li>
+                      <li>
+                        <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
+                          <i className="fa-regular fa-comment-lines"></i> {blog.comment}
+                        </Link>
+                      </li>
+                    </ul>
                   </div>
-                  <div className="blog_post_content">
-                    <div className="post_meta_wrap">
-                      <ul className="category_btns_group unordered_list">
-                        <li>
-                          <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
-                            {blog.thumb || 'General'}
-                          </Link>
-                        </li>
-                      </ul>
-                      <ul className="post_meta unordered_list">
-                        <li>
-                          <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
-                            <img src={iconCalendar} alt="Icon Calendar" /> 
-                            {blog.create_at || blog.created_at || 'No date'}
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
-                            <i className="fa-regular fa-comment-lines"></i> 
-                            {blog.comment || blog.comments || '0'}
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <h3 className="blog_post_title">
-                      <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
-                        {blog.title || 'Untitled Post'}
-                      </Link>
-                    </h3>
-                    <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`} className="btn_unfill">
-                      <span className="btn_icon">
-                        <i className="fa-solid fa-arrow-up-right"></i>
-                      </span>
-                      <span className="btn_label">Read More</span>
+                  <h3 className="blog_post_title">
+                    <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
+                      {blog.title}
                     </Link>
-                  </div>
+                  </h3>
+                  <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`} className="btn_unfill">
+                    <span className="btn_icon">
+                      <i className="fa-solid fa-arrow-up-right"></i>
+                    </span>
+                    <span className="btn_label">Read More</span>
+                  </Link>
                 </div>
               </div>
-            ))
-          ) : (
-            <div className="col-12 text-center">
-              <p>No blog posts available at the moment.</p>
             </div>
-          )}
+          ))}
         </div>
       </div>
     </section>
