@@ -26,11 +26,27 @@ const BlogSection = (props) => {
                 }
                 
                 const data = await response.json()
-                setBlogs(data)
+                
+                // Ensure data is an array - this is the key fix
+                if (Array.isArray(data)) {
+                    setBlogs(data)
+                } else if (data && Array.isArray(data.blogs)) {
+                    // If the API returns an object with a 'blogs' property
+                    setBlogs(data.blogs)
+                } else if (data && Array.isArray(data.data)) {
+                    // If the API returns an object with a 'data' property
+                    setBlogs(data.data)
+                } else {
+                    // If data is not an array, wrap it in an array or set empty array
+                    console.warn('API response is not an array:', data)
+                    setBlogs(data ? [data] : [])
+                }
+                
                 setError(null)
             } catch (err) {
                 console.error('Error fetching blogs:', err)
                 setError(err.message)
+                setBlogs([]) // Ensure blogs is always an array even on error
             } finally {
                 setLoading(false)
             }
@@ -101,6 +117,9 @@ const BlogSection = (props) => {
         )
     }
 
+    // Additional safety check - ensure blogs is always an array before rendering
+    const blogsArray = Array.isArray(blogs) ? blogs : []
+
     return (
         <section className="blog_section blog_section_space section_decoration">
             <div className="container">
@@ -114,7 +133,7 @@ const BlogSection = (props) => {
                 </div>
 
                 <div className="row justify-content-center">
-                    {blogs.slice(3, 6).map((blog, Bitem) => (
+                    {blogsArray.slice(3, 6).map((blog, Bitem) => (
                         <div className="col-lg-4" key={blog.id || Bitem}>
                             <div className="blog_post_block layout_2">
                                 <div className="blog_post_image">
@@ -151,6 +170,15 @@ const BlogSection = (props) => {
                         </div>
                     ))}
                 </div>
+                
+                {/* Show message if no blogs available */}
+                {blogsArray.length === 0 && (
+                    <div className="row justify-content-center">
+                        <div className="col-12 text-center">
+                            <p>No articles available at the moment.</p>
+                        </div>
+                    </div>
+                )}
             </div>
             <div className="decoration_item shape_image_1">
                 <img src={shape1} alt="Techco Shape" />
