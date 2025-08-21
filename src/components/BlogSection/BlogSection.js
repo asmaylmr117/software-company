@@ -60,7 +60,7 @@ const BlogSection = (props) => {
         </div>
 
         <div className="row">
-          {blogs.slice(0, 3).map((blog, Bitem) => (
+          {blogs.slice(3, 6).map((blog, Bitem) => (
             <div className="col-lg-4" key={Bitem}>
               <div className="blog_post_block">
                 <div className="blog_post_image">
@@ -71,6 +71,12 @@ const BlogSection = (props) => {
                       onError={(e) => {
                         e.target.src = `${baseUrl}/images/blog/default-image.webp`; // Fallback image
                         console.error(`Image load failed for ${blog.screens}:`, e);
+                      }}
+                      style={{
+                        width: '100%',
+                        height: '220px',
+                        objectFit: 'cover',
+                        borderRadius: '10px',
                       }}
                     />
                   </Link>

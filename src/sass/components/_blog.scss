@@ -26,11 +26,13 @@
 		.blog_post_image {
 			.image_wrap {
 				img {
-					min-height: 370px;
-					object-fit: cover;
+					min-height: 200px; // تقليل الحد الأدنى للارتفاع
+					object-fit: contain; // تغيير إلى contain للحفاظ على النسبة الطبيعية
+					width: 100%;
+					height: auto; // السماح للارتفاع بالتكيف مع النسبة الطبيعية
 
 					@media(max-width:991px) {
-						min-height: 100%;
+						min-height: 150px;
 					}
 				}
 			}
@@ -38,28 +40,33 @@
 	}
 }
 
-// Blog Post Block - Updated with Fixed Image Sizing
+// Blog Post Block - Updated with Natural Image Sizing
 .blog_post_block {
 	overflow: hidden;
 	transition: var(--bs-transition);
 	background-color: var(--bs-white);
-	border-radius: 12px; // زيادة البوردر راديوس
-	box-shadow: 0 4px 15px rgba(174, 191, 210, 0.3); // تحسين الظل
+	border-radius: 12px;
+	box-shadow: 0 4px 15px rgba(174, 191, 210, 0.3);
 	margin-bottom: 30px;
-	height: 100%; // ضمان نفس الارتفاع لجميع البطاقات
 	display: flex;
 	flex-direction: column;
 
 	&:hover {
-		box-shadow: 0 8px 25px rgba(174, 191, 210, 0.4); // تحسين تأثير الهوفر
-		transform: translateY(-5px); // إضافة تأثير الرفع
+		box-shadow: 0 8px 25px rgba(174, 191, 210, 0.4);
+		transform: translateY(-5px);
 	}
 
 	.blog_post_image {
-		height: 250px; // ارتفاع ثابت للصور
+		width: 100%; // عرض كامل
+		min-height: 220px; // زيادة الحد الأدنى
+		max-height: 350px; // تقليل الحد الأقصى قليلاً لجعلها أعرض
 		overflow: hidden;
-		border-radius: 8px 8px 0 0; // بوردر راديوس للجزء العلوي فقط
+		border-radius: 8px 8px 0 0;
 		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #f8f9fa;
 
 		.image_wrap {
 			display: block;
@@ -70,15 +77,17 @@
 
 			img {
 				width: 100%;
-				height: 100%;
-				object-fit: cover; // ضمان ملء الحاوية
-				object-position: center; // وضع الصورة في المنتصف
-				transition: transform 0.3s ease; // تأثير انتقالي ناعم
+				height: 100%; // ملء الارتفاع الكامل
+				max-height: none; // إزالة الحد الأقصى
+				object-fit: cover; // تغيير إلى cover لملء المساحة بعرض أكبر
+				object-position: center;
+				transition: transform 0.3s ease;
+				display: block;
 			}
 
 			&:hover {
 				img {
-					transform: scale(1.05); // تكبير أقل للحصول على تأثير أنيق
+					transform: scale(1.03); // تكبير أقل للحصول على تأثير أنيق
 				}
 			}
 
@@ -118,11 +127,13 @@
 
 		// استجابة للشاشات المختلفة
 		@media (max-width: 768px) {
-			height: 200px;
+			min-height: 200px;
+			max-height: 280px;
 		}
 
 		@media (max-width: 576px) {
-			height: 180px;
+			min-height: 180px;
+			max-height: 250px;
 		}
 	}
 
@@ -139,12 +150,11 @@
 	}
 
 	.blog_post_content {
-		padding: 25px; // تقليل البادينغ قليلاً
-		flex-grow: 1; // ملء المساحة المتبقية
+		padding: 25px;
+		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
 
-		// استجابة للشاشات المختلفة
 		@media (max-width: 768px) {
 			padding: 20px;
 		}
@@ -197,7 +207,7 @@
 		margin: 15px 0;
 		letter-spacing: -0.3px;
 		font-family: 'Axiforma SemiBold';
-		flex-grow: 1; // يأخذ المساحة المتبقية
+		flex-grow: 1;
 		display: flex;
 		align-items: center;
 
@@ -205,7 +215,7 @@
 			color: var(--bs-dark);
 			text-decoration: none;
 			display: -webkit-box;
-			-webkit-line-clamp: 2; // تحديد النص بسطرين
+			-webkit-line-clamp: 2;
 			-webkit-box-orient: vertical;
 			overflow: hidden;
 			line-height: 1.4;
@@ -216,7 +226,6 @@
 		}
 	}
 
-	// تحديد مكان زر "Read More" في أسفل البطاقة
 	.btn_unfill {
 		margin-top: auto;
 		align-self: flex-start;
@@ -242,32 +251,46 @@
 
 .blog_post_block.image_left_layout {
 	display: flex;
-	align-items: center;
-	height: auto; // إلغاء الارتفاع الثابت للتخطيط الجانبي
+	align-items: flex-start;
+	height: auto;
+	gap: 20px; // إضافة مسافة بين الصورة والمحتوى
 
 	&:not(:last-child) {
 		margin-bottom: 30px;
 	}
 
 	.blog_post_image {
-		width: 312px;
-		height: 200px; // ارتفاع ثابت للتخطيط الجانبي
+		width: 100%; // عرض كامل
+		min-height: 200px; // ارتفاع مناسب للتخطيط الجانبي
+		max-height: 220px; // حد أقصى مناسب
 		flex: 0 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #f8f9fa;
+		border-radius: 8px;
+		overflow: hidden;
 
 		.image_wrap {
+			width: 100%;
 			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 
 			img {
 				width: 100%;
-				height: 100%;
-				object-fit: cover;
+				height: 100%; // ملء الارتفاع الكامل
+				max-height: none;
+				object-fit: cover; // تغيير إلى cover لملء المساحة
+				object-position: center;
 			}
 		}
 	}
 
 	.blog_post_content {
 		flex: 1;
-		padding: 40px;
+		padding: 20px; // تقليل البادينغ
 		height: auto;
 	}
 
@@ -275,7 +298,7 @@
 		font-size: 26px;
 		line-height: 35px;
 		margin: 20px 0 14px;
-		flex-grow: 0; // إلغاء التمدد للتخطيط الجانبي
+		flex-grow: 0;
 	}
 
 	p {
@@ -339,7 +362,29 @@
 
 .blog_post_block.content_over_layout {
 	position: relative;
-	height: auto; // إلغاء الارتفاع الثابت للمحتوى المتداخل
+	height: auto;
+	min-height: 400px; // حد أدنى للارتفاع للمحتوى المتداخل
+
+	.blog_post_image {
+		min-height: 400px; // حد أدنى للصورة في المحتوى المتداخل
+		max-height: 600px; // حد أقصى
+
+		.image_wrap {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			img {
+				width: 100%;
+				height: auto;
+				min-height: 100%;
+				object-fit: cover; // للمحتوى المتداخل نستخدم cover لملء المساحة
+				object-position: center;
+			}
+		}
+	}
 
 	.image_wrap {
 		&:before {
@@ -368,11 +413,11 @@
 		font-size: 45px;
 		line-height: 58px;
 		margin: 24px 0 15px;
-		flex-grow: 0; // إلغاء التمدد للمحتوى المتداخل
+		flex-grow: 0;
 
 		a {
 			color: var(--bs-white);
-			-webkit-line-clamp: unset; // إلغاء تحديد النص
+			-webkit-line-clamp: unset;
 
 			&:hover {
 				opacity: 0.8;
@@ -428,6 +473,9 @@
 		}
 
 		img {
+			width: 100%;
+			height: auto;
+			object-fit: contain; // الحفاظ على النسبة الطبيعية
 			transition: var(--bs-transition);
 		}
 	}
@@ -477,7 +525,7 @@
 	&:hover {
 		.blog_post_image {
 			img {
-				transform: scale(1.08);
+				transform: scale(1.03); // تقليل التكبير
 			}
 		}
 
@@ -524,6 +572,3 @@
 		}
 	}
 }
-
-/* 4.01 - Blog - End
-================================================== */

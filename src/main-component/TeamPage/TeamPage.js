@@ -1,22 +1,53 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom'
-import Teams from '../../api/team'
+import React, { Fragment, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../../components/header/Header';
-import PageTitle from '../../components/pagetitle/PageTitle'
-import Scrollbar from '../../components/scrollbar/scrollbar'
+import PageTitle from '../../components/pagetitle/PageTitle';
+import Scrollbar from '../../components/scrollbar/scrollbar';
 import Footer from '../../components/footer/Footer';
 import CtaSection from '../../components/CtaSection/CtaSection';
-import tImg from '../../images/portfolio/portfolio_item_image_5.webp'
-import sImg1 from '../../images/icons/icon_facebook.svg'
-import sImg2 from '../../images/icons/icon_twitter_x.svg'
-import sImg3 from '../../images/icons/icon_linkedin.svg'
-import sImg4 from '../../images/icons/icon_instagram.svg'
+import tImg from '../../images/portfolio/portfolio_item_image_5.webp';
+import sImg1 from '../../images/icons/icon_facebook.svg';
+import sImg2 from '../../images/icons/icon_twitter_x.svg';
+import sImg3 from '../../images/icons/icon_linkedin.svg';
+import sImg4 from '../../images/icons/icon_instagram.svg';
 
 const TeamPage = (props) => {
+    const [teams, setTeams] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchTeams = async () => {
+            try {
+                const response = await fetch('https://portfolio-vercel-bi43.vercel.app/api/teams');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch team data');
+                }
+                const data = await response.json();
+                // Assuming the API returns an object with a "teams" array
+                setTeams(data.teams || []);
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchTeams();
+    }, []);
 
     const ClickHandler = () => {
         window.scrollTo(10, 0);
+    };
+
+    if (loading) {
+        return <div>Loading...</div>;
     }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
     return (
         <Fragment>
             <Header />
@@ -68,7 +99,7 @@ const TeamPage = (props) => {
                         </div>
 
                         <div className="row">
-                            {Teams.slice(0, 6).map((team, tm) => (
+                            {teams.slice(0, 6).map((team, tm) => (
                                 <div className="col-lg-4 col-md-6 col-sm-6" key={tm}>
                                     <div className="team_block">
                                         <div className="team_member_image">
@@ -116,6 +147,7 @@ const TeamPage = (props) => {
             <Footer />
             <Scrollbar />
         </Fragment>
-    )
+    );
 };
+
 export default TeamPage;

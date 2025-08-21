@@ -1,63 +1,123 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Header from '../../components/header/Header';
-import { Link } from "react-router-dom";
-import Teams from '../../api/team'
 import CountUp from 'react-countup';
-import { useParams } from 'react-router-dom';
-import PageTitle from '../../components/pagetitle/PageTitle'
-import Scrollbar from '../../components/scrollbar/scrollbar'
+import PageTitle from '../../components/pagetitle/PageTitle';
+import Scrollbar from '../../components/scrollbar/scrollbar';
 import Footer from '../../components/footer/Footer';
 import CtaSection from '../../components/CtaSection/CtaSection';
-import sImg1 from '../../images/icons/icon_facebook.svg'
-import sImg2 from '../../images/icons/icon_twitter_x.svg'
-import sImg3 from '../../images/icons/icon_linkedin.svg'
-import sImg4 from '../../images/icons/icon_instagram.svg'
+import sImg1 from '../../images/icons/icon_facebook.svg';
+import sImg2 from '../../images/icons/icon_twitter_x.svg';
+import sImg3 from '../../images/icons/icon_linkedin.svg';
+import sImg4 from '../../images/icons/icon_instagram.svg';
 
 const TeamSinglePage = (props) => {
-    const { slug } = useParams()
+    const { slug } = useParams();
+    const [teamDetails, setTeamDetails] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const baseUrl = 'https://portfolio-vercel-bi43.vercel.app'; // Base URL for images
 
-    const TeamDetails = Teams.find(item => item.slug === slug)
+    useEffect(() => {
+        const fetchTeamDetails = async () => {
+            try {
+                const response = await fetch(`${baseUrl}/api/teams`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch team data');
+                }
+                const data = await response.json();
+                const teamMember = data.teams.find(item => item.slug === slug);
+                if (!teamMember) {
+                    throw new Error('Team member not found');
+                }
+                setTeamDetails({
+                    tImg: `${baseUrl}${teamMember.tImg}`, // Convert to absolute URL
+                    name: teamMember.name,
+                    title: teamMember.title,
+                    socialLinks: teamMember.socialLinks || {}
+                });
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchTeamDetails();
+    }, [slug]);
 
     const ClickHandler = () => {
         window.scrollTo(10, 0);
+    };
+
+    if (loading) {
+        return (
+            <div className="fixed inset-0 flex items-center justify-center bg-gray-100 bg-opacity-75 z-50">
+                <div className="flex flex-col items-center">
+                    <div className="w-16 h-16 border-4 border-t-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
+                    <p className="mt-4 text-lg font-semibold text-gray-700">Loading Team Member...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <div className="text-center">
+                    <h2 className="text-2xl font-bold text-red-600">Error</h2>
+                    <p className="text-gray-700">{error}</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (!teamDetails) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <div className="text-center">
+                    <h2 className="text-2xl font-bold text-gray-700">Team Member Not Found</h2>
+                </div>
+            </div>
+        );
     }
 
     return (
         <Fragment>
             <Header />
             <main className="page_content about-page">
-                <PageTitle pageTitle={TeamDetails.name} pagesub={'Details 😍'} pageTop={'Team'} />
+                <PageTitle pageTitle={teamDetails.name} pagesub={'Details 😍'} pageTop={'Team'} />
                 <section className="team_details_section section_space bg-light">
                     <div className="container">
                         <div className="team_member_details_card">
                             <div className="team_member_image">
-                                <img src={TeamDetails.tImg} alt="Team Member"/>
+                                <img src={teamDetails.tImg} alt="Team Member" />
                             </div>
                             <div className="team_member_content">
-                                <h2 className="team_member_name">{TeamDetails.name}</h2>
+                                <h2 className="team_member_name">{teamDetails.name}</h2>
                                 <ul className="icon_list unordered_list_block">
                                     <li>
                                         <span className="icon_list_text">
                                             <strong>Responsibility:</strong>
-                                            {TeamDetails.title}
+                                            {teamDetails.title}
                                         </span>
                                     </li>
                                     <li>
                                         <span className="icon_list_text">
                                             <strong>Experience:</strong>
-                                            18 Years
+                                            Not specified
                                         </span>
                                     </li>
                                     <li>
                                         <span className="icon_list_text">
                                             <strong>Email:</strong>
-                                            August@example.com
+                                            Not available
                                         </span>
                                     </li>
                                     <li>
                                         <span className="icon_list_text">
                                             <strong>Phone:</strong>
-                                            +91590 0574 258
+                                            Not available
                                         </span>
                                     </li>
                                 </ul>
@@ -65,23 +125,39 @@ const TeamSinglePage = (props) => {
                                     <h3 className="social_title">Social Media</h3>
                                     <ul className="social_icons_block unordered_list">
                                         <li>
-                                            <Link onClick={ClickHandler} to={'/team'}>
-                                                <img src={sImg1} alt="Icon Facebook"/>
+                                            <Link
+                                                onClick={ClickHandler}
+                                                to={teamDetails.socialLinks.facebook || '/team'}
+                                                target={teamDetails.socialLinks.facebook ? '_blank' : '_self'}
+                                            >
+                                                <img src={sImg1} alt="Icon Facebook" />
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link onClick={ClickHandler} to={'/team'}>
-                                                <img src={sImg2} alt="Icon Twitter X"/>
+                                            <Link
+                                                onClick={ClickHandler}
+                                                to={teamDetails.socialLinks.twitter || '/team'}
+                                                target={teamDetails.socialLinks.twitter ? '_blank' : '_self'}
+                                            >
+                                                <img src={sImg2} alt="Icon Twitter X" />
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link onClick={ClickHandler} to={'/team'}>
-                                                <img src={sImg3} alt="Icon Linkedin"/>
+                                            <Link
+                                                onClick={ClickHandler}
+                                                to={teamDetails.socialLinks.linkedin || '/team'}
+                                                target={teamDetails.socialLinks.linkedin ? '_blank' : '_self'}
+                                            >
+                                                <img src={sImg3} alt="Icon Linkedin" />
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link onClick={ClickHandler} to={'/team'}>
-                                                <img src={sImg4} alt="Icon Instagram"/>
+                                            <Link
+                                                onClick={ClickHandler}
+                                                to={teamDetails.socialLinks.instagram || '/team'}
+                                                target={teamDetails.socialLinks.instagram ? '_blank' : '_self'}
+                                            >
+                                                <img src={sImg4} alt="Icon Instagram" />
                                             </Link>
                                         </li>
                                     </ul>
@@ -91,7 +167,7 @@ const TeamSinglePage = (props) => {
 
                         <h3 className="details_item_info_title">Professional Skills</h3>
                         <p>
-                            Since joining Techco in 1993, Matilda has been instrumental in transforming the company from a collection of tech-savvy individuals collaborating with startups to a world-renowned leader in Digital Systems Engineering Services, catering to the innovation needs of Fortune 500 enterprises. During Matilda's tenure as President and CEO, Techco has witnessed remarkable expansion in both its scale and revenue streams. This growth has been achieved hand-in-hand with the cultivation of a vibrant company culture that champions employee engagement and fosters a spirit of innovation at every level.
+                            No biography available for this team member.
                         </p>
 
                         <div className="row mb-5">
@@ -139,66 +215,13 @@ const TeamSinglePage = (props) => {
 
                         <h3 className="details_item_info_title">Educational Experience</h3>
                         <p>
-                            Armed with a Bachelor's degree in Computer Science from the University of XYZ, I specialized in data structures, algorithms, and networks. Expanding my knowledge, I pursued a Master's in Information Technology Management at ABC University.
+                            No educational experience provided.
                         </p>
 
                         <p className="mb-2">Qualifications:</p>
                         <ul className="icon_list unordered_list_block">
                             <li>
-                                <span className="icon_list_icon">
-                                    <i className="fa-solid fa-circle fa-fw"></i>
-                                </span>
-                                <span className="icon_list_text">
-                                    Proficiency in systems analysis, design, implementation, and maintenance.
-                                </span>
-                            </li>
-                            <li>
-                                <span className="icon_list_icon">
-                                    <i className="fa-solid fa-circle fa-fw"></i>
-                                </span>
-                                <span className="icon_list_text">
-                                    Strong knowledge of network protocols, hardware, and software components.
-                                </span>
-                            </li>
-                            <li>
-                                <span className="icon_list_icon">
-                                    <i className="fa-solid fa-circle fa-fw"></i>
-                                </span>
-                                <span className="icon_list_text">
-                                    Experience with virtualization technologies (VMware, Hyper-V).
-                                </span>
-                            </li>
-                            <li>
-                                <span className="icon_list_icon">
-                                    <i className="fa-solid fa-circle fa-fw"></i>
-                                </span>
-                                <span className="icon_list_text">
-                                    Skilled in cloud computing platforms (AWS, Azure, Google Cloud).
-                                </span>
-                            </li>
-                            <li>
-                                <span className="icon_list_icon">
-                                    <i className="fa-solid fa-circle fa-fw"></i>
-                                </span>
-                                <span className="icon_list_text">
-                                    Proficient in scripting languages (Python, PowerShell).
-                                </span>
-                            </li>
-                            <li>
-                                <span className="icon_list_icon">
-                                    <i className="fa-solid fa-circle fa-fw"></i>
-                                </span>
-                                <span className="icon_list_text">
-                                    Experience in system security and disaster recovery planning.
-                                </span>
-                            </li>
-                            <li>
-                                <span className="icon_list_icon">
-                                    <i className="fa-solid fa-circle fa-fw"></i>
-                                </span>
-                                <span className="icon_list_text">
-                                    Excellent problem-solving and analytical skills.
-                                </span>
+                                <span className="icon_list_text">No skills listed.</span>
                             </li>
                         </ul>
                     </div>
@@ -208,6 +231,7 @@ const TeamSinglePage = (props) => {
             <Footer />
             <Scrollbar />
         </Fragment>
-    )
+    );
 };
+
 export default TeamSinglePage;

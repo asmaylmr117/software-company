@@ -27,11 +27,11 @@
 
 .portfolio_content {
     position: relative;
-    padding: 25px 30px 28px;
+    padding: 25px 30px 70px; /* زيادة الحشو السفلي لإفساح مجال للزر */
     flex-grow: 1; /* شغل المساحة المتبقية */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .portfolio_title {
@@ -57,6 +57,7 @@
     padding: 0;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 20px; /* إضافة مساحة أسفل القائمة */
 }
 
 .category_list i {
@@ -64,10 +65,20 @@
     color: var(--bs-primary);
 }
 
-.btn {
-    top: 26px;
-    right: 30px;
+/* إصلاح موضع زر Explore - أسفل يمين */
+.portfolio_content .btn {
     position: absolute;
+    bottom: 20px; /* أسفل الكارد */
+    right: 20px; /* يمين الكارد */
+    z-index: 1;
+}
+
+/* بديل إذا كنت تريد الزر في أعلى اليمين */
+.portfolio_content .btn-top-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
 }
 
 .portfolio_block:hover {
@@ -96,5 +107,23 @@
 
 .portfolio_block.portfolio_layout_2 .portfolio_title {
     margin: 21px 0 0;
+}
+
+/* إضافة تنسيقات متجاوبة للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .portfolio_title {
+        font-size: 22px;
+        line-height: 30px;
+        padding-right: 0; /* إزالة الحشو في الشاشات الصغيرة */
+        white-space: normal; /* السماح بتفاف النص */
+    }
+    
+    .portfolio_content {
+        padding: 20px;
+    }
+    
+    .portfolio_block {
+        height: auto; /* ارتفاع مرن في الشاشات الصغيرة */
+    }
 }
 /* Portfolio - End */

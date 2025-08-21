@@ -39,16 +39,6 @@ const BlogList = () => {
     fetchBlogs();
   }, [currentPage]);
 
-  // Initialize Swiper navigation
-  useEffect(() => {
-    if (swiperRef.current && prevRef.current && nextRef.current) {
-      swiperRef.current.params.navigation.prevEl = prevRef.current;
-      swiperRef.current.params.navigation.nextEl = nextRef.current;
-      swiperRef.current.navigation.init();
-      swiperRef.current.navigation.update();
-    }
-  }, []);
-
   const ClickHandler = () => {
     window.scrollTo(10, 0);
   };
@@ -98,21 +88,23 @@ const BlogList = () => {
               loop={true}
               speed={1800}
               parallax={true}
-              ref={swiperRef}
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper;
+              }}
               onBeforeInit={(swiper) => {
                 swiperRef.current = swiper;
               }}
             >
-              {blogs.slice(0, 3).map((blog, Bitem) => (
+              {blogs.slice(0, 4).map((blog, Bitem) => (
                 <SwiperSlide key={Bitem}>
                   <div className="blog_post_block content_over_layout">
                     <div className="blog_post_image">
                       <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`} className="image_wrap">
                         <img
-                          src={`${baseUrl}${blog.screens}`} // Use the full relative path from API
+                          src={`${baseUrl}${blog.screens}`}
                           alt={blog.title}
                           onError={(e) => {
-                            e.target.src = `${baseUrl}/images/blog/default-image.webp`; // Fallback image
+                            e.target.src = `${baseUrl}/images/blog/default-image.webp`;
                             console.error(`Image load failed for ${blog.screens}:`, e);
                           }}
                         />
@@ -150,12 +142,28 @@ const BlogList = () => {
               ))}
             </Swiper>
           </div>
-          <button ref={prevRef} className="b1cc-swiper-button-prev" type="button" style={{ backgroundImage: `url(${arrowRight})` }}>
+          
+          {/* أزرار التنقل - مع إضافة onclick handlers */}
+          <button 
+            ref={prevRef} 
+            className="b1cc-swiper-button-prev" 
+            type="button" 
+            style={{ backgroundImage: `url(${arrowLeft})` }}
+            onClick={() => swiperRef.current?.slidePrev()}
+          >
             <i className="fa-solid fa-angles-left"></i>
           </button>
-          <button ref={nextRef} className="b1cc-swiper-button-next" type="button" style={{ backgroundImage: `url(${arrowLeft})` }}>
+          
+          <button 
+            ref={nextRef} 
+            className="b1cc-swiper-button-next" 
+            type="button" 
+            style={{ backgroundImage: `url(${arrowRight})` }}
+            onClick={() => swiperRef.current?.slideNext()}
+          >
             <i className="fa-solid fa-angles-right"></i>
           </button>
+          
           <div className="b1cc-swiper-pagination p-0"></div>
         </div>
 
@@ -167,10 +175,10 @@ const BlogList = () => {
                   <div className="blog_post_image">
                     <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`} className="image_wrap">
                       <img
-                        src={`${baseUrl}${blog.screens}`} // Use the full relative path from API
+                        src={`${baseUrl}${blog.screens}`}
                         alt={blog.title}
                         onError={(e) => {
-                          e.target.src = `${baseUrl}/images/blog/default-image.webp`; // Fallback image
+                          e.target.src = `${baseUrl}/images/blog/default-image.webp`;
                           console.error(`Image load failed for ${blog.screens}:`, e);
                         }}
                       />

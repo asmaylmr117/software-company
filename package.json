@@ -9,6 +9,7 @@
     "@mui/material": "^5.11.0",
     "@mui/styled-engine-sc": "^5.11.0",
     "@studio-freight/react-lenis": "^0.0.37",
+    "axios": "^1.11.0",
     "bootstrap": "^5.3.3",
     "gsap": "^3.12.3",
     "imagesloaded": "^5.0.0",
