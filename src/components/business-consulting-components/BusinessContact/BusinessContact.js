@@ -110,7 +110,7 @@ const BusinessContact = (props) => {
                                          padding: '10px 15px',
                                          borderRadius: '5px',
                                          border: `1px solid ${submitStatus.type === 'success' ? '#28a745' : '#dc3545'}`,
-                                         backgroundColor: submitStatus.type === 'success' ? 'rgba(40, 167, 69, 0.1)' : 'rgba(220, 53, 69, 0.1)',
+                                         backgroundColor: submitStatus.type === 'success' ? 'rgba(0, 123, 255, 0.1)' : 'rgba(0, 123, 255, 0.1)',
                                          color: submitStatus.type === 'success' ? '#28a745' : '#dc3545'
                                      }}>
                                     <i className={`fa ${submitStatus.type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}`}></i>
