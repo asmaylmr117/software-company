@@ -13,15 +13,55 @@ import shape1 from '../../../images/shapes/shape_space_2.svg';
 
 const About = () => {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Function to get complete image URL
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) {
+      return 'https://via.placeholder.com/400x300/f8f9fa/6c757d?text=No+Image';
+    }
+    
+    // If the URL starts with '/', it's a relative path, so add the base URL
+    if (imagePath.startsWith('/')) {
+      return `https://portfolio-vercel-bi43.vercel.app${imagePath}`;
+    }
+    // If it doesn't start with 'http', assume it's relative and add base URL
+    else if (!imagePath.startsWith('http')) {
+      return `https://portfolio-vercel-bi43.vercel.app/${imagePath}`;
+    }
+    
+    return imagePath;
+  };
+
+  // Function to handle image errors
+  const handleImageError = (e) => {
+    e.target.src = 'https://via.placeholder.com/400x300/f8f9fa/6c757d?text=Image+Not+Available';
+    e.target.alt = 'Image not available';
+  };
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        setLoading(true);
         const response = await fetch('https://portfolio-vercel-bi43.vercel.app/api/projects');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
-        setProjects(data.projects || []); // Set projects from API response, default to empty array if undefined
+        console.log('Projects API Response:', data); // Debug log
+        
+        // Set projects from API response, default to empty array if undefined
+        setProjects(data.projects || []);
+        setError(null);
       } catch (error) {
         console.error('Error fetching projects:', error);
+        setError(error.message);
+        setProjects([]); // Ensure projects is always an array even on error
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -119,52 +159,116 @@ const About = () => {
             </h2>
           </div>
 
-          <div className="case_studies_wrapper">
-            {projects.slice(6, 9).map((project, prj) => (
-              <div className="case_study_block" key={prj}>
-                <div className="case_study_image">
-                  <img src={project.pImg} alt="Techco - Cases" />
-                </div>
-                <div className="case_study_content">
-                  <ul className="category_list unordered_list text-uppercase">
-                    <li><a href="portfolio.html">{project.sub}</a></li>
-                  </ul>
-                  <h3 className="case_title">
-                    <Link onClick={ClickHandler} to={`/portfolio_details/${project.slug}`}>{project.title}</Link>
-                  </h3>
-                  <p>
-                    {project.description}
-                  </p>
-                  <ul className="icon_list unordered_list">
-                    <li>
-                      <span className="icon_list_text">
-                        <strong className="text-dark">Industry:</strong> {project.Industry}
-                      </span>
-                    </li>
-                    <li>
-                      <span className="icon_list_text">
-                        <strong className="text-dark">Country:</strong> {project.Country}
-                      </span>
-                    </li>
-                  </ul>
-                  <ul className="case_technologies unordered_list" data-text="Core Technologies:">
-                    <li>
-                      <img src={project.Technologies1} alt="Technology 1" />
-                    </li>
-                    <li>
-                      <img src={project.Technologies2} alt="Technology 2" />
-                    </li>
-                  </ul>
-                  <Link onClick={ClickHandler} to={`/portfolio_details/${project.slug}`} className="btn btn-primary">
-                    <span className="btn_label" data-text="Read Case">Read Case</span>
-                    <span className="btn_icon">
-                      <i className="fa-solid fa-arrow-up-right"></i>
-                    </span>
-                  </Link>
+          {/* Loading State */}
+          {loading && (
+            <div className="row justify-content-center">
+              <div className="col-12 text-center">
+                <div className="spinner-border text-light" role="status">
+                  <span className="visually-hidden">Loading projects...</span>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          )}
+
+          {/* Error State */}
+          {error && (
+            <div className="row justify-content-center">
+              <div className="col-12 text-center">
+                <div className="alert alert-danger" role="alert">
+                  Error loading projects: {error}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Projects Content */}
+          {!loading && !error && (
+            <div className="case_studies_wrapper">
+              {projects.slice(6, 9).map((project, prj) => (
+                <div className="case_study_block" key={project._id || prj}>
+                  <div className="case_study_image">
+                    <img 
+                      src={getImageUrl(project.pImg)} 
+                      alt={project.title || "Techco - Cases"}
+                      onError={handleImageError}
+                      loading="lazy"
+                      style={{
+                        width: '100%',
+                        height: '300px',
+                        objectFit: 'cover'
+                      }}
+                      onLoad={() => console.log(`Project image loaded: ${getImageUrl(project.pImg)}`)}
+                    />
+                  </div>
+                  <div className="case_study_content">
+                    <ul className="category_list unordered_list text-uppercase">
+                      <li><a href="portfolio.html">{project.sub || project.category || 'General'}</a></li>
+                    </ul>
+                    <h3 className="case_title">
+                      <Link onClick={ClickHandler} to={`/portfolio_details/${project.slug}`}>
+                        {project.title || 'Untitled Project'}
+                      </Link>
+                    </h3>
+                    <p>
+                      {project.description || 'No description available'}
+                    </p>
+                    <ul className="icon_list unordered_list">
+                      <li>
+                        <span className="icon_list_text">
+                          <strong className="text-dark">Industry:</strong> {project.Industry || project.thumb2 || 'N/A'}
+                        </span>
+                      </li>
+                      <li>
+                        <span className="icon_list_text">
+                          <strong className="text-dark">Country:</strong> {project.Country || 'N/A'}
+                        </span>
+                      </li>
+                    </ul>
+                    
+                    {/* Technologies - only show if available */}
+                    {(project.Technologies1 || project.Technologies2) && (
+                      <ul className="case_technologies unordered_list" data-text="Core Technologies:">
+                        {project.Technologies1 && (
+                          <li>
+                            <img 
+                              src={getImageUrl(project.Technologies1)} 
+                              alt="Technology 1" 
+                              onError={handleImageError}
+                            />
+                          </li>
+                        )}
+                        {project.Technologies2 && (
+                          <li>
+                            <img 
+                              src={getImageUrl(project.Technologies2)} 
+                              alt="Technology 2" 
+                              onError={handleImageError}
+                            />
+                          </li>
+                        )}
+                      </ul>
+                    )}
+                    
+                    <Link onClick={ClickHandler} to={`/portfolio_details/${project.slug}`} className="btn btn-primary">
+                      <span className="btn_label" data-text="Read Case">Read Case</span>
+                      <span className="btn_icon">
+                        <i className="fa-solid fa-arrow-up-right"></i>
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+              
+              {/* Show message if no projects in the selected range */}
+              {projects.length > 0 && projects.slice(6, 9).length === 0 && (
+                <div className="row justify-content-center">
+                  <div className="col-12 text-center text-white">
+                    <p>No case studies available in this range.</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           <div className="btns_group pb-0">
             <Link onClick={ClickHandler} to="/portfolio" className="btn btn-primary">
@@ -175,6 +279,20 @@ const About = () => {
             </Link>
           </div>
         </div>
+
+        {/* Debug info - remove this in production */}
+        {process.env.NODE_ENV === 'development' && projects.length > 0 && (
+          <div className="row justify-content-center mt-4">
+            <div className="col-12">
+              <details style={{ background: '#f8f9fa', padding: '10px', borderRadius: '5px' }}>
+                <summary>Debug Info - Projects Data (Development Only)</summary>
+                <pre style={{ color: '#000' }}>
+                  {JSON.stringify(projects.slice(6, 9), null, 2)}
+                </pre>
+              </details>
+            </div>
+          </div>
+        )}
       </div>
       <div className="decoration_item shape_image_1">
         <img src={shape1} alt="Techco Shape" />
