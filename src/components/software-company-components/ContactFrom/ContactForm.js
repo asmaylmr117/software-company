@@ -54,7 +54,7 @@ const ContactForm = (props) => {
                 if (response.ok && data.success) {
                     setSubmitStatus({
                         type: 'success',
-                        message: data.message || 'Data has been sent successfully.!'
+                        message: data.message || 'Your message has been sent successfully!'
                     });
                     
                     // Reset form
@@ -67,13 +67,13 @@ const ContactForm = (props) => {
                     });
                     validator.hideMessages();
                 } else {
-                    throw new Error(data.message || 'An error occurred while sending the message.');
+                    throw new Error(data.message || 'An error occurred while sending the message');
                 }
             } catch (error) {
                 console.error('Form submission error:', error);
                 setSubmitStatus({
                     type: 'error',
-                    message: error.message || 'An error occurred while sending your message. Please try again.'
+                    message: error.message || 'An error occurred while sending the message. Please try again.'
                 });
             } finally {
                 setIsSubmitting(false);
@@ -108,7 +108,13 @@ const ContactForm = (props) => {
                 <div className="row">
                     <div className="col-md-6">
                         <div className="form-group">
-                            <label className="input_title" htmlFor="input_name">Full Name</label>
+                            <label 
+                                className={`input_title ${forms.name ? 'hidden' : ''}`} 
+                                htmlFor="input_name"
+                                style={{ display: forms.name ? 'none' : 'block' }}
+                            >
+                                Full Name
+                            </label>
                             <input
                                 value={forms.name}
                                 type="text"
@@ -116,7 +122,6 @@ const ContactForm = (props) => {
                                 className="form-control"
                                 onBlur={(e) => changeHandler(e)}
                                 onChange={(e) => changeHandler(e)}
-                                placeholder="Goladria Gomez"
                                 disabled={isSubmitting}
                             />
                             {validator.message('name', forms.name, 'required|alpha_space')}
@@ -124,7 +129,13 @@ const ContactForm = (props) => {
                     </div>
                     <div className="col-md-6">
                         <div className="form-group">
-                            <label className="input_title" htmlFor="input_email">Your Email</label>
+                            <label 
+                                className={`input_title ${forms.email ? 'hidden' : ''}`} 
+                                htmlFor="input_email"
+                                style={{ display: forms.email ? 'none' : 'block' }}
+                            >
+                                Your Email
+                            </label>
                             <input
                                 value={forms.email}
                                 type="email"
@@ -132,7 +143,6 @@ const ContactForm = (props) => {
                                 className="form-control"
                                 onBlur={(e) => changeHandler(e)}
                                 onChange={(e) => changeHandler(e)}
-                                placeholder="Techco@example.com"
                                 disabled={isSubmitting}
                             />
                             {validator.message('email', forms.email, 'required|email')}
@@ -140,7 +150,13 @@ const ContactForm = (props) => {
                     </div>
                     <div className="col-12">
                         <div className="form-group">
-                            <label className="input_title" htmlFor="input_phone">Your Phone</label>
+                            <label 
+                                className={`input_title ${forms.phone ? 'hidden' : ''}`} 
+                                htmlFor="input_phone"
+                                style={{ display: forms.phone ? 'none' : 'block' }}
+                            >
+                                Your Phone
+                            </label>
                             <input
                                 value={forms.phone}
                                 type="tel"
@@ -148,7 +164,6 @@ const ContactForm = (props) => {
                                 className="form-control"
                                 onBlur={(e) => changeHandler(e)}
                                 onChange={(e) => changeHandler(e)}
-                                placeholder="+8250-3560 6565"
                                 disabled={isSubmitting}
                             />
                             {validator.message('phone', forms.phone, 'required|phone')}
@@ -156,7 +171,13 @@ const ContactForm = (props) => {
                     </div>
                     <div className="col-12">
                         <div className="form-group">
-                            <label className="input_title" htmlFor="input_subject">Subject (Optional)</label>
+                            <label 
+                                className={`input_title ${forms.subject ? 'hidden' : ''}`} 
+                                htmlFor="input_subject"
+                                style={{ display: forms.subject ? 'none' : 'block' }}
+                            >
+                                Subject (Optional)
+                            </label>
                             <input
                                 value={forms.subject}
                                 type="text"
@@ -164,21 +185,25 @@ const ContactForm = (props) => {
                                 className="form-control"
                                 onBlur={(e) => changeHandler(e)}
                                 onChange={(e) => changeHandler(e)}
-                                placeholder="Subject of your message"
                                 disabled={isSubmitting}
                             />
                         </div>
                     </div>
                     <div className="col-12">
                         <div className="form-group">
-                            <label className="input_title" htmlFor="input_textarea">Message</label>
+                            <label 
+                                className={`input_title ${forms.message ? 'hidden' : ''}`} 
+                                htmlFor="input_textarea"
+                                style={{ display: forms.message ? 'none' : 'block' }}
+                            >
+                                Message
+                            </label>
                             <textarea
                                 onBlur={(e) => changeHandler(e)}
                                 onChange={(e) => changeHandler(e)}
                                 value={forms.message}
                                 name="message"
                                 className="form-control"
-                                placeholder="How can we help you?"
                                 rows="5"
                                 disabled={isSubmitting}>
                             </textarea>
