@@ -14,6 +14,37 @@ const BlogSection = (props) => {
         window.scrollTo(10, 0);
     }
 
+    // Function to handle image errors and provide fallback
+    const handleImageError = (e) => {
+        e.target.src = 'https://via.placeholder.com/400x250/f8f9fa/6c757d?text=Image+Not+Available'
+        e.target.alt = 'Image not available'
+    }
+
+    // Function to get image URL with fallback
+    const getImageUrl = (blog) => {
+        // Get the base image URL
+        let imageUrl = blog.screens || 
+                      blog.image || 
+                      blog.featured_image || 
+                      blog.thumbnail;
+        
+        // If we have an image URL, make sure it's complete
+        if (imageUrl) {
+            // If the URL starts with '/', it's a relative path, so add the base URL
+            if (imageUrl.startsWith('/')) {
+                imageUrl = `https://portfolio-vercel-bi43.vercel.app${imageUrl}`;
+            }
+            // If it doesn't start with 'http', assume it's relative and add base URL
+            else if (!imageUrl.startsWith('http')) {
+                imageUrl = `https://portfolio-vercel-bi43.vercel.app/${imageUrl}`;
+            }
+            return imageUrl;
+        }
+        
+        // Fallback image if no image URL found
+        return 'https://via.placeholder.com/400x250/f8f9fa/6c757d?text=No+Image';
+    }
+
     // Fetch blogs from API
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -26,6 +57,9 @@ const BlogSection = (props) => {
                 }
                 
                 const data = await response.json()
+                
+                // Log the data to inspect the structure
+                console.log('API Response:', data)
                 
                 // Ensure data is an array - this is the key fix
                 if (Array.isArray(data)) {
@@ -138,30 +172,42 @@ const BlogSection = (props) => {
                             <div className="blog_post_block layout_2">
                                 <div className="blog_post_image">
                                     <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`} className="image_wrap">
-                                        <img src={blog.screens} alt={blog.title || "Blog post"} />
+                                        <img 
+                                            src={getImageUrl(blog)} 
+                                            alt={blog.title || "Blog post"}
+                                            onError={handleImageError}
+                                            loading="lazy"
+                                            style={{
+                                                width: '100%',
+                                                height: '250px',
+                                                objectFit: 'cover',
+                                                borderRadius: '8px'
+                                            }}
+                                            onLoad={() => console.log(`Image loaded successfully: ${getImageUrl(blog)}`)}
+                                        />
                                         <i className="fa-solid fa-arrow-up-right"></i>
                                     </Link>
                                 </div>
                                 <div className="blog_post_content p-0">
                                     <h3 className="blog_post_title mb-0">
                                         <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
-                                            {blog.title}
+                                            {blog.title || 'Untitled Article'}
                                         </Link>
                                     </h3>
                                     <ul className="post_meta unordered_list">
                                         <li>
                                             <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
-                                                <i className="fa-regular fa-circle-user"></i> By <b>{blog.author}</b>
+                                                <i className="fa-regular fa-circle-user"></i> By <b>{blog.author || 'Unknown'}</b>
                                             </Link>
                                         </li>
                                         <li>
                                             <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
-                                                <img src={icon1} alt="Icon Calendar" /> {blog.create_at}
+                                                <img src={icon1} alt="Icon Calendar" /> {blog.create_at || blog.created_at || 'No date'}
                                             </Link>
                                         </li>
                                         <li>
                                             <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
-                                                <i className="fa-regular fa-comment-lines"></i> 24
+                                                <i className="fa-regular fa-comment-lines"></i> {blog.comments_count || 24}
                                             </Link>
                                         </li>
                                     </ul>
@@ -176,6 +222,18 @@ const BlogSection = (props) => {
                     <div className="row justify-content-center">
                         <div className="col-12 text-center">
                             <p>No articles available at the moment.</p>
+                        </div>
+                    </div>
+                )}
+
+                {/* Debug info - remove this in production */}
+                {process.env.NODE_ENV === 'development' && (
+                    <div className="row justify-content-center mt-4">
+                        <div className="col-12">
+                            <details style={{ background: '#f8f9fa', padding: '10px', borderRadius: '5px' }}>
+                                <summary>Debug Info (Development Only)</summary>
+                                <pre>{JSON.stringify(blogsArray.slice(3, 6), null, 2)}</pre>
+                            </details>
                         </div>
                     </div>
                 )}
