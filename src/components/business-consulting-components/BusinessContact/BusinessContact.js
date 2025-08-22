@@ -109,9 +109,9 @@ const BusinessContact = (props) => {
                                      style={{
                                          padding: '10px 15px',
                                          borderRadius: '5px',
-                                         border: `1px solid ${submitStatus.type === 'success' ? '#28a745' : '#dc3545'}`,
+                                         border: `1px solid ${submitStatus.type === 'success' ? '#007bff' : '#007bff'}`,
                                          backgroundColor: submitStatus.type === 'success' ? 'rgba(0, 123, 255, 0.1)' : 'rgba(0, 123, 255, 0.1)',
-                                         color: submitStatus.type === 'success' ? '#28a745' : '#dc3545'
+                                         color: submitStatus.type === 'success' ? '#fff' : '#fff'
                                      }}>
                                     <i className={`fa ${submitStatus.type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}`}></i>
                                     {' '}{submitStatus.message}
