@@ -54,7 +54,7 @@ const ContactForm = (props) => {
                 if (response.ok && data.success) {
                     setSubmitStatus({
                         type: 'success',
-                        message: data.message || 'لقد تم إرسال البيانات بنجاح!'
+                        message: data.message || 'Data has been sent successfully.!'
                     });
                     
                     // Reset form
