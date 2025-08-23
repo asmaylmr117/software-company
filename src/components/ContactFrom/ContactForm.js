@@ -14,50 +14,51 @@ const ContactForm = () => {
     const [submitStatus, setSubmitStatus] = useState(null);
 
     // Validation function
-    const validateForm = () => {
-        const newErrors = {};
-        
-        if (!forms.name.trim()) {
-            newErrors.name = 'Name is required';
-        } else if (!/^[a-zA-Z\s]+$/.test(forms.name)) {
-            newErrors.name = 'Name should only contain letters and spaces';
+    const validateField = (name, value) => {
+        switch (name) {
+            case 'name':
+                if (!value.trim()) return 'Name is required';
+                if (!/^[a-zA-Z\s]+$/.test(value)) return 'Name should only contain letters and spaces';
+                return '';
+            case 'email':
+                if (!value.trim()) return 'Email is required';
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Please enter a valid email address';
+                return '';
+            case 'phone':
+                if (!value.trim()) return 'Phone is required';
+                if (!/^[\+]?[0-9\s\-\(\)]+$/.test(value)) return 'Please enter a valid phone number';
+                return '';
+            case 'message':
+                if (!value.trim()) return 'Message is required';
+                return '';
+            default:
+                return '';
         }
-        
-        if (!forms.email.trim()) {
-            newErrors.email = 'Email is required';
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(forms.email)) {
-            newErrors.email = 'Please enter a valid email address';
-        }
-        
-        if (!forms.phone.trim()) {
-            newErrors.phone = 'Phone number is required';
-        } else if (!/^[\+]?[0-9\s\-\(\)]+$/.test(forms.phone)) {
-            newErrors.phone = 'Please enter a valid phone number';
-        }
-        
-        if (!forms.message.trim()) {
-            newErrors.message = 'Message is required';
-        }
-        
-        return newErrors;
     };
 
     const changeHandler = (e) => {
         const { name, value } = e.target;
         setForms({ ...forms, [name]: value });
         
-        // Clear error for this field if it exists
-        if (errors[name]) {
-            setErrors({ ...errors, [name]: '' });
-        }
+        // Validate field and update errors
+        const error = validateField(name, value);
+        setErrors({ ...errors, [name]: error });
     };
 
     const submitHandler = async (e) => {
         e.preventDefault();
         
-        const formErrors = validateForm();
-        if (Object.keys(formErrors).length > 0) {
-            setErrors(formErrors);
+        // Validate all fields
+        const newErrors = {};
+        Object.keys(forms).forEach(field => {
+            if (field !== 'subject') { // subject is optional
+                const error = validateField(field, forms[field]);
+                if (error) newErrors[field] = error;
+            }
+        });
+        
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
             return;
         }
         
@@ -95,134 +96,214 @@ const ContactForm = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-6">
-            <div className="space-y-6">
-                {submitStatus === 'success' && (
-                    <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-md">
-                        Message sent successfully! We'll get back to you soon.
-                    </div>
-                )}
-                
-                {submitStatus === 'error' && (
-                    <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-md">
-                        Failed to send message. Please try again.
-                    </div>
-                )}
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Full Name
-                        </label>
-                        <input
-                            value={forms.name}
-                            type="text"
-                            name="name"
-                            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                                errors.name ? 'border-red-500' : 'border-gray-300'
-                            }`}
-                            onChange={changeHandler}
-                            placeholder="Goladria Gomez"
-                        />
-                        {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Your Email
-                        </label>
-                        <input
-                            value={forms.email}
-                            type="email"
-                            name="email"
-                            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                                errors.email ? 'border-red-500' : 'border-gray-300'
-                            }`}
-                            onChange={changeHandler}
-                            placeholder="techco@example.com"
-                        />
-                        {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
-                    </div>
+        <div>
+            {/* Status Messages */}
+            {submitStatus === 'success' && (
+                <div style={{
+                    backgroundColor: '#d4edda',
+                    color: '#155724',
+                    padding: '12px',
+                    marginBottom: '20px',
+                    border: '1px solid #c3e6cb',
+                    borderRadius: '4px'
+                }}>
+                    Message sent successfully! We'll get back to you soon.
                 </div>
-
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Subject
-                    </label>
-                    <input
-                        value={forms.subject}
-                        type="text"
-                        name="subject"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        onChange={changeHandler}
-                        placeholder="What's this about?"
-                    />
+            )}
+            
+            {submitStatus === 'error' && (
+                <div style={{
+                    backgroundColor: '#f8d7da',
+                    color: '#721c24',
+                    padding: '12px',
+                    marginBottom: '20px',
+                    border: '1px solid #f5c6cb',
+                    borderRadius: '4px'
+                }}>
+                    Failed to send message. Please try again.
                 </div>
+            )}
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Your Phone
-                    </label>
-                    <input
-                        value={forms.phone}
-                        type="tel"
-                        name="phone"
-                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                            errors.phone ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                        onChange={changeHandler}
-                        placeholder="+8250-3560 6565"
-                    />
-                    {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
-                </div>
-
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Message
-                    </label>
-                    <textarea
-                        onChange={changeHandler}
-                        value={forms.message}
-                        name="message"
-                        rows="5"
-                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                            errors.message ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                        placeholder="How can we help you?"
-                    />
-                    {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
-                </div>
-
-                <div>
-                    <button 
-                        type="button" 
-                        onClick={submitHandler}
-                        disabled={isSubmitting}
-                        className={`inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white ${
-                            isSubmitting 
-                                ? 'bg-gray-400 cursor-not-allowed' 
-                                : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
-                        } transition duration-150 ease-in-out`}
-                    >
-                        {isSubmitting ? (
-                            <>
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                Sending...
-                            </>
-                        ) : (
-                            <>
-                                Send Message
-                                <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                                </svg>
-                            </>
-                        )}
-                    </button>
+            <div onSubmit={submitHandler}>
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="form-group">
+                            <label className="input_title" htmlFor="input_name">Full Name</label>
+                            <input
+                                value={forms.name}
+                                type="text"
+                                name="name"
+                                className="form-control"
+                                onBlur={changeHandler}
+                                onChange={changeHandler}
+                                placeholder="Goladria Gomez"
+                                style={errors.name ? {borderColor: '#dc3545'} : {}}
+                            />
+                            {errors.name && <div className="errorMessage" style={{color: '#dc3545', fontSize: '14px', marginTop: '5px'}}>{errors.name}</div>}
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="form-group">
+                            <label className="input_title" htmlFor="input_email">Your Email</label>
+                            <input
+                                value={forms.email}
+                                type="email"
+                                name="email"
+                                className="form-control"
+                                onBlur={changeHandler}
+                                onChange={changeHandler}
+                                placeholder="Techco@example.com"
+                                style={errors.email ? {borderColor: '#dc3545'} : {}}
+                            />
+                            {errors.email && <div className="errorMessage" style={{color: '#dc3545', fontSize: '14px', marginTop: '5px'}}>{errors.email}</div>}
+                        </div>
+                    </div>
+                    <div className="col-12">
+                        <div className="form-group">
+                            <label className="input_title" htmlFor="input_phone">Your Phone</label>
+                            <input
+                                value={forms.phone}
+                                type="phone"
+                                name="phone"
+                                className="form-control"
+                                onBlur={changeHandler}
+                                onChange={changeHandler}
+                                placeholder="+8250-3560 6565"
+                                style={errors.phone ? {borderColor: '#dc3545'} : {}}
+                            />
+                            {errors.phone && <div className="errorMessage" style={{color: '#dc3545', fontSize: '14px', marginTop: '5px'}}>{errors.phone}</div>}
+                        </div>
+                    </div>
+                    <div className="col-12">
+                        <div className="form-group">
+                            <label className="input_title" htmlFor="input_textarea">Message</label>
+                            <textarea
+                                onBlur={changeHandler}
+                                onChange={changeHandler}
+                                value={forms.message}
+                                type="text"
+                                name="message"
+                                className="form-control"
+                                placeholder="How can we help you?"
+                                style={errors.message ? {borderColor: '#dc3545'} : {}}
+                            />
+                            {errors.message && <div className="errorMessage" style={{color: '#dc3545', fontSize: '14px', marginTop: '5px'}}>{errors.message}</div>}
+                        </div>
+                        <button 
+                            type="button" 
+                            className="btn btn-primary"
+                            onClick={submitHandler}
+                            disabled={isSubmitting}
+                            style={isSubmitting ? {opacity: 0.6, cursor: 'not-allowed'} : {}}
+                        >
+                            <span className="btn_label" data-text={isSubmitting ? "Sending..." : "Send Message"}>
+                                {isSubmitting ? "Sending..." : "Send Message"}
+                            </span>
+                            <span className="btn_icon">
+                                <i className="fa-solid fa-arrow-up-right"></i>
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
+
+            <style jsx>{`
+                .row {
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: 0 -15px;
+                }
+                .col-md-6 {
+                    flex: 0 0 50%;
+                    max-width: 50%;
+                    padding: 0 15px;
+                    margin-bottom: 1rem;
+                }
+                .col-12 {
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                    padding: 0 15px;
+                    margin-bottom: 1rem;
+                }
+                @media (max-width: 768px) {
+                    .col-md-6 {
+                        flex: 0 0 100%;
+                        max-width: 100%;
+                    }
+                }
+                .form-group {
+                    margin-bottom: 1rem;
+                }
+                .input_title {
+                    display: block;
+                    margin-bottom: 0.5rem;
+                    font-weight: 600;
+                    color: #333;
+                }
+                .form-control {
+                    display: block;
+                    width: 100%;
+                    padding: 0.75rem 1rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    color: #495057;
+                    background-color: #fff;
+                    background-clip: padding-box;
+                    border: 1px solid #ced4da;
+                    border-radius: 0.25rem;
+                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                    box-sizing: border-box;
+                }
+                .form-control:focus {
+                    color: #495057;
+                    background-color: #fff;
+                    border-color: #80bdff;
+                    outline: 0;
+                    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+                }
+                textarea.form-control {
+                    min-height: 120px;
+                    resize: vertical;
+                }
+                .btn {
+                    display: inline-flex;
+                    align-items: center;
+                    font-weight: 400;
+                    text-align: center;
+                    white-space: nowrap;
+                    vertical-align: middle;
+                    user-select: none;
+                    border: 1px solid transparent;
+                    padding: 0.75rem 1.5rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    border-radius: 0.25rem;
+                    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                    cursor: pointer;
+                    text-decoration: none;
+                }
+                .btn-primary {
+                    color: #fff;
+                    background-color: #007bff;
+                    border-color: #007bff;
+                }
+                .btn-primary:hover:not(:disabled) {
+                    color: #fff;
+                    background-color: #0069d9;
+                    border-color: #0062cc;
+                }
+                .btn_label {
+                    margin-right: 0.5rem;
+                }
+                .btn_icon {
+                    font-size: 0.875rem;
+                }
+                .errorMessage {
+                    color: #dc3545;
+                    font-size: 0.875rem;
+                    margin-top: 0.25rem;
+                }
+            `}</style>
         </div>
     );
 };
