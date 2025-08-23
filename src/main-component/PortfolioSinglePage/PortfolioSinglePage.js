@@ -9,7 +9,7 @@ import CtaSection from '../../components/CtaSection/CtaSection';
 import { Link } from 'react-router-dom';
 import psImg from '../../images/portfolio/portfolio_details_image_1.webp';
 import icon from '../../images/icons/icon_check_3.svg';
-
+import ProfessionalLoading from './ProfessionalLoading';
 const PortfolioSinglePage = () => {
   const { slug } = useParams();
   const [projects, setProjects] = useState([]);
@@ -71,7 +71,7 @@ const PortfolioSinglePage = () => {
   };
 
   // Render loading, error, or not found states
-  if (loading) return <div>Loading...</div>;
+ if (loading) return <ProfessionalLoading />;
   if (error) return <div>{error}</div>;
   if (!PortfolioDetails) return <div>Project not found</div>;
 
