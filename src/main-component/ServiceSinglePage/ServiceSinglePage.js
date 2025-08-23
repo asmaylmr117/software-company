@@ -7,28 +7,12 @@ import Scrollbar from '../../components/scrollbar/scrollbar';
 import Footer from '../../components/footer/Footer';
 import CtaSection from '../../components/CtaSection/CtaSection';
 import ProcessTechnology from '../../components/software-company-components/ProcessTechnology/ProcessTechnology';
-
+import ProfessionalLoading from '../PortfolioSinglePage/ProfessionalLoading';
 import srImg from '../../images/portfolio/portfolio_item_image_2.webp';
 import srImg2 from '../../images/portfolio/portfolio_item_image_5.webp';
 import srImg3 from '../../images/portfolio/portfolio_item_image_6.webp';
 import srImg4 from '../../images/portfolio/portfolio_item_image_5.webp';
 import icon from '../../images/icons/icon_check_3.svg';
-
-// Custom CSS for spinner animation
-const styles = `
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  .custom-spinner {
-    border: 4px solid rgba(255, 255, 255, 0.2);
-    border-top: 4px solid #3b82f6; /* Tailwind's blue-500 */
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
-  }
-`;
 
 const ServiceSinglePage = () => {
   const { slug } = useParams();
@@ -73,16 +57,10 @@ const ServiceSinglePage = () => {
 
   return (
     <Fragment>
-      <style>{styles}</style>
       <Header />
       <main className="page_content service-single-page">
         {loading ? (
-          <div className="min-h-[60vh] flex items-center justify-center bg-light">
-            <div className="flex flex-col items-center space-y-4">
-              <div className="custom-spinner"></div>
-              <p className="text-gray-700 text-lg font-medium">Loading Service Details...</p>
-            </div>
-          </div>
+          <ProfessionalLoading />
         ) : error ? (
           <div className="min-h-[60vh] flex items-center justify-center text-red-600">
             Error: {error}
