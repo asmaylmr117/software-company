@@ -10,7 +10,7 @@ import sImg1 from '../../images/icons/icon_facebook.svg';
 import sImg2 from '../../images/icons/icon_twitter_x.svg';
 import sImg3 from '../../images/icons/icon_linkedin.svg';
 import sImg4 from '../../images/icons/icon_instagram.svg';
-
+import ProfessionalLoading from '../PortfolioSinglePage/ProfessionalLoading';
 const TeamSinglePage = (props) => {
     const { slug } = useParams();
     const [teamDetails, setTeamDetails] = useState(null);
@@ -50,16 +50,7 @@ const TeamSinglePage = (props) => {
         window.scrollTo(10, 0);
     };
 
-    if (loading) {
-        return (
-            <div className="fixed inset-0 flex items-center justify-center bg-gray-100 bg-opacity-75 z-50">
-                <div className="flex flex-col items-center">
-                    <div className="w-16 h-16 border-4 border-t-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
-                    <p className="mt-4 text-lg font-semibold text-gray-700">Loading Team Member...</p>
-                </div>
-            </div>
-        );
-    }
+   if (loading) return <ProfessionalLoading />;
 
     if (error) {
         return (
