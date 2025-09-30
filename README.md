@@ -1,7 +1,21 @@
 # Getting Started with Create React App
 [![Thehco](Capture3.PNG)](https://perfbuddy.com/report/OccfMa9y3)
 link live: [https://software-company-mu.vercel.app/](https://software-company-mu.vercel.app/).\
-backend repository: [https://github.com/asmaylmr117/portfolio-vercel]
+backend repository: [https://github.com/asmaylmr117/portfolio-vercel] \
+## 🔗 Live Demo
+
+🛍️ View the live site:  
+👉 [**software-company Live**](https://software-company-mu.vercel.app/)
+
+## 🧰 Technologies Used
+
+- **HTML5**
+- **CSS3**
+- **Sass**
+- **JavaScript**
+- **React.js**
+- **react-router-dom**
+- **use state**
 ## Available Scripts
 
 In the project directory, you can run:
