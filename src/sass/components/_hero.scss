@@ -88,397 +88,151 @@
 	}
 }
 
+/* التحديثات تبدأ هنا لتصميم احترافي 2x2 */
 .it_solution_hero_images {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: stretch;
-	gap: 0;
-	
-	> li {
-		width: 50%;
-		transition: transform 0.3s ease;
-		
-		&:hover {
-			transform: translateY(-5px);
+	align-items: flex-start;
+    display: flex; /* تفعيل Flexbox */
+    flex-wrap: wrap; /* السماح للعناصر بالنزول لسطر جديد */
+	>li {
+		width: 50%; /* ضمان عرض 50% على الشاشات الكبيرة */
+		@media screen and (max-width: 991px) {
+			width: 100%; /* العودة للعرض الكامل على الشاشات الصغيرة */
 		}
 	}
 
-	/* الصورة الرئيسية */
-	> li:first-child {
-		img {
-			width: 100%;
-			height: auto;
-			border-radius: 20px;
-			box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-			transition: box-shadow 0.3s ease;
-			
-			&:hover {
-				box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-			}
-		}
-	}
-
-	/* صندوق العملاء العالميين */
 	.worldwide_clients {
-		background: linear-gradient(135deg, #FF6B35 0%, #FB7929 100%);
-		padding: 50px 40px;
-		border-radius: 175px 20px 20px 175px;
-		box-shadow: 0 15px 40px rgba(251, 121, 41, 0.3);
-		transition: all 0.3s ease;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		
-		&:hover {
-			transform: translateX(-5px);
-			box-shadow: 0 20px 50px rgba(251, 121, 41, 0.4);
-		}
-		
+		background-color: #FB7929;
+		/* تعديل التعبئة لتكون أكثر تناسقًا واحترافية */
+		padding: 70px 100px 70px 90px;
+		border-radius: 175px 20px 0px 175px;
 		.counter_value {
 			line-height: 1;
-			font-size: 60px;
+			/* تكبير الخط قليلاً لجعله أكثر جاذبية */
+			font-size: 60px; 
 			font-weight: 700;
-			margin: 0 0 15px;
+			margin: 0 0 12px;
 			color: var(--bs-white);
 			font-family: 'Axiforma Bold';
-			letter-spacing: -1px;
 		}
-		
 		p {
-			font-size: 16px;
-			line-height: 26px;
-			margin-bottom: 35px;
-			color: rgba(255, 255, 255, 0.95);
-			font-weight: 400;
+			font-size: 19px;
+			line-height: 28px;
+			margin-bottom: 46px;
+			color: var(--bs-white);
 		}
 	}
 
-	/* صندوق الفئات */
-	.categories-container {
-		transform: translateY(0);
-		width: 50%;
-	}
-	
+    /* تعديل لرفع قسم الفئات لتقليل الفجوة الرأسية */
+    .categories-container {
+        transform: translateY(-50px);
+    }
+    
 	.categories {
-		padding: 60px 35px;
-		border-radius: 20px 175px 20px 20px;
-		background: linear-gradient(135deg, #1a1a2e 0%, var(--bs-secondary) 100%);
-		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-		transition: all 0.3s ease;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		gap: 15px;
-		
-		&:hover {
-			transform: translateY(-25px);
-			box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-		}
-		
-		> li {
+		/* تعديل التعبئة الرأسية لتكون أكثر إحكامًا */
+		padding: 60px 42px; 
+		border-radius: 0px 175px 0 20px;
+		background-color: var(--bs-secondary);
+		>li {
 			&:not(:first-child) {
-				margin-top: 0;
+				margin-top: -1px;
 			}
 		}
-		
 		a {
 			font-size: 15px;
-			display: flex;
 			align-items: center;
-			justify-content: space-between;
+			display: inline-flex;
 			color: var(--bs-white);
-			padding: 5px;
-			transition: all 0.3s ease;
-			
 			span {
-				padding: 12px 20px 10px;
-				transition: all 0.3s ease;
-				border: 1px solid rgba(255, 255, 255, 0.3);
+				padding: 10px 15px 6px;
+				transition: var(--bs-transition);
+				border: 1px solid var(--bs-white);
 				border-radius: var(--bs-border-radius-pill);
-				background: transparent;
-				font-weight: 500;
-				flex: 1;
 			}
-			
 			i {
-				width: 42px;
-				height: 42px;
+				width: 40px;
+				height: 40px;
 				flex: 0 0 auto;
 				border-radius: 100%;
-				display: inline-flex;
 				align-items: center;
+				display: inline-flex;
 				justify-content: center;
-				transition: all 0.3s ease;
-				border: 1px solid rgba(255, 255, 255, 0.3);
-				background: transparent;
-				margin-left: 10px;
+				transition: var(--bs-transition);
+				border: 1px solid var(--bs-white);
 			}
 
 			&:hover {
-				span {
+				span,i {
 					background-color: var(--bs-primary);
-					border-color: var(--bs-primary);
-					transform: translateX(-5px);
-				}
-				i {
-					background-color: var(--bs-primary);
-					border-color: var(--bs-primary);
-					transform: rotate(45deg);
 				}
 			}
 		}
 	}
 
-	/* صندوق نمو الأعمال */
 	.business_growth_content {
 		text-align: center;
-		padding: 45px 30px 80px;
-		background: linear-gradient(135deg, #ff5709 0%, #ff7b3d 100%);
+		/* تعديل التعبئة لتكون متناسقة */
+		padding: 60px 0 100px;
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center center;
-		border-radius: 20px;
-		box-shadow: 0 15px 40px rgba(255, 87, 9, 0.3);
-		transition: all 0.3s ease;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		
-		&:hover {
-			transform: translateY(-5px);
-			box-shadow: 0 20px 50px rgba(255, 87, 9, 0.4);
-		}
-		
 		.business_growth {
 			width: auto !important;
 			height: auto !important;
-			position: relative;
-			
 			svg {
-				width: 240px;
-				height: 240px;
-				filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
-				
+				width: 280px; /* تكبير الدائرة قليلاً */
+				height: 280px;
 				circle:not(.business_growth-circle-58) {
-					stroke: rgba(255, 255, 255, 0.3);
+					stroke: rgba(255, 255, 255, 0.5);
 				}
-				
 				.business_growth-circle-58 {
-					stroke-width: 10px;
+					stroke-width: 8px;
 					stroke: var(--bs-white);
-					filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
 				}
-				
 				.business_growth-text-58 {
 					line-height: 1;
-					font-size: 28px;
+					font-size: 24px;
 					font-weight: 700;
 					fill: var(--bs-white);
 					font-family: 'Axiforma Bold';
-					filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 					transform: translateY(-10px);
 				}
 			}
 		}
-		
 		p {
-			font-size: 15px;
-			max-width: 180px;
-			line-height: 24px;
-			margin: -110px auto 0;
+			font-size: 14px;
+			max-width: 155px;
+			line-height: 22px;
+			/* تعديل موضع النص ليتوسط الدائرة بشكل أفضل */
+			margin: -140px auto 0;
 			color: var(--bs-white);
-			font-weight: 500;
-			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		}
 	}
 }
+/* نهاية التحديثات */
 
-/* مجموعة الأفاتار */
 .avatar_group {
-	display: flex;
-	align-items: center;
-	
-	> li {
-		width: 48px;
-		height: 48px;
+	>li {
+		width: 50px;
+		height: 50px;
 		overflow: hidden;
 		border-radius: 100%;
-		display: inline-flex;
 		align-items: center;
+		display: inline-flex;
 		justify-content: center;
-		border: 3px solid var(--bs-white);
-		font-size: 13px;
-		font-weight: 600;
-		transition: all 0.3s ease;
-		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-		
+		border: 2px solid var(--bs-white);
 		&:not(:first-child) {
 			margin-left: -15px;
 		}
-		
-		&:hover {
-			transform: scale(1.1) translateY(-3px);
-			z-index: 10;
-			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-		}
-		
 		&:last-child {
-			font-size: 14px;
-			font-weight: 700;
+			font-size: 15px;
 			color: var(--bs-white);
-			background: linear-gradient(135deg, #0957ff 0%, #0a47cc 100%);
+			background-color: var(--bs-primary);
 		}
 	}
 }
-
-/* تحسينات للشاشات المتوسطة */
-@media screen and (min-width: 992px) and (max-width: 1399px) {
-	.it_solution_hero_images {
-		gap: 0;
-		
-		> li {
-			width: 50%;
-		}
-		
-		.worldwide_clients {
-			padding: 40px 30px;
-			border-radius: 140px 20px 20px 140px;
-			
-			.counter_value {
-				font-size: 50px;
-			}
-			
-			p {
-				font-size: 15px;
-				line-height: 24px;
-				margin-bottom: 30px;
-			}
-		}
-		
-		.categories-container {
-			width: 50%;
-		}
-		
-		.categories {
-			padding: 50px 30px;
-			border-radius: 20px 140px 20px 20px;
-			gap: 12px;
-			
-			a {
-				font-size: 14px;
-				
-				span {
-					padding: 10px 18px 8px;
-				}
-				
-				i {
-					width: 38px;
-					height: 38px;
-				}
-			}
-		}
-		
-		.business_growth_content {
-			padding: 40px 25px 70px;
-			
-			.business_growth svg {
-				width: 220px;
-				height: 220px;
-			}
-			
-			p {
-				font-size: 14px;
-				max-width: 170px;
-				margin-top: -100px;
-			}
-		}
-		
-		.avatar_group > li {
-			width: 45px;
-			height: 45px;
-		}
-	}
-}
-
-/* تحسينات للشاشات الكبيرة جداً */
-@media screen and (min-width: 1400px) {
-	.it_solution_hero_images {
-		gap: 0;
-		
-		> li {
-			width: 50%;
-		}
-		
-		.worldwide_clients {
-			padding: 60px 50px;
-			
-			.counter_value {
-				font-size: 65px;
-			}
-			
-			p {
-				font-size: 17px;
-				line-height: 28px;
-			}
-		}
-		
-		.categories-container {
-			width: 50%;
-		}
-		
-		.categories {
-			padding: 70px 40px;
-			gap: 18px;
-			
-			a {
-				font-size: 16px;
-				
-				span {
-					padding: 14px 24px 12px;
-				}
-				
-				i {
-					width: 45px;
-					height: 45px;
-					font-size: 16px;
-				}
-			}
-		}
-		
-		.business_growth_content {
-			padding: 50px 35px 90px;
-			
-			.business_growth svg {
-				width: 260px;
-				height: 260px;
-				
-				.business_growth-text-58 {
-					font-size: 30px;
-				}
-			}
-			
-			p {
-				font-size: 16px;
-				max-width: 190px;
-				line-height: 26px;
-				margin-top: -120px;
-			}
-		}
-		
-		.avatar_group > li {
-			width: 50px;
-			height: 50px;
-			font-size: 14px;
-		}
-	}
-}
-
 // IT Solution - End
 
-// Software Company - Start
+// Software Company - Satrt
 .software_company_hero_section {
 	z-index: 1;
 	position: relative;
