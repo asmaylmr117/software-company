@@ -91,11 +91,11 @@
 .it_solution_hero_images {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: flex-start;
-	gap: 20px;
+	align-items: stretch;
+	gap: 0;
 	
 	> li {
-		width: calc(50% - 10px);
+		width: 50%;
 		transition: transform 0.3s ease;
 		
 		&:hover {
@@ -156,8 +156,8 @@
 
 	/* صندوق الفئات */
 	.categories-container {
-		transform: translateY(-20px);
-		width: calc(50% - 10px);
+		transform: translateY(0);
+		width: 50%;
 	}
 	
 	.categories {
@@ -337,10 +337,10 @@
 /* تحسينات للشاشات المتوسطة */
 @media screen and (min-width: 992px) and (max-width: 1399px) {
 	.it_solution_hero_images {
-		gap: 15px;
+		gap: 0;
 		
 		> li {
-			width: calc(50% - 7.5px);
+			width: 50%;
 		}
 		
 		.worldwide_clients {
@@ -359,7 +359,7 @@
 		}
 		
 		.categories-container {
-			width: calc(50% - 7.5px);
+			width: 50%;
 		}
 		
 		.categories {
@@ -406,10 +406,10 @@
 /* تحسينات للشاشات الكبيرة جداً */
 @media screen and (min-width: 1400px) {
 	.it_solution_hero_images {
-		gap: 25px;
+		gap: 0;
 		
 		> li {
-			width: calc(50% - 12.5px);
+			width: 50%;
 		}
 		
 		.worldwide_clients {
@@ -426,7 +426,7 @@
 		}
 		
 		.categories-container {
-			width: calc(50% - 12.5px);
+			width: 50%;
 		}
 		
 		.categories {
