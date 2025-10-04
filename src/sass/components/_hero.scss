@@ -89,135 +89,396 @@
 }
 
 .it_solution_hero_images {
+	display: flex;
+	flex-wrap: wrap;
 	align-items: flex-start;
-	>li {
-		width: 50%;
+	gap: 20px;
+	
+	> li {
+		width: calc(50% - 10px);
+		transition: transform 0.3s ease;
+		
+		&:hover {
+			transform: translateY(-5px);
+		}
 	}
 
-	.worldwide_clients {
-		background-color: #FB7929;
-		padding: 66px 85px 65px 90px;
-		border-radius: 175px 20px 0px 175px;
-		.counter_value {
-			line-height: 1;
-			font-size: 55px;
-			font-weight: 700;
-			margin: 0 0 12px;
-			color: var(--bs-white);
-			font-family: 'Axiforma Bold';
-		}
-		p {
-			font-size: 18px;
-			line-height: 28px;
-			margin-bottom: 46px;
-			color: var(--bs-white);
+	/* الصورة الرئيسية */
+	> li:first-child {
+		img {
+			width: 100%;
+			height: auto;
+			border-radius: 20px;
+			box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+			transition: box-shadow 0.3s ease;
+			
+			&:hover {
+				box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+			}
 		}
 	}
-.categories-container {
-    transform: translateY(-20px); /* Adjust this value to move the <li> upwards */
-}
+
+	/* صندوق العملاء العالميين */
+	.worldwide_clients {
+		background: linear-gradient(135deg, #FF6B35 0%, #FB7929 100%);
+		padding: 50px 40px;
+		border-radius: 175px 20px 20px 175px;
+		box-shadow: 0 15px 40px rgba(251, 121, 41, 0.3);
+		transition: all 0.3s ease;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		
+		&:hover {
+			transform: translateX(-5px);
+			box-shadow: 0 20px 50px rgba(251, 121, 41, 0.4);
+		}
+		
+		.counter_value {
+			line-height: 1;
+			font-size: 60px;
+			font-weight: 700;
+			margin: 0 0 15px;
+			color: var(--bs-white);
+			font-family: 'Axiforma Bold';
+			letter-spacing: -1px;
+		}
+		
+		p {
+			font-size: 16px;
+			line-height: 26px;
+			margin-bottom: 35px;
+			color: rgba(255, 255, 255, 0.95);
+			font-weight: 400;
+		}
+	}
+
+	/* صندوق الفئات */
+	.categories-container {
+		transform: translateY(-20px);
+		width: calc(50% - 10px);
+	}
+	
 	.categories {
-		padding: 115px 42px;
-		border-radius: 0px 175px 0 20px;
-		background-color: var(--bs-secondary);
-		>li {
+		padding: 60px 35px;
+		border-radius: 20px 175px 20px 20px;
+		background: linear-gradient(135deg, #1a1a2e 0%, var(--bs-secondary) 100%);
+		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+		transition: all 0.3s ease;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 15px;
+		
+		&:hover {
+			transform: translateY(-25px);
+			box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+		}
+		
+		> li {
 			&:not(:first-child) {
-				margin-top: -1px;
+				margin-top: 0;
 			}
 		}
+		
 		a {
 			font-size: 15px;
+			display: flex;
 			align-items: center;
-			display: inline-flex;
+			justify-content: space-between;
 			color: var(--bs-white);
+			padding: 5px;
+			transition: all 0.3s ease;
+			
 			span {
-				padding: 10px 15px 6px;
-				transition: var(--bs-transition);
-				border: 1px solid var(--bs-white);
+				padding: 12px 20px 10px;
+				transition: all 0.3s ease;
+				border: 1px solid rgba(255, 255, 255, 0.3);
 				border-radius: var(--bs-border-radius-pill);
+				background: transparent;
+				font-weight: 500;
+				flex: 1;
 			}
+			
 			i {
-				width: 40px;
-				height: 40px;
+				width: 42px;
+				height: 42px;
 				flex: 0 0 auto;
 				border-radius: 100%;
-				align-items: center;
 				display: inline-flex;
+				align-items: center;
 				justify-content: center;
-				transition: var(--bs-transition);
-				border: 1px solid var(--bs-white);
+				transition: all 0.3s ease;
+				border: 1px solid rgba(255, 255, 255, 0.3);
+				background: transparent;
+				margin-left: 10px;
 			}
 
 			&:hover {
-				span,i {
+				span {
 					background-color: var(--bs-primary);
+					border-color: var(--bs-primary);
+					transform: translateX(-5px);
+				}
+				i {
+					background-color: var(--bs-primary);
+					border-color: var(--bs-primary);
+					transform: rotate(45deg);
 				}
 			}
 		}
 	}
 
+	/* صندوق نمو الأعمال */
 	.business_growth_content {
 		text-align: center;
-		padding: 50px 0 96px;
+		padding: 45px 30px 80px;
+		background: linear-gradient(135deg, #ff5709 0%, #ff7b3d 100%);
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center center;
+		border-radius: 20px;
+		box-shadow: 0 15px 40px rgba(255, 87, 9, 0.3);
+		transition: all 0.3s ease;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		
+		&:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 20px 50px rgba(255, 87, 9, 0.4);
+		}
+		
 		.business_growth {
 			width: auto !important;
 			height: auto !important;
+			position: relative;
+			
 			svg {
-				width: 260px;
-				height: 260px;
+				width: 240px;
+				height: 240px;
+				filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+				
 				circle:not(.business_growth-circle-58) {
-					stroke: rgba(255, 255, 255, 0.5);
+					stroke: rgba(255, 255, 255, 0.3);
 				}
+				
 				.business_growth-circle-58 {
-					stroke-width: 8px;
+					stroke-width: 10px;
 					stroke: var(--bs-white);
+					filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
 				}
+				
 				.business_growth-text-58 {
 					line-height: 1;
-					font-size: 24px;
+					font-size: 28px;
 					font-weight: 700;
 					fill: var(--bs-white);
 					font-family: 'Axiforma Bold';
+					filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 					transform: translateY(-10px);
 				}
 			}
 		}
+		
 		p {
-			font-size: 14px;
-			max-width: 155px;
-			line-height: 22px;
-			margin: -122px auto 0;
+			font-size: 15px;
+			max-width: 180px;
+			line-height: 24px;
+			margin: -110px auto 0;
 			color: var(--bs-white);
+			font-weight: 500;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		}
 	}
 }
 
+/* مجموعة الأفاتار */
 .avatar_group {
-	>li {
-		width: 50px;
-		height: 50px;
+	display: flex;
+	align-items: center;
+	
+	> li {
+		width: 48px;
+		height: 48px;
 		overflow: hidden;
 		border-radius: 100%;
-		align-items: center;
 		display: inline-flex;
+		align-items: center;
 		justify-content: center;
-		border: 2px solid var(--bs-white);
+		border: 3px solid var(--bs-white);
+		font-size: 13px;
+		font-weight: 600;
+		transition: all 0.3s ease;
+		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+		
 		&:not(:first-child) {
 			margin-left: -15px;
 		}
+		
+		&:hover {
+			transform: scale(1.1) translateY(-3px);
+			z-index: 10;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+		}
+		
 		&:last-child {
-			font-size: 15px;
+			font-size: 14px;
+			font-weight: 700;
 			color: var(--bs-white);
-			background-color: var(--bs-primary);
+			background: linear-gradient(135deg, #0957ff 0%, #0a47cc 100%);
 		}
 	}
 }
+
+/* تحسينات للشاشات المتوسطة */
+@media screen and (min-width: 992px) and (max-width: 1399px) {
+	.it_solution_hero_images {
+		gap: 15px;
+		
+		> li {
+			width: calc(50% - 7.5px);
+		}
+		
+		.worldwide_clients {
+			padding: 40px 30px;
+			border-radius: 140px 20px 20px 140px;
+			
+			.counter_value {
+				font-size: 50px;
+			}
+			
+			p {
+				font-size: 15px;
+				line-height: 24px;
+				margin-bottom: 30px;
+			}
+		}
+		
+		.categories-container {
+			width: calc(50% - 7.5px);
+		}
+		
+		.categories {
+			padding: 50px 30px;
+			border-radius: 20px 140px 20px 20px;
+			gap: 12px;
+			
+			a {
+				font-size: 14px;
+				
+				span {
+					padding: 10px 18px 8px;
+				}
+				
+				i {
+					width: 38px;
+					height: 38px;
+				}
+			}
+		}
+		
+		.business_growth_content {
+			padding: 40px 25px 70px;
+			
+			.business_growth svg {
+				width: 220px;
+				height: 220px;
+			}
+			
+			p {
+				font-size: 14px;
+				max-width: 170px;
+				margin-top: -100px;
+			}
+		}
+		
+		.avatar_group > li {
+			width: 45px;
+			height: 45px;
+		}
+	}
+}
+
+/* تحسينات للشاشات الكبيرة جداً */
+@media screen and (min-width: 1400px) {
+	.it_solution_hero_images {
+		gap: 25px;
+		
+		> li {
+			width: calc(50% - 12.5px);
+		}
+		
+		.worldwide_clients {
+			padding: 60px 50px;
+			
+			.counter_value {
+				font-size: 65px;
+			}
+			
+			p {
+				font-size: 17px;
+				line-height: 28px;
+			}
+		}
+		
+		.categories-container {
+			width: calc(50% - 12.5px);
+		}
+		
+		.categories {
+			padding: 70px 40px;
+			gap: 18px;
+			
+			a {
+				font-size: 16px;
+				
+				span {
+					padding: 14px 24px 12px;
+				}
+				
+				i {
+					width: 45px;
+					height: 45px;
+					font-size: 16px;
+				}
+			}
+		}
+		
+		.business_growth_content {
+			padding: 50px 35px 90px;
+			
+			.business_growth svg {
+				width: 260px;
+				height: 260px;
+				
+				.business_growth-text-58 {
+					font-size: 30px;
+				}
+			}
+			
+			p {
+				font-size: 16px;
+				max-width: 190px;
+				line-height: 26px;
+				margin-top: -120px;
+			}
+		}
+		
+		.avatar_group > li {
+			width: 50px;
+			height: 50px;
+			font-size: 14px;
+		}
+	}
+}
+
 // IT Solution - End
 
-// Software Company - Satrt
+// Software Company - Start
 .software_company_hero_section {
 	z-index: 1;
 	position: relative;
