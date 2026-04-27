@@ -1,44 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
-
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+import { useServices } from '../../hooks/useQueries';
+import { getImageUrl } from '../../api/axiosConfig';
 
 const ServiceSection = (props) => {
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
 
-    const [services, setServices] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                setLoading(true);
-                const response = await fetch(`${API_URL}/api/services?limit=5`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Origin': window.location.origin,
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                setServices(data.services || []);
-            } catch (err) {
-                console.error('Failed to fetch services:', err);
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchServices();
-    }, []);
+    const { data: services, isLoading: loading, error } = useServices();
 
     return (
         <section className="service_section section_space xb-hidden pb-0">
@@ -81,7 +51,7 @@ const ServiceSection = (props) => {
                             <div className="service_block">
                                 {service.sImg && (
                                     <div className="service_image">
-                                        <img src={service.sImg} alt={service.title} />
+                                        <img src={getImageUrl(service.sImg)} alt={service.title} />
                                     </div>
                                 )}
                                 <div className="service_content">

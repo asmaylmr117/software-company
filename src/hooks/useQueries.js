@@ -6,8 +6,7 @@ export const useBlogs = () => {
     queryKey: ['blogs'],
     queryFn: async () => {
       const { data } = await apiClient.get('/blogs');
-      // In case the API wraps the response in a 'data' object
-      return data.data ? data.data : data;
+      return data.blogs ? data.blogs : (data.data ? data.data : data);
     },
   });
 };
@@ -17,7 +16,7 @@ export const useProjects = () => {
     queryKey: ['projects'],
     queryFn: async () => {
       const { data } = await apiClient.get('/projects');
-      return data.data ? data.data : data;
+      return data.projects ? data.projects : (data.data ? data.data : data);
     },
   });
 };
@@ -27,7 +26,7 @@ export const useServices = () => {
     queryKey: ['services'],
     queryFn: async () => {
       const { data } = await apiClient.get('/services');
-      return data.data ? data.data : data;
+      return data.services ? data.services : (data.data ? data.data : data);
     },
   });
 };
@@ -37,7 +36,7 @@ export const useTeams = () => {
     queryKey: ['teams'],
     queryFn: async () => {
       const { data } = await apiClient.get('/teams');
-      return data.data ? data.data : data;
+      return data.teams ? data.teams : (data.data ? data.data : data);
     },
   });
 };
