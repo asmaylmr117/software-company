@@ -8,7 +8,7 @@ const ServiceSection = (props) => {
         window.scrollTo(10, 0);
     }
 
-    const { data: services, isLoading: loading, error } = useServices();
+    const { data: services = [], isLoading: loading, error } = useServices();
 
     return (
         <section className="service_section section_space xb-hidden pb-0">
