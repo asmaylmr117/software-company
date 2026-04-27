@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
-import Project from '../../api/project';
 import { Link } from "react-router-dom";
+import { useProjects } from '../../hooks/useQueries';
+import { getImageUrl } from '../../api/axiosConfig';
 import Header from '../../components/header/Header';
 import PageTitle from '../../components/pagetitle/PageTitle';
 import Scrollbar from '../../components/scrollbar/scrollbar';
@@ -19,9 +20,13 @@ const PortfolioPage = (props) => {
         setActiveFilter(filter);
     }
 
+    const { data: Project, isLoading } = useProjects();
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
+
     const filteredProjects = activeFilter === 'all'
-        ? Project.slice(9, 18)
-        : Project.slice(9, 18).filter(project => project.category === activeFilter);
+        ? Project?.slice(9, 18)
+        : Project?.slice(9, 18).filter(project => project.category === activeFilter);
 
     return (
         <Fragment>
@@ -45,7 +50,7 @@ const PortfolioPage = (props) => {
                                     <div className="portfolio_block portfolio_layout_2">
                                         <div className="portfolio_image">
                                             <Link onClick={ClickHandler} className="portfolio_image_wrap bg-light" to={`/portfolio_details/${project.slug}`}>
-                                                <img src={project.pImg} alt="Mobile App Design" />
+                                                <img src={getImageUrl(project.pImg)} alt="Mobile App Design" />
                                             </Link>
                                         </div>
                                         <div className="portfolio_content">

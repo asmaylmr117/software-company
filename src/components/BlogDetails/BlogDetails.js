@@ -19,7 +19,7 @@ import sImg2 from '../../images/icons/icon_twitter_x.svg'
 import sImg3 from '../../images/icons/icon_linkedin.svg'
 import sImg4 from '../../images/icons/icon_instagram.svg'
 
-import blogs from '../../api/blogs';
+import { useBlogs } from '../../hooks/useQueries';
 import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom'
 import BlogSidebar from '../BlogSidebar';
@@ -28,11 +28,17 @@ const BlogSingle = (props) => {
 
     const { slug } = useParams()
 
-    const BlogDetails = blogs.find(item => item.slug === slug)
+    const { data: blogs, isLoading } = useBlogs();
 
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
+
+    const BlogDetails = blogs?.find(item => item.slug === slug)
+
+    if (!BlogDetails) return <div className="text-center section_space">Blog not found.</div>;
 
     return (
         <section className="blog_details_section section_space bg-light">

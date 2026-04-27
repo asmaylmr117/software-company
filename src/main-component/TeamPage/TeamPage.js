@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom'
-import Teams from '../../api/team'
+import { useTeams } from '../../hooks/useQueries';
+import { getImageUrl } from '../../api/axiosConfig';
 import Header from '../../components/header/Header';
 import PageTitle from '../../components/pagetitle/PageTitle'
 import Scrollbar from '../../components/scrollbar/scrollbar'
@@ -17,6 +18,11 @@ const TeamPage = (props) => {
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
+
+    const { data: Teams, isLoading } = useTeams();
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
+
     return (
         <Fragment>
             <Header />
@@ -68,12 +74,12 @@ const TeamPage = (props) => {
                         </div>
 
                         <div className="row">
-                            {Teams.slice(0, 6).map((team, tm) => (
+                            {Teams?.slice(0, 6).map((team, tm) => (
                                 <div className="col-lg-4 col-md-6 col-sm-6" key={tm}>
                                     <div className="team_block">
                                         <div className="team_member_image">
                                             <Link onClick={ClickHandler} className="image_wrap" aria-label="Team Details Button" to={`/team-single/${team.slug}`}>
-                                                <img src={team.tImg} alt="" />
+                                                <img src={getImageUrl(team.tImg)} alt="" />
                                                 <i className="fa-solid fa-arrow-up-right"></i>
                                             </Link>
                                         </div>

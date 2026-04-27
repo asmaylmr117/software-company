@@ -2,7 +2,8 @@ import { useRef, useEffect } from 'react';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom'
-import blogs from '../../api/blogs'
+import { useBlogs } from '../../hooks/useQueries'
+import { getImageUrl } from '../../api/axiosConfig'
 import bImg from '../../images/blog/blog_post_image_4.webp'
 import arrow from '../../images/shapes/shape_arrow_right.svg'
 import arrow2 from '../../images/shapes/shape_arrow_left.svg'
@@ -26,6 +27,10 @@ const BlogList = (props) => {
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
+
+    const { data: blogs, isLoading } = useBlogs();
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
 
     return (
         <section className="blog_section section_space bg-light">
@@ -100,7 +105,7 @@ const BlogList = (props) => {
                                 <div className="blog_post_block image_left_layout" key={Bitem}>
                                     <div className="blog_post_image">
                                         <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`} className="image_wrap">
-                                            <img src={blog.screens} alt="Blog Post" />
+                                            <img src={getImageUrl(blog.screens)} alt="Blog Post" />
                                         </Link>
                                     </div>
                                     <div className="blog_post_content">

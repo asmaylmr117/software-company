@@ -1,6 +1,7 @@
 import React from 'react';
-import Services from '../../../api/service'
 import { Link } from "react-router-dom";
+import { useServices } from '../../../hooks/useQueries';
+import { getImageUrl } from '../../../api/axiosConfig';
 import Bg from '../../../images/shapes/shape_title_under_line.svg'
 import shape1 from '../../../images/shapes/shape_line_5.svg'
 import shape2 from '../../../images/shapes/shape_line_6.svg'
@@ -13,6 +14,10 @@ const ServiceSection = (props) => {
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
+
+    const { data: Services, isLoading } = useServices();
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
 
     return (
         <section className="service_section pt-175 pb-80 bg-light section_decoration xb-hidden">
@@ -31,7 +36,7 @@ const ServiceSection = (props) => {
                         <div className="col-lg-4" key={srv}>
                             <div className="service_block_2">
                                 <div className="service_icon">
-                                    <img src={service.sImg} alt="Techco - Service icon" />
+                                    <img src={getImageUrl(service.sImg)} alt="Techco - Service icon" />
                                 </div>
                                 <h3 className="service_title">
                                     <Link onClick={ClickHandler} to={`/service-single/${service.slug}`}>
@@ -39,7 +44,7 @@ const ServiceSection = (props) => {
                                     </Link>
                                 </h3>
                                 <ul className="icon_list unordered_list_block">
-                                    {service.features.map((feature, featureitem) => (
+                                    {service.features && service.features.map((feature, featureitem) => (
                                         <li key={featureitem}>
                                             <span className="icon_list_icon">
                                                 <i className="fa-regular fa-circle-dot"></i>

@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import Header from '../../components/header/Header';
 import { Link } from "react-router-dom";
-import Teams from '../../api/team'
+import { useTeams } from '../../hooks/useQueries';
+import { getImageUrl } from '../../api/axiosConfig';
 import CountUp from 'react-countup';
 import { useParams } from 'react-router-dom';
 import PageTitle from '../../components/pagetitle/PageTitle'
@@ -16,11 +17,17 @@ import sImg4 from '../../images/icons/icon_instagram.svg'
 const TeamSinglePage = (props) => {
     const { slug } = useParams()
 
-    const TeamDetails = Teams.find(item => item.slug === slug)
+    const { data: Teams, isLoading } = useTeams();
 
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
+
+    const TeamDetails = Teams?.find(item => item.slug === slug)
+
+    if (!TeamDetails) return <div className="text-center section_space">Team member not found.</div>;
 
     return (
         <Fragment>
@@ -31,7 +38,7 @@ const TeamSinglePage = (props) => {
                     <div className="container">
                         <div className="team_member_details_card">
                             <div className="team_member_image">
-                                <img src={TeamDetails.tImg} alt="Team Member"/>
+                                <img src={getImageUrl(TeamDetails.tImg)} alt="Team Member"/>
                             </div>
                             <div className="team_member_content">
                                 <h2 className="team_member_name">{TeamDetails.name}</h2>

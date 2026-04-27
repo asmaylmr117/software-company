@@ -1,6 +1,7 @@
 import React from 'react'
-import blogs from '../../../api/blogs'
 import { Link } from 'react-router-dom'
+import { useBlogs } from '../../../hooks/useQueries';
+import { getImageUrl } from '../../../api/axiosConfig';
 import Bg from '../../../images/shapes/shape_title_under_line.svg'
 import icon1 from '../../../images/icons/icon_calendar.svg'
 import shape1 from '../../../images/shapes/shape_line_7.svg'
@@ -13,6 +14,10 @@ const BlogSection = (props) => {
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
+
+    const { data: blogs, isLoading } = useBlogs();
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
 
     return (
         <section className="blog_section blog_section_space section_decoration">
@@ -27,12 +32,12 @@ const BlogSection = (props) => {
                 </div>
 
                 <div className="row justify-content-center">
-                    {blogs.slice(3, 6).map((blog, Bitem) => (
+                    {blogs?.slice(3, 6).map((blog, Bitem) => (
                         <div className="col-lg-4" key={Bitem}>
                             <div className="blog_post_block layout_2">
                                 <div className="blog_post_image">
                                     <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`} className="image_wrap">
-                                        <img src={blog.screens} alt="" />
+                                        <img src={getImageUrl(blog.screens)} alt="" />
                                         <i className="fa-solid fa-arrow-up-right"></i>
                                     </Link>
                                 </div>

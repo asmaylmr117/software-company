@@ -5,7 +5,7 @@ import icon1 from '../../images/icons/icon_mail.svg'
 import icon2 from '../../images/icons/icon_calling.svg'
 import icon3 from '../../images/icons/icon_map_mark.svg'
 import icon4 from '../../images/icons/icon_mail_2.svg'
-import Services from '../../api/service'
+import { useServices } from '../../hooks/useQueries'
 
 const ClickHandler = () => {
     window.scrollTo(10, 0);
@@ -17,6 +17,8 @@ const SubmitHandler = (e) => {
 
 
 const Footer = (props) => {
+    const { data: Services } = useServices();
+
     return (
         <footer className="site_footer footer_layout_1">
             <div className="content_box" style={{ backgroundImage: `url(${Bg})` }}>
@@ -82,7 +84,7 @@ const Footer = (props) => {
                                 <div className="footer_widget">
                                     <h3 className="footer_info_title">Services</h3>
                                     <ul className="icon_list unordered_list_block">
-                                        {Services.slice(0, 6).map((service, srv) => (
+                                        {Services?.slice(0, 6).map((service, srv) => (
                                             <li key={srv}>
                                                 {service.title ?
                                                     <Link onClick={ClickHandler} to={`/service-single/${service.slug}`}>

@@ -1,6 +1,7 @@
 import React from 'react';
-import Services from '../../../api/service'
 import { Link } from "react-router-dom";
+import { useServices } from '../../../hooks/useQueries';
+import { getImageUrl } from '../../../api/axiosConfig';
 import Bg from '../../../images/backgrounds/bg_image_3.webp'
 
 
@@ -8,6 +9,10 @@ const ConsultingService = (props) => {
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
+
+    const { data: Services, isLoading } = useServices();
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
 
     return (
         <section className="business_consulting_service_section section_space" style={{ backgroundImage: `url(${Bg})` }}>
@@ -26,11 +31,11 @@ const ConsultingService = (props) => {
                 </div>
 
                 <div className="business_consulting_services row">
-                    {Services.slice(11, 17).map((service, srv) => (
+                    {Services?.slice(11, 17).map((service, srv) => (
                         <div className="col-lg-4" key={srv}>
                             <div className="iconbox_block">
                                 <div className="iconbox_icon">
-                                    <img src={service.sImg} alt="Techco - Service icon" />
+                                    <img src={getImageUrl(service.sImg)} alt="Techco - Service icon" />
                                 </div>
                                 <div className="iconbox_content">
                                     <h3 className="iconbox_title">

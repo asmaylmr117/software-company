@@ -1,6 +1,7 @@
 import React from 'react'
-import blogs from '../../api/blogs'
 import { Link } from 'react-router-dom'
+import { useBlogs } from '../../hooks/useQueries'
+import { getImageUrl } from '../../api/axiosConfig'
 import Bg from '../../images/shapes/bg_pattern_1.svg'
 import icon1 from '../../images/icons/icon_calendar.svg'
 
@@ -11,6 +12,10 @@ const BlogSection = (props) => {
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
+
+    const { data: blogs, isLoading } = useBlogs();
+
+    if (isLoading) return <div className="text-center">Loading...</div>;
 
     return (
         <section className="blog_section section_space bg-light" style={{ backgroundImage: `url(${Bg})` }}>
@@ -31,7 +36,7 @@ const BlogSection = (props) => {
                             <div className="blog_post_block">
                                 <div className="blog_post_image">
                                     <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`} className="image_wrap">
-                                        <img src={blog.screens} alt="" />
+                                        <img src={getImageUrl(blog.screens)} alt="" />
                                     </Link>
                                 </div>
                                 <div className="blog_post_content">

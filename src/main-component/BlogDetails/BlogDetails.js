@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { useParams } from 'react-router-dom'
-import blogs from '../../api/blogs'
+import { useBlogs } from '../../hooks/useQueries'
 import Header from '../../components/header/Header';
 import PageTitle from '../../components/pagetitle/PageTitle'
 import Scrollbar from '../../components/scrollbar/scrollbar'
@@ -13,7 +13,14 @@ const BlogDetails = (props) => {
 
     const { slug } = useParams()
 
-    const BlogDetails = blogs.find(item => item.slug === slug)
+    const { data: blogs, isLoading } = useBlogs();
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
+
+    const BlogDetails = blogs?.find(item => item.slug === slug)
+
+    if (!BlogDetails) return <div className="text-center section_space">Blog not found.</div>;
+
     return (
         <Fragment>
             <Header />

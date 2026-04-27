@@ -1,6 +1,7 @@
 import React from 'react';
-import Teams from '../../api/team'
 import { Link } from "react-router-dom";
+import { useTeams } from '../../hooks/useQueries';
+import { getImageUrl } from '../../api/axiosConfig';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -14,6 +15,10 @@ const TeamSection = (props) => {
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
+
+    const { data: Teams, isLoading } = useTeams();
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
 
     return (
 
@@ -46,12 +51,12 @@ const TeamSection = (props) => {
                             },
                         }}
                     >
-                        {Teams.slice(0, 6).map((team, tm) => (
+                        {Teams?.slice(0, 6).map((team, tm) => (
                             <SwiperSlide key={tm}>
                                 <div className="team_block">
                                     <div className="team_member_image">
                                         <Link onClick={ClickHandler} className="image_wrap" aria-label="Team Details Button" to={`/team-single/${team.slug}`}>
-                                            <img src={team.tImg} alt="" />
+                                            <img src={getImageUrl(team.tImg)} alt="" />
                                             <i className="fa-solid fa-arrow-up-right"></i>
                                         </Link>
                                     </div>

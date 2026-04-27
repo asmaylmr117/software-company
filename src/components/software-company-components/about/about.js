@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import Project from '../../../api/project'
+import { useProjects } from '../../../hooks/useQueries';
+import { getImageUrl } from '../../../api/axiosConfig';
 import Bg from '../../../images/backgrounds/bg_image_2.webp'
 import Bg2 from '../../../images/shapes/shape_bg_1.webp'
 import Bg3 from '../../../images/shapes/shape_title_under_line.svg'
@@ -18,6 +19,10 @@ const About = (props) => {
   const ClickHandler = () => {
     window.scrollTo(10, 0);
   }
+
+  const { data: Project, isLoading } = useProjects();
+
+  if (isLoading) return <div className="text-center section_space">Loading...</div>;
 
   return (
     <section className="about_and_case_section section_space section_decoration bg-dark" style={{ backgroundImage: `url(${Bg})` }}>
@@ -110,7 +115,7 @@ const About = (props) => {
             {Project.slice(6, 9).map((project, prj) => (
               <div className="case_study_block" key={prj}>
                 <div className="case_study_image">
-                  <img src={project.pImg} alt="Techco - Cases" />
+                  <img src={getImageUrl(project.pImg)} alt="Techco - Cases" />
                 </div>
                 <div className="case_study_content">
                   <ul className="category_list unordered_list text-uppercase">
@@ -136,10 +141,10 @@ const About = (props) => {
                   </ul>
                   <ul className="case_technologies unordered_list" data-text="Core Technologies:">
                     <li>
-                      <img src={project.Technologies1} alt="Angular" />
+                      <img src={getImageUrl(project.Technologies1)} alt="Angular" />
                     </li>
                     <li>
-                      <img src={project.Technologies2} alt="Elephent" />
+                      <img src={getImageUrl(project.Technologies2)} alt="Elephent" />
                     </li>
                   </ul>
                   <Link onClick={ClickHandler} to={`/portfolio_details/${project.slug}`} className="btn btn-primary">

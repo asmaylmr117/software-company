@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import Header from '../../components/header/Header';
-import Project from '../../api/project';
+import { useProjects } from '../../hooks/useQueries';
+import { getImageUrl } from '../../api/axiosConfig';
 import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import PageTitle from '../../components/pagetitle/PageTitle'
@@ -13,7 +14,14 @@ import icon from '../../images/icons/icon_check_3.svg'
 
 const PortfolioSinglePage = (props) => {
     const { slug } = useParams()
-    const PortfolioDetails = Project.find(item => item.slug === slug)
+    const { data: Project, isLoading } = useProjects();
+
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
+
+    const PortfolioDetails = Project?.find(item => item.slug === slug)
+
+    if (!PortfolioDetails) return <div className="text-center section_space">Project not found.</div>;
 
     const ClickHandler = () => {
         window.scrollTo(10, 0);
@@ -158,7 +166,7 @@ const PortfolioSinglePage = (props) => {
                                     <div className="portfolio_block portfolio_layout_2">
                                         <div className="portfolio_image">
                                             <Link onClick={ClickHandler} className="portfolio_image_wrap bg-light" to={`/portfolio_details/${project.slug}`}>
-                                                <img src={project.pImg} alt="Mobile App Design" />
+                                                <img src={getImageUrl(project.pImg)} alt="Mobile App Design" />
                                             </Link>
                                         </div>
                                         <div className="portfolio_content">

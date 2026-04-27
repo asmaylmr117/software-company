@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import blogs from '../../api/blogs'
-import Services from '../../api/service';
+import { useBlogs, useServices } from '../../hooks/useQueries'
 import icon from '../../images/icons/icon_search.svg';
 import icon1 from '../../images/icons/icon_calendar.svg'
 
@@ -13,6 +12,11 @@ const BlogSidebar = (props) => {
     const SubmitHandler = (e) => {
         e.preventDefault()
     }
+
+    const { data: blogs, isLoading: blogsLoading } = useBlogs();
+    const { data: Services, isLoading: servicesLoading } = useServices();
+
+    if (blogsLoading || servicesLoading) return <div className="col-lg-4">Loading...</div>;
 
     return (
         <div className="col-lg-4">

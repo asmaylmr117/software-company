@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import Services from '../../api/service'
+import { useServices } from '../../hooks/useQueries'
 import { useParams } from 'react-router-dom'
 import ModalVideo from 'react-modal-video'
 import Header from '../../components/header/Header';
@@ -19,9 +19,15 @@ const ServiceSinglePage = (props) => {
 
     const { slug } = useParams()
 
-    const ServiceDetails = Services.find(item => item.slug === slug)
+    const { data: Services, isLoading } = useServices();
 
     const [isOpen, setOpen] = useState(false)
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
+
+    const ServiceDetails = Services?.find(item => item.slug === slug)
+
+    if (!ServiceDetails) return <div className="text-center section_space">Service not found.</div>;
 
     return (
         <Fragment>

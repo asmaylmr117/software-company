@@ -1,6 +1,7 @@
 import React from 'react'
-import blogs from '../../../api/blogs'
 import { Link } from 'react-router-dom'
+import { useBlogs } from '../../../hooks/useQueries'
+import { getImageUrl } from '../../../api/axiosConfig'
 import Bg from '../../../images/backgrounds/bg_image_4.webp'
 
 
@@ -9,6 +10,10 @@ const BusinessBlogSection = (props) => {
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
+
+    const { data: blogs, isLoading } = useBlogs();
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
 
     return (
         <section className="blog_section_2 section_space" style={{ backgroundImage: `url(${Bg})` }}>
@@ -32,7 +37,7 @@ const BusinessBlogSection = (props) => {
                             <div className="blog_post_block_2">
                                 <div className="blog_post_image">
                                     <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
-                                        <img src={blog.screens} alt="Techco Blog Post" />
+                                        <img src={getImageUrl(blog.screens)} alt="Techco Blog Post" />
                                     </Link>
                                 </div>
                                 <div className="blog_post_content">

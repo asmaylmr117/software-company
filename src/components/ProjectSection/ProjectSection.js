@@ -1,6 +1,7 @@
 import React from 'react';
-import Project from '../../api/project'
 import { Link } from "react-router-dom";
+import { useProjects } from '../../hooks/useQueries';
+import { getImageUrl } from '../../api/axiosConfig';
 import { Pagination, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -10,6 +11,10 @@ const ProjectSection = (props) => {
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     }
+
+    const { data: Project, isLoading } = useProjects();
+
+    if (isLoading) return <div className="text-center section_space">Loading...</div>;
 
     return (
         <section className="portfolio_section xb-hidden section_space pb-0">
@@ -63,7 +68,7 @@ const ProjectSection = (props) => {
                             <div className="portfolio_block" >
                                 <div className="portfolio_image">
                                     <Link onClick={ClickHandler} className="portfolio_image_wrap bg-light" to={`/portfolio_details/${project.slug}`}>
-                                        <img src={project.pImg} alt="Mobile App Design" />
+                                        <img src={getImageUrl(project.pImg)} alt="Mobile App Design" />
                                     </Link>
                                 </div>
                                 <div className="portfolio_content">
