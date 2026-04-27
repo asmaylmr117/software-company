@@ -1,94 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const ServiceSection = (props) => {
+    const ClickHandler = () => {
+        window.scrollTo(10, 0);
+    }
+
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const ClickHandler = () => {
-        window.scrollTo(10, 0);
-    };
-
-    // Helper function to construct proper URLs
-    const constructImageUrl = (imagePath, baseUrl) => {
-        if (!imagePath) return null;
-        
-        if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-            return imagePath;
-        }
-        
-        let cleanPath = imagePath.replace(/^\.\./, '').replace(/^\/+/, '/');
-        if (!cleanPath.startsWith('/')) {
-            cleanPath = '/' + cleanPath;
-        }
-        
-        return `${baseUrl}${cleanPath}`;
-    };
-
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await fetch('https://portfolio-vercel-bi43.vercel.app/api/services?page=2');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const data = await response.json();
-                console.log('API Response:', data);
-                
-                if (!data || !data.services || !Array.isArray(data.services)) {
-                    throw new Error('Invalid API response: services array is missing');
-                }
-                
-                const baseUrl = 'https://portfolio-vercel-bi43.vercel.app';
-                
-                // Filter services to include only IDs 1 to 5
-                const targetIds = ['1', '2', '3', '4', '5'];
-                const filteredServices = data.services.filter(service => targetIds.includes(service.Id));
-                
-                const mappedServices = filteredServices.map((service) => ({
-                    id: service.Id,
-                    col: service.col || 'col-lg-4 col-md-6',
-                    sImg: service.sImg
-                        ? constructImageUrl(service.sImg, baseUrl)
-                        : `https://picsum.photos/400/300?random=${service.Id}`,
-                    title: service.title || 'Untitled',
-                    slug: service.slug 
-                        ? service.slug.replace(/\s+/g, '-')
-                        : `service-${service.Id}`,
-                    thumb1: service.thumb1 || null,
-                    thumb2: service.thumb2 || null,
-                }));
-                
-                // Sort services to show IDs 1 and 2 first
-                const sortedServices = mappedServices.sort((a, b) => {
-                    if (a.id === '1' || a.id === '2') {
-                        if (b.id === '1' || b.id === '2') {
-                            return parseInt(a.id) - parseInt(b.id);
-                        }
-                        return -1;
+                setLoading(true);
+                const response = await fetch(`${API_URL}/api/services?limit=5`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Origin': window.location.origin,
                     }
-                    if (b.id === '1' || b.id === '2') {
-                        return 1;
-                    }
-                    return parseInt(a.id) - parseInt(b.id);
                 });
-                
-                console.log('Filtered and Mapped Services:', sortedServices);
-                setServices(sortedServices);
-                setLoading(false);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                setServices(data.services || []);
             } catch (err) {
-                console.error('Error fetching services:', err);
+                console.error('Failed to fetch services:', err);
                 setError(err.message);
+            } finally {
                 setLoading(false);
             }
         };
 
         fetchServices();
     }, []);
-
-    if (loading) return <div className="text-center py-4">Loading services...</div>;
-    if (error) return <div className="text-center py-4 text-danger">Error: {error}</div>;
 
     return (
         <section className="service_section section_space xb-hidden pb-0">
@@ -98,120 +48,65 @@ const ServiceSection = (props) => {
                         Our
                         <span className="badge bg-secondary text-white">Specialize</span>
                     </div>
-                    <h2 className="heading_text mb-0">Featured Services</h2>
+                    <h2 className="heading_text mb-0">
+                        Featured Services
+                    </h2>
                 </div>
 
+                {loading && (
+                    <div className="text-center py-5">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <p className="mt-3">Loading services...</p>
+                    </div>
+                )}
+
+                {error && (
+                    <div className="alert alert-warning text-center" role="alert">
+                        <i className="fa-solid fa-triangle-exclamation me-2"></i>
+                        Could not load services: {error}
+                    </div>
+                )}
+
+                {!loading && !error && services.length === 0 && (
+                    <div className="text-center py-5">
+                        <p>No services found. Please add services from the dashboard.</p>
+                    </div>
+                )}
+
                 <div className="row">
-                    {services.length > 0 ? (
-                        services.map((service, index) => (
-                            service.title ? (
-                                <div className={`${service.col} mt-30`} key={service.id || index}>
-                                    <div className="service_block">
-                                        <div className="service_image">
-                                            <img
-                                                src={service.sImg}
-                                                alt={service.title}
-                                                style={{ maxWidth: '100%', height: 'auto' }}
-                                                onError={(e) => {
-                                                    console.warn(`Failed to load image: ${e.target.src}`);
-                                                    e.target.src = `https://picsum.photos/400/300?random=${service.id}`;
-                                                }}
-                                            />
-                                        </div>
-                                        <div className="service_content">
-                                            <h3 className="service_title">
-                                                <Link onClick={ClickHandler} to={`/service-single/${service.slug}`}>
-                                                    {service.title}
-                                                </Link>
-                                            </h3>
-                                            <div className="links_wrapper">
-                                                <ul className="category_btns_group unordered_list">
-                                                    {service.thumb1 && (
-                                                        <li>
-                                                            <Link 
-                                                                onClick={ClickHandler} 
-                                                                to={`/service-single/${service.slug}`}
-                                                                className="category_btn"
-                                                                style={{
-                                                                    padding: '6px 12px',
-                                                                    fontSize: '12px',
-                                                                    borderRadius: '15px',
-                                                                    backgroundColor: '#f8f9fa',
-                                                                    color: '#6c757d',
-                                                                    textDecoration: 'none',
-                                                                    border: '1px solid #e9ecef',
-                                                                    display: 'inline-block',
-                                                                    transition: 'all 0.3s ease'
-                                                                }}
-                                                                onMouseEnter={(e) => {
-                                                                    e.target.style.backgroundColor = '#007bff';
-                                                                    e.target.style.color = 'white';
-                                                                }}
-                                                                onMouseLeave={(e) => {
-                                                                    e.target.style.backgroundColor = '#f8f9fa';
-                                                                    e.target.style.color = '#6c757d';
-                                                                }}
-                                                            >
-                                                                {service.thumb1}
-                                                            </Link>
-                                                        </li>
-                                                    )}
-                                                    {service.thumb2 && (
-                                                        <li>
-                                                            <Link 
-                                                                onClick={ClickHandler} 
-                                                                to={`/service-single/${service.slug}`}
-                                                                className="category_btn"
-                                                                style={{
-                                                                    padding: '6px 12px',
-                                                                    fontSize: '12px',
-                                                                    borderRadius: '15px',
-                                                                    backgroundColor: '#f8f9fa',
-                                                                    color: '#6c757d',
-                                                                    textDecoration: 'none',
-                                                                    border: '1px solid #e9ecef',
-                                                                    display: 'inline-block',
-                                                                    transition: 'all 0.3s ease'
-                                                                }}
-                                                                onMouseEnter={(e) => {
-                                                                    e.target.style.backgroundColor = '#007bff';
-                                                                    e.target.style.color = 'white';
-                                                                }}
-                                                                onMouseLeave={(e) => {
-                                                                    e.target.style.backgroundColor = '#f8f9fa';
-                                                                    e.target.style.color = '#6c757d';
-                                                                }}
-                                                            >
-                                                                {service.thumb2}
-                                                            </Link>
-                                                        </li>
-                                                    )}
-                                                </ul>
-                                                <Link
-                                                    onClick={ClickHandler}
-                                                    to={`/service-single/${service.slug}`}
-                                                    className="icon_block"
-                                                >
-                                                    <i className="fa-regular fa-arrow-up-right"></i>
-                                                </Link>
-                                            </div>
-                                        </div>
+                    {services.slice(0, 5).map((service, srv) => (
+                        <div className={`${service.col || 'col-lg-4'} mt-30`} key={srv}>
+                            <div className="service_block">
+                                {service.sImg && (
+                                    <div className="service_image">
+                                        <img src={service.sImg} alt={service.title} />
+                                    </div>
+                                )}
+                                <div className="service_content">
+                                    <h3 className="service_title">
+                                        <Link onClick={ClickHandler} to={`/service-single/${service.slug}`}>
+                                            {service.title}
+                                        </Link>
+                                    </h3>
+                                    <p className="service_description">
+                                        {service.description}
+                                    </p>
+                                    <div className="links_wrapper">
+                                        <Link onClick={ClickHandler} to={`/service-single/${service.slug}`} className="icon_block">
+                                            <i className="fa-regular fa-arrow-up-right"></i>
+                                        </Link>
                                     </div>
                                 </div>
-                            ) : null
-                        ))
-                    ) : (
-                        <div className="col-12 text-center">
-                            <p>No services found with IDs 1 to 5.</p>
+                            </div>
                         </div>
-                    )}
+                    ))}
                 </div>
 
                 <div className="btns_group pb-0">
                     <Link onClick={ClickHandler} className="btn btn-outline-light" to="/service">
-                        <span className="btn_label" data-text="More Services">
-                            More Services
-                        </span>
+                        <span className="btn_label" data-text="More Services">More Services</span>
                         <span className="btn_icon">
                             <i className="fa-solid fa-arrow-up-right"></i>
                         </span>
@@ -220,6 +115,6 @@ const ServiceSection = (props) => {
             </div>
         </section>
     );
-};
+}
 
 export default ServiceSection;

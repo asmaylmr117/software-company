@@ -1,5 +1,5 @@
 import React from 'react';
-import wImg from '../../images/portfolio/portfolio_item_image_5.webp'
+import wImg from '../../images/about/about_image_5.webp'
 import sIcon1 from '../../images/icons/icon_check_2.svg'
 import sIcon2 from '../../images/icons/icon_leaf.svg'
 import sIcon3 from '../../images/icons/icon_box.svg'

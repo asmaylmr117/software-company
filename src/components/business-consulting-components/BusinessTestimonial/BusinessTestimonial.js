@@ -1,5 +1,13 @@
 import React from 'react';
 import Slider from "react-slick";
+import avatar1 from '../../../images/avatar/avatar_11.webp'
+import avatar2 from '../../../images/avatar/avatar_10.webp'
+import avatar3 from '../../../images/avatar/avatar_9.webp'
+import avatar4 from '../../../images/avatar/avatar_8.webp'
+import Bg from '../../../images/icons/icon_quote_2.svg'
+import abImg1 from '../../../images/about/about_image_8.webp'
+import abImg2 from '../../../images/icons/icon_wallet.svg'
+
 import { Link } from "react-router-dom";
 
 const testimonial = [
@@ -8,35 +16,35 @@ const testimonial = [
         Des: "Working with Techco was a game-changer for our business. Their  tailored solutions and dedicated support propelled us to new heights",
         Title: 'Sarah Johnson',
         sub: 'Board Member, UNIQA',
-        avatar: '/images/avatar/avatar_11.webp',
+        avatar: avatar1,
     },
     {
         id: '02',
         Des: "Working with Techco was a game-changer for our business. Their  tailored solutions and dedicated support propelled us to new heights",
         Title: 'Adam Pedro',
         sub: 'Board Member, UNIQA',
-        avatar: '/images/avatar/avatar_10.webp',
+        avatar: avatar2,
     },
     {
         id: '03',
         Des: "Working with Techco was a game-changer for our business. Their  tailored solutions and dedicated support propelled us to new heights",
         Title: 'Alkira Jemin',
         sub: 'Board Member, UNIQA',
-        avatar: '/images/avatar/avatar_9.webp',
+        avatar: avatar3,
     },
     {
         id: '04',
         Des: "Working with Techco was a game-changer for our business. Their  tailored solutions and dedicated support propelled us to new heights",
         Title: 'Adam Pedro',
         sub: 'Board Member, UNIQA',
-        avatar: '/images/avatar/avatar_8.webp',
+        avatar: avatar4,
     },
     {
         id: '05',
         Des: "Working with Techco was a game-changer for our business. Their  tailored solutions and dedicated support propelled us to new heights",
         Title: 'Adam Pedro',
         sub: 'Board Member, UNIQA',
-        avatar: '/images/avatar/avatar_10.webp',
+        avatar: avatar2,
     },
 ]
 
@@ -94,13 +102,12 @@ const BusinessTestimonial = () => {
 
     const slider = React.useRef(null);
 
-    // Base URL for images
-    const baseUrl = 'https://portfolio-vercel-bi43.vercel.app/';
+
 
     return (
         <section className="review_and_about_section section_space bg-light">
             <div className="container">
-                <div className="review_bg_box bg-success" style={{ backgroundImage: `url(${baseUrl}/images/icons/icon_quote_2.svg)` }}>
+                <div className="review_bg_box bg-success" style={{ backgroundImage: `url(${Bg})` }}>
                     <div className="heading_block text-center text-white">
                         <h2 className="heading_text mb-0">
                             Few Stories from our Client
@@ -122,7 +129,7 @@ const BusinessTestimonial = () => {
                                     </p>
                                     <div className="review_admin">
                                         <div className="review_admin_image">
-                                            <img src={`${baseUrl}${testimonial.avatar}`} alt="Maverick Phoenix" />
+                                            <img src={testimonial.avatar} alt="Maverick Phoenix" />
                                         </div>
                                         <div className="review_admin_info">
                                             <h4 className="review_admin_name">{testimonial.Title}</h4>
@@ -160,10 +167,10 @@ const BusinessTestimonial = () => {
                         </div>
                         <div className="col-lg-4">
                             <div className="about_image_3">
-                                <img className="image_wrap" src={`${baseUrl}/images/hero/business_consulting_hero_image_1.webp`} alt="Business Consulting" />
+                                <img className="image_wrap" src={abImg1} alt="Business Consulting" />
                                 <div className="funfact_block capsule_layout">
                                     <div className="funfact_icon">
-                                        <img src={`${baseUrl}/images/icons/icon_wallet.svg`} alt="Techco - SVG Icon Wallet" />
+                                        <img src={abImg2} alt="Techco - SVG Icon Wallet" />
                                     </div>
                                     <div className="funfact_content">
                                         <h3 className="funfact_title mb-0">Company Value</h3>

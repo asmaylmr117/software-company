@@ -88,48 +88,34 @@
 	}
 }
 
-/* التحديثات تبدأ هنا لتصميم احترافي 2x2 */
 .it_solution_hero_images {
 	align-items: flex-start;
-    display: flex; /* تفعيل Flexbox */
-    flex-wrap: wrap; /* السماح للعناصر بالنزول لسطر جديد */
 	>li {
-		width: 50%; /* ضمان عرض 50% على الشاشات الكبيرة */
-		@media screen and (max-width: 991px) {
-			width: 100%; /* العودة للعرض الكامل على الشاشات الصغيرة */
-		}
+		width: 50%;
 	}
 
 	.worldwide_clients {
 		background-color: #FB7929;
-		/* تعديل التعبئة لتكون أكثر تناسقًا واحترافية */
-		padding: 70px 100px 70px 90px;
+		padding: 66px 85px 65px 90px;
 		border-radius: 175px 20px 0px 175px;
 		.counter_value {
 			line-height: 1;
-			/* تكبير الخط قليلاً لجعله أكثر جاذبية */
-			font-size: 60px; 
+			font-size: 55px;
 			font-weight: 700;
 			margin: 0 0 12px;
 			color: var(--bs-white);
 			font-family: 'Axiforma Bold';
 		}
 		p {
-			font-size: 19px;
+			font-size: 18px;
 			line-height: 28px;
 			margin-bottom: 46px;
 			color: var(--bs-white);
 		}
 	}
 
-    /* تعديل لرفع قسم الفئات لتقليل الفجوة الرأسية */
-    .categories-container {
-        transform: translateY(-50px);
-    }
-    
 	.categories {
-		/* تعديل التعبئة الرأسية لتكون أكثر إحكامًا */
-		padding: 60px 42px; 
+		padding: 115px 42px;
 		border-radius: 0px 175px 0 20px;
 		background-color: var(--bs-secondary);
 		>li {
@@ -170,8 +156,7 @@
 
 	.business_growth_content {
 		text-align: center;
-		
-		padding: 45px 0 65px;
+		padding: 50px 0 96px;
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center center;
@@ -179,8 +164,8 @@
 			width: auto !important;
 			height: auto !important;
 			svg {
-				width: 280px; /* تكبير الدائرة قليلاً */
-				height: 280px;
+				width: 260px;
+				height: 260px;
 				circle:not(.business_growth-circle-58) {
 					stroke: rgba(255, 255, 255, 0.5);
 				}
@@ -202,13 +187,11 @@
 			font-size: 14px;
 			max-width: 155px;
 			line-height: 22px;
-			/* تعديل موضع النص ليتوسط الدائرة بشكل أفضل */
-			margin: -140px auto 0;
+			margin: -122px auto 0;
 			color: var(--bs-white);
 		}
 	}
 }
-/* نهاية التحديثات */
 
 .avatar_group {
 	>li {

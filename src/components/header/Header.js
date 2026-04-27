@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
-
+import icon1 from '../../images/icons/icon_wifi.svg'
+import icon2 from '../../images/icons/icon_dollar_2.svg'
+import icon3 from '../../images/icons/icon_chart.svg'
+import icon4 from '../../images/icons/icon_tag_2.svg'
+import icon5 from '../../images/icons/icon_user_2.svg'
+import icon6 from '../../images/icons/icon_users.svg'
+import icon7 from '../../images/icons/icon_pen.svg'
+import icon8 from '../../images/clients/client_logo_9.webp'
+import icon9 from '../../images/clients/client_logo_10.webp'
+import icon10 from '../../images/avatar/avatar_7.webp'
+import icon11 from '../../images/icons/icon_quote.svg'
+import logo from '../../images/site_logo/site_logo_3.svg'
+import cases from '../../images/case/case_image_4.webp'
 import MobileMenu from '../MobileMenu/MobileMenu'
-const icon1 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_wifi.svg'
-const icon2 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_dollar_2.svg'
-const icon3 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_chart.svg'
-const icon4 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_tag_2.svg'
-const icon5 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_user_2.svg'
-const icon6 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_users.svg'
-const icon7 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_pen.svg'
-const icon8 = 'https://portfolio-vercel-bi43.vercel.app/images/clients/client_logo_9.webp'
-const icon9 = 'https://portfolio-vercel-bi43.vercel.app/images/clients/client_logo_10.webp'
-const icon10 = 'https://portfolio-vercel-bi43.vercel.app/images/avatar/avatar_7.webp'
-const icon11 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_quote.svg'
-const logo = 'https://portfolio-vercel-bi43.vercel.app/images/site_logo/site_logo_3.svg'
-const cases = 'https://portfolio-vercel-bi43.vercel.app/images/case/case_image_4.webp'
+
 
 const Header = (props) => {
 
@@ -39,17 +39,17 @@ const Header = (props) => {
             script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
             script.type = 'text/javascript';
             document.body.appendChild(script);
-          }
-      
-          window.googleTranslateElementInit = () => {
+        }
+
+        window.googleTranslateElementInit = () => {
             if (!document.querySelector('.goog-te-combo')) {
-              new window.google.translate.TranslateElement(
-                { pageLanguage: 'en', includedLanguages: 'ar,en,es,fr,de,it,ja,zh-CN,zh-TW' },
-                'google_translate_element'
-              );
+                new window.google.translate.TranslateElement(
+                    { pageLanguage: 'en', includedLanguages: 'ar,en,es,fr,de,it,ja,zh-CN,zh-TW' },
+                    'google_translate_element'
+                );
             }
-          };
-      
+        };
+
         window.addEventListener('scroll', handleScroll);
 
         // Clean up
@@ -524,25 +524,33 @@ const Header = (props) => {
                             </nav>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-5">
-  <ul className="header_btns_group unordered_list justify-content-end">
-    <li>
-      <button
-        className="mobile_menu_btn"
-        onClick={() => setMobailState(!mobailActive)}
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#main_menu_dropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i className="far fa-bars"></i>
-      </button>
-    </li>
-    <li>
-      <div id="google_translate_element"></div>
-    </li>
-     </ul>
-</div>
+                            <ul className="header_btns_group unordered_list justify-content-end">
+                                <li>
+                                    <button
+                                        className="mobile_menu_btn"
+                                        onClick={() => setMobailState(!mobailActive)}
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#main_menu_dropdown"
+                                        aria-expanded="false"
+                                        aria-label="Toggle navigation"
+                                    >
+                                        <i className="far fa-bars"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <div id="google_translate_element"></div>
+                                </li>
+                                <li>
+                                    <Link onClick={ClickHandler} className="btn btn-outline-light" to="/pricing">
+                                        <span className="btn_label" data-text="Get Started">Get Started</span>
+                                        <span className="btn_icon">
+                                            <i className="fa-solid fa-arrow-up-right"></i>
+                                        </span>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div className="mobail-wrap">

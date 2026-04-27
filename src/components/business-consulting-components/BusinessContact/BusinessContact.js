@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import SimpleReactValidator from 'simple-react-validator';
-
-const Bg = 'https://portfolio-vercel-bi43.vercel.app/images/backgrounds/bg_image_3.webp'
+import Bg from '../../../images/backgrounds/bg_image_5.webp'
 
 const BusinessContact = (props) => {
+
     const [forms, setForms] = useState({
         name: '',
         email: '',
@@ -11,14 +11,9 @@ const BusinessContact = (props) => {
         phone: '',
         message: ''
     });
-
     const [validator] = useState(new SimpleReactValidator({
         className: 'errorMessage'
     }));
-
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState(null);
-
     const changeHandler = e => {
         setForms({ ...forms, [e.target.name]: e.target.value })
         if (validator.allValid()) {
@@ -28,68 +23,24 @@ const BusinessContact = (props) => {
         }
     };
 
-    const submitHandler = async (e) => {
+    const submitHandler = e => {
         e.preventDefault();
-        
         if (validator.allValid()) {
-            setIsSubmitting(true);
-            setSubmitStatus(null);
-            
-            try {
-                const response = await fetch('https://portfolio-vercel-bi43.vercel.app/api/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: forms.name,
-                        email: forms.email,
-                        phone: forms.phone,
-                        company: forms.company,
-                        message: forms.message
-                    })
-                });
-
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    setSubmitStatus({
-                        type: 'success',
-                        message: data.message || 'Data has been sent successfully.!'
-                    });
-                    
-                    // Reset form
-                    setForms({
-                        name: '',
-                        email: '',
-                        company: '',
-                        phone: '',
-                        message: ''
-                    });
-                    validator.hideMessages();
-                } else {
-                    throw new Error(data.message || 'An error occurred while sending the message.');
-                }
-            } catch (error) {
-                console.error('Form submission error:', error);
-                setSubmitStatus({
-                    type: 'error',
-                    message: error.message || 'An error occurred while sending your message. Please try again..'
-                });
-            } finally {
-                setIsSubmitting(false);
-                // Hide status message after 5 seconds
-                setTimeout(() => {
-                    setSubmitStatus(null);
-                }, 5000);
-            }
+            validator.hideMessages();
+            setForms({
+                name: '',
+                email: '',
+                company: '',
+                phone: '',
+                message: ''
+            })
         } else {
             validator.showMessages();
         }
     };
 
     return (
+
         <section className="calltoaction_section parallaxie" style={{ backgroundImage: `url(${Bg})` }}>
             <div className="container">
                 <div className="row justify-content-lg-end">
@@ -102,22 +53,6 @@ const BusinessContact = (props) => {
                             <h3 className="form_title text-white">
                                 Send us a message, and we'll promptly discuss your project with you.
                             </h3>
-
-                            {/* Status Message */}
-                            {submitStatus && (
-                                <div className={`alert mb-3`} 
-                                     style={{
-                                         padding: '10px 15px',
-                                         borderRadius: '5px',
-                                         border: `1px solid ${submitStatus.type === 'success' ? '#007bff' : '#007bff'}`,
-                                         backgroundColor: submitStatus.type === 'success' ? 'rgba(0, 123, 255, 0.1)' : 'rgba(0, 123, 255, 0.1)',
-                                         color: submitStatus.type === 'success' ? '#fff' : '#fff'
-                                     }}>
-                                    <i className={`fa ${submitStatus.type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}`}></i>
-                                    {' '}{submitStatus.message}
-                                </div>
-                            )}
-
                             <form className="xb-item--form contact-from" onSubmit={(e) => submitHandler(e)}>
                                 <div className="row">
                                     <div className="col-md-6">
@@ -132,9 +67,7 @@ const BusinessContact = (props) => {
                                                 className="form-control"
                                                 onBlur={(e) => changeHandler(e)}
                                                 onChange={(e) => changeHandler(e)}
-                                                placeholder="Your Name"
-                                                disabled={isSubmitting}
-                                            />
+                                                placeholder="Your Name" />
                                             {validator.message('name', forms.name, 'required|alpha_space')}
                                         </div>
                                     </div>
@@ -150,9 +83,7 @@ const BusinessContact = (props) => {
                                                 className="form-control"
                                                 onBlur={(e) => changeHandler(e)}
                                                 onChange={(e) => changeHandler(e)}
-                                                placeholder="Your Email"
-                                                disabled={isSubmitting}
-                                            />
+                                                placeholder="Your Enter" />
                                             {validator.message('email', forms.email, 'required|email')}
                                         </div>
                                     </div>
@@ -163,14 +94,12 @@ const BusinessContact = (props) => {
                                             </label>
                                             <input
                                                 value={forms.phone}
-                                                type="tel"
+                                                type="phone"
                                                 name="phone"
                                                 className="form-control"
                                                 onBlur={(e) => changeHandler(e)}
                                                 onChange={(e) => changeHandler(e)}
-                                                placeholder="Your Phone No."
-                                                disabled={isSubmitting}
-                                            />
+                                                placeholder="Your Phone No." />
                                             {validator.message('phone', forms.phone, 'required|phone')}
                                         </div>
                                     </div>
@@ -181,14 +110,12 @@ const BusinessContact = (props) => {
                                             </label>
                                             <input
                                                 value={forms.company}
-                                                type="text"
+                                                type="company"
                                                 name="company"
                                                 className="form-control"
                                                 onBlur={(e) => changeHandler(e)}
                                                 onChange={(e) => changeHandler(e)}
-                                                placeholder="Your Company Name"
-                                                disabled={isSubmitting}
-                                            />
+                                                placeholder="Your Company Name" />
                                             {validator.message('company', forms.company, 'required')}
                                         </div>
                                     </div>
@@ -201,28 +128,17 @@ const BusinessContact = (props) => {
                                                 onBlur={(e) => changeHandler(e)}
                                                 onChange={(e) => changeHandler(e)}
                                                 value={forms.message}
+                                                type="text"
                                                 name="message"
                                                 className="form-control"
-                                                placeholder="How can we help you?"
-                                                rows="5"
-                                                disabled={isSubmitting}>
+                                                placeholder="How can we help you?">
                                             </textarea>
                                             {validator.message('message', forms.message, 'required')}
                                         </div>
-                                        <button 
-                                            type="submit" 
-                                            className="btn btn-primary"
-                                            disabled={isSubmitting}
-                                        >
-                                            <span className="btn_label" data-text={isSubmitting ? "Sending..." : "Send Request"}>
-                                                {isSubmitting ? "Sending..." : "Send Request"}
-                                            </span>
+                                        <button type="submit" className="btn btn-primary">
+                                            <span className="btn_label" data-text="Send Request">Send Request</span>
                                             <span className="btn_icon">
-                                                {isSubmitting ? (
-                                                    <i className="fa-solid fa-spinner fa-spin"></i>
-                                                ) : (
-                                                    <i className="fa-solid fa-arrow-up-right"></i>
-                                                )}
+                                                <i className="fa-solid fa-arrow-up-right"></i>
                                             </span>
                                         </button>
                                     </div>
@@ -233,6 +149,7 @@ const BusinessContact = (props) => {
                 </div>
             </div>
         </section>
+
     )
 }
 

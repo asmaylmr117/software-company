@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-
-const Bg = 'https://portfolio-vercel-bi43.vercel.app/images/shapes/bg_pattern_3.svg'
-const icon1 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_mail.svg'
-const icon2 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_calling.svg'
-const icon3 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_map_mark.svg'
-const icon4 = 'https://portfolio-vercel-bi43.vercel.app/images/icons/icon_mail_2.svg'
+import Bg from '../../images/shapes/bg_pattern_3.svg'
+import icon1 from '../../images/icons/icon_mail.svg'
+import icon2 from '../../images/icons/icon_calling.svg'
+import icon3 from '../../images/icons/icon_map_mark.svg'
+import icon4 from '../../images/icons/icon_mail_2.svg'
+import Services from '../../api/service'
 
 const ClickHandler = () => {
     window.scrollTo(10, 0);
@@ -15,50 +15,8 @@ const SubmitHandler = (e) => {
     e.preventDefault()
 }
 
+
 const Footer = (props) => {
-    const [services, setServices] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                setLoading(true);
-                const response = await fetch('https://portfolio-vercel-bi43.vercel.app/api/services');
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                // Handle different response structures
-                let servicesArray = [];
-                if (Array.isArray(data)) {
-                    servicesArray = data;
-                } else if (data && Array.isArray(data.services)) {
-                    servicesArray = data.services;
-                } else if (data && Array.isArray(data.data)) {
-                    servicesArray = data.data;
-                } else {
-                    console.warn('API response is not in expected format:', data);
-                    servicesArray = [];
-                }
-                
-                setServices(servicesArray);
-                setError(null);
-            } catch (err) {
-                console.error('Error fetching services:', err);
-                setError(err.message);
-                setServices([]); // Fallback to empty array
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchServices();
-    }, []);
-
     return (
         <footer className="site_footer footer_layout_1">
             <div className="content_box" style={{ backgroundImage: `url(${Bg})` }}>
@@ -71,7 +29,7 @@ const Footer = (props) => {
                             <div className="iconbox_content">
                                 <h3 className="iconbox_title">Write to us</h3>
                                 <p className="mb-0">
-                                    RM@hdsvhdjvdbj.eg
+                                    RM@MetaSoftware.eg
                                 </p>
                             </div>
                         </div>
@@ -82,7 +40,7 @@ const Footer = (props) => {
                             <div className="iconbox_content">
                                 <h3 className="iconbox_title"> Call Us (EG)</h3>
                                 <p className="mb-0">
-                                    +(96) 156546 072 001
+                                    +(20) 1500 072 001
                                 </p>
                             </div>
                         </div>
@@ -93,7 +51,7 @@ const Footer = (props) => {
                             <div className="iconbox_content">
                                 <h3 className="iconbox_title">Our Office</h3>
                                 <p className="mb-0">
-                                Egypt, Giza,pyramids
+                                Egypt, Giza, 26th of July Axis - Mall of Arabia
                                 </p>
                             </div>
                         </div>
@@ -104,7 +62,7 @@ const Footer = (props) => {
                                 <div className="footer_widget pe-md-3">
                                     <h2 className="footer_info_title">Newsletter</h2>
                                     <p>
-                                        Sign up  weekly newsletter to get the latest updates.
+                                        Sign up to Meta Software weekly newsletter to get the latest updates.
                                     </p>
                                     <form className="footer_newslatter" onSubmit={SubmitHandler}>
                                         <label htmlFor="footer_mail_input">
@@ -124,25 +82,17 @@ const Footer = (props) => {
                                 <div className="footer_widget">
                                     <h3 className="footer_info_title">Services</h3>
                                     <ul className="icon_list unordered_list_block">
-                                        {loading ? (
-                                            <li>Loading services...</li>
-                                        ) : error ? (
-                                            <li>Unable to load services</li>
-                                        ) : Array.isArray(services) && services.length > 0 ? (
-                                            services.slice(0, 6).map((service, srv) => (
-                                                <li key={srv}>
-                                                    {service.title ?
-                                                        <Link onClick={ClickHandler} to={`/service-single/${service.slug}`}>
-                                                            <span className="icon_list_text">
-                                                                {service.title}
-                                                            </span>
-                                                        </Link>
-                                                        : ''}
-                                                </li>
-                                            ))
-                                        ) : (
-                                            <li>No services available</li>
-                                        )}
+                                        {Services.slice(0, 6).map((service, srv) => (
+                                            <li key={srv}>
+                                                {service.title ?
+                                                    <Link onClick={ClickHandler} to={`/service-single/${service.slug}`}>
+                                                        <span className="icon_list_text">
+                                                            {service.title}
+                                                        </span>
+                                                    </Link>
+                                                    : ''}
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
@@ -153,7 +103,7 @@ const Footer = (props) => {
                                         <li>
                                             <Link onClick={ClickHandler} to="/about">
                                                 <span className="icon_list_text">
-                                                    About 
+                                                    About Meta Software
                                                 </span>
                                             </Link>
                                         </li>
@@ -251,9 +201,9 @@ const Footer = (props) => {
             <div className="footer_bottom">
                 <div className="container d-md-flex align-items-md-center justify-content-md-between">
                     <p className="copyright_text m-0">
-                        Copyright © 2025 
+                        Copyright © 2024 .
                     </p>
-                    
+                  
                 </div>
             </div>
         </footer>

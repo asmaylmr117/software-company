@@ -3,8 +3,8 @@ import Header from '../../components/header/Header';
 import PageTitle from '../../components/pagetitle/PageTitle'
 import Scrollbar from '../../components/scrollbar/scrollbar'
 import Footer from '../../components/footer/Footer';
-import aImg from '../../images/hero/business_consulting_hero_image_1.webp'
-import aImg2 from '../../images/hero/it_solution_hero_image_1.webp'
+import aImg from '../../images/about/about_image_3.webp'
+import aImg2 from '../../images/about/about_image_4.webp'
 import ModalVideo from 'react-modal-video'
 import PolicySection from './Policy';
 import WhyUs from './WhyUs';

@@ -1,129 +1,73 @@
-/* Portfolio - Start */
+/* 4.07 - Portfolio - Start
+================================================== */
 .portfolio_block {
-    overflow: hidden;
-    transition: var(--bs-transition);
-    background-color: var(--bs-white);
-    border-radius: var(--bs-border-radius-sm);
-    box-shadow: 0 1px 2px 0 rgba(174, 191, 210, 0.30);
-    display: flex;
-    flex-direction: column;
-    height: 450px; /* ارتفاع ثابت للكارد */
+	overflow: hidden;
+	transition: var(--bs-transition);
+	background-color: var(--bs-white);
+	border-radius: var(--bs-border-radius-sm);
+	box-shadow: 0 1px 2px 0 rgba(174, 191, 210, 0.30);
+	.portfolio_image_wrap {
+		display: block;
+		overflow: hidden;
+	}
+	.portfolio_content {
+		position: relative;
+		padding: 25px 30px 28px;
+	}
+	.portfolio_title {
+		font-size: 26px;
+		line-height: 36px;
+		margin-bottom: 7px;
+		a {
+			color: var(--bs-dark);
+			&:hover {
+				color: var(--bs-primary);
+			}
+		}
+	}
+
+	.category_list {
+		gap: 30px;
+		i {
+			margin-right: 2px;
+			color: var(--bs-primary);
+		}
+	}
+
+	.btn {
+		top: 26px;
+		right: 30px;
+		position: absolute;
+	}
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 20px 30px 0 rgba(174, 191, 210, 0.30);
+	}
 }
 
-.portfolio_image_wrap {
-    display: block;
-    overflow: hidden;
-    height: 280px; /* ارتفاع ثابت للصورة */
-    border-radius: var(--bs-border-radius-sm);
-}
-
-.portfolio_image_wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* ضمان تناسق الصور */
-    object-position: center;
-    transition: var(--bs-transition);
-}
-
-.portfolio_content {
-    position: relative;
-    padding: 25px 30px 70px; /* زيادة الحشو السفلي لإفساح مجال للزر */
-    flex-grow: 1; /* شغل المساحة المتبقية */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.portfolio_title {
-    font-size: 26px;
-    line-height: 36px;
-    margin-bottom: 7px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; /* منع النص الطويل من التفاف */
-}
-
-.portfolio_title a {
-    color: var(--bs-dark);
-}
-
-.portfolio_title a:hover {
-    color: var(--bs-primary);
-}
-
-.category_list {
-    gap: 30px;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px; /* إضافة مساحة أسفل القائمة */
-}
-
-.category_list i {
-    margin-right: 2px;
-    color: var(--bs-primary);
-}
-
-/* إصلاح موضع زر Explore - أسفل يمين */
-.portfolio_content .btn {
-    position: absolute;
-    bottom: 20px; /* أسفل الكارد */
-    right: 20px; /* يمين الكارد */
-    z-index: 1;
-}
-
-/* بديل إذا كنت تريد الزر في أعلى اليمين */
-.portfolio_content .btn-top-right {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1;
-}
-
-.portfolio_block:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 30px 0 rgba(174, 191, 210, 0.30);
-}
-
-/* Portfolio Layout 2 */
+// Portfolio Layout 2
 .portfolio_block.portfolio_layout_2 {
-    padding: 20px;
+	padding: 20px;
+	.portfolio_image_wrap {
+		border-radius: var(--bs-border-radius-sm);
+		img {
+			transition: var(--bs-transition);
+		}
+		&:hover {
+			img {
+				transform: scale(1.08);
+			}
+		}
+	}
+	.portfolio_content {
+		display: flex;
+		padding: 38px 40px 20px 20px;
+		flex-direction: column-reverse;
+	}
+	.portfolio_title {
+		margin: 21px 0 0;
+	}
 }
-
-.portfolio_block.portfolio_layout_2 .portfolio_image_wrap {
-    border-radius: var(--bs-border-radius-sm);
-}
-
-.portfolio_block.portfolio_layout_2 .portfolio_image_wrap:hover img {
-    transform: scale(1.08);
-}
-
-.portfolio_block.portfolio_layout_2 .portfolio_content {
-    display: flex;
-    padding: 38px 40px 20px 20px;
-    flex-direction: column-reverse;
-}
-
-.portfolio_block.portfolio_layout_2 .portfolio_title {
-    margin: 21px 0 0;
-}
-
-/* إضافة تنسيقات متجاوبة للشاشات الصغيرة */
-@media (max-width: 768px) {
-    .portfolio_title {
-        font-size: 22px;
-        line-height: 30px;
-        padding-right: 0; /* إزالة الحشو في الشاشات الصغيرة */
-        white-space: normal; /* السماح بتفاف النص */
-    }
-    
-    .portfolio_content {
-        padding: 20px;
-    }
-    
-    .portfolio_block {
-        height: auto; /* ارتفاع مرن في الشاشات الصغيرة */
-    }
-}
-/* Portfolio - End */
+/* 4.07 - Portfolio - End
+================================================== */

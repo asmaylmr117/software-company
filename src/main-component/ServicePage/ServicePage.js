@@ -5,7 +5,7 @@ import PageTitle from '../../components/pagetitle/PageTitle'
 import Scrollbar from '../../components/scrollbar/scrollbar'
 import Footer from '../../components/footer/Footer';
 import CtaSection from '../../components/CtaSection/CtaSection';
-import srImg from '../../images/portfolio/portfolio_item_image_5.webp' 
+import srImg from '../../images/services/service_image_8.webp' 
 import ServiceSection from '../../components/ServiceSection/ServiceSection';
 import WhyUs from '../AboutUsPage/WhyUs';
 
