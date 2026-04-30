@@ -4,9 +4,6 @@ import Bg1 from '../../images/shapes/it_solution_hero_bg_1.svg'
 import Bg2 from '../../images/hero/business_consulting_hero_image_2.webp'
 import heroImg from '../../images/hero/it_solution_hero_image_1.webp'
 import icon from '../../images/icons/icon_stars_trustpilot.svg'
-import avatar1 from '../../images/avatar/avatar_1.webp'
-import avatar2 from '../../images/avatar/avatar_2.webp'
-import avatar3 from '../../images/avatar/avatar_3.webp'
 
 const Hero = () => {
 
