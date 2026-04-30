@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom'
 import { useBlogs } from '../../hooks/useQueries'
 import { getImageUrl } from '../../api/axiosConfig'
-import bImg from '../../images/blog/blog_post_image_4.webp'
+
 import arrow from '../../images/shapes/shape_arrow_right.svg'
 import arrow2 from '../../images/shapes/shape_arrow_left.svg'
 import icon1 from '../../images/icons/icon_calendar.svg'
