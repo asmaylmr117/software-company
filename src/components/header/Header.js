@@ -14,10 +14,15 @@ import icon11 from '../../images/icons/icon_quote.svg'
 import logo from '../../images/site_logo/site_logo_3.svg'
 import cases from '../../images/case/case_image_4.webp'
 import MobileMenu from '../MobileMenu/MobileMenu'
+import { useServices, useProjects, useBlogs, useTeams } from '../../hooks/useQueries'
 
 
 const Header = (props) => {
 
+    const { data: Services } = useServices();
+    const { data: Projects } = useProjects();
+    const { data: Blogs } = useBlogs();
+    const { data: Teams } = useTeams();
     const [mobailActive, setMobailState] = useState(false);
 
     const ClickHandler = () => {
@@ -34,21 +39,28 @@ const Header = (props) => {
                 setSticky(false);
             }
         };
+
+        const initGoogleTranslate = () => {
+            if (!document.querySelector('#google_translate_element .goog-te-combo')) {
+                if (window.google && window.google.translate && window.google.translate.TranslateElement) {
+                    new window.google.translate.TranslateElement(
+                        { pageLanguage: 'en', includedLanguages: 'ar,en,es,fr,de,it,ja,zh-CN,zh-TW' },
+                        'google_translate_element'
+                    );
+                }
+            }
+        };
+
+        window.googleTranslateElementInit = initGoogleTranslate;
+
         if (!document.querySelector('script[src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"]')) {
             const script = document.createElement('script');
             script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
             script.type = 'text/javascript';
             document.body.appendChild(script);
+        } else {
+            initGoogleTranslate();
         }
-
-        window.googleTranslateElementInit = () => {
-            if (!document.querySelector('#google_translate_element .goog-te-combo')) {
-                new window.google.translate.TranslateElement(
-                    { pageLanguage: 'en', includedLanguages: 'ar,en,es,fr,de,it,ja,zh-CN,zh-TW' },
-                    'google_translate_element'
-                );
-            }
-        };
 
         window.addEventListener('scroll', handleScroll);
 
@@ -142,7 +154,7 @@ const Header = (props) => {
                                                                         </Link>
                                                                     </div>
                                                                     <div className="col-lg-3 col-md-6">
-                                                                        <Link onClick={ClickHandler} className="iconbox_block_2" to="/portfolio_details/Explore-Our-IT-Solutions">
+                                                                        <Link onClick={ClickHandler} className="iconbox_block_2" to={Projects && Projects.length > 0 ? `/portfolio_details/${Projects[0].slug}` : "/portfolio"}>
                                                                             <span className="icon_title_wrap">
                                                                                 <small className="iconbox_icon">
                                                                                     <img src={icon4} alt="Event Tag SVG Icon" />
@@ -168,7 +180,7 @@ const Header = (props) => {
                                                                         </Link>
                                                                     </div>
                                                                     <div className="col-lg-3 col-md-6">
-                                                                        <Link onClick={ClickHandler} className="iconbox_block_2" to="/team-single/Atticus-Sterling">
+                                                                        <Link onClick={ClickHandler} className="iconbox_block_2" to={Teams && Teams.length > 0 ? `/team-single/${Teams[0].slug}` : "/team"}>
                                                                             <span className="icon_title_wrap">
                                                                                 <small className="iconbox_icon">
                                                                                     <img src={icon6} alt="Users SVG Icon" />
@@ -194,7 +206,7 @@ const Header = (props) => {
                                                                         </Link>
                                                                     </div>
                                                                     <div className="col-lg-3 col-md-6">
-                                                                        <Link onClick={ClickHandler} className="iconbox_block_2" to="/service-single/IT-Management-Services">
+                                                                        <Link onClick={ClickHandler} className="iconbox_block_2" to={Services && Services.length > 0 ? `/service-single/${Services[0].slug}` : "/service"}>
                                                                             <span className="icon_title_wrap">
                                                                                 <small className="iconbox_icon">
                                                                                     <img src={icon7} alt="Pen SVG Icon" />
@@ -282,7 +294,7 @@ const Header = (props) => {
                                             </Link>
                                             <ul className="dropdown-menu" aria-labelledby="portfolio_submenu">
                                                 <li><Link onClick={ClickHandler} to="/portfolio">Portfolio</Link></li>
-                                                <li><Link onClick={ClickHandler} to="/portfolio_details/Explore-Our-IT-Solutions">Portfolio Details</Link></li>
+                                                <li><Link onClick={ClickHandler} to={Projects && Projects.length > 0 ? `/portfolio_details/${Projects[0].slug}` : "/portfolio"}>Portfolio Details</Link></li>
                                             </ul>
                                         </li>
                                         <li className="dropdown">
@@ -298,55 +310,15 @@ const Header = (props) => {
                                                                     <div className="megamenu_widget">
                                                                         <h3 className="megamenu_info_title">Services</h3>
                                                                         <ul className="icon_list unordered_list_block">
-                                                                            <li>
-                                                                                <Link onClick={ClickHandler} to="/service-single/IT-Management-Services">
-                                                                                    <span className="icon_list_text">
-                                                                                        IT Management Services
-                                                                                    </span>
-                                                                                </Link>
-                                                                            </li>
-                                                                            <li>
-                                                                                <Link onClick={ClickHandler} to="/service-single/Data-Tracking-and-Security">
-                                                                                    <span className="icon_list_text">
-                                                                                        Data Tracking Security
-                                                                                    </span>
-                                                                                </Link>
-                                                                            </li>
-                                                                            <li>
-                                                                                <Link onClick={ClickHandler} to="/service-single/IT-Management-Services">
-                                                                                    <span className="icon_list_text">
-                                                                                        Website Development
-                                                                                    </span>
-                                                                                </Link>
-                                                                            </li>
-                                                                            <li>
-                                                                                <Link onClick={ClickHandler} to="/service-single/IT-Management-Services">
-                                                                                    <span className="icon_list_text">
-                                                                                        CRM Solutions and Design
-                                                                                    </span>
-                                                                                </Link>
-                                                                            </li>
-                                                                            <li>
-                                                                                <Link onClick={ClickHandler} to="/service-single/IT-Management-Services">
-                                                                                    <span className="icon_list_text">
-                                                                                        UI/UX Design Services
-                                                                                    </span>
-                                                                                </Link>
-                                                                            </li>
-                                                                            <li>
-                                                                                <Link onClick={ClickHandler} to="/service-single/IT-Management-Services">
-                                                                                    <span className="icon_list_text">
-                                                                                        Technology Solution
-                                                                                    </span>
-                                                                                </Link>
-                                                                            </li>
-                                                                            <li>
-                                                                                <Link onClick={ClickHandler} to="/service-single/IT-Management-Services">
-                                                                                    <span className="icon_list_text">
-                                                                                        Software Development
-                                                                                    </span>
-                                                                                </Link>
-                                                                            </li>
+                                                                            {Services?.slice(0, 7).map((service, srv) => (
+                                                                                <li key={srv}>
+                                                                                    <Link onClick={ClickHandler} to={`/service-single/${service.slug}`}>
+                                                                                        <span className="icon_list_text">
+                                                                                            {service.title}
+                                                                                        </span>
+                                                                                    </Link>
+                                                                                </li>
+                                                                            ))}
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -511,7 +483,7 @@ const Header = (props) => {
                                                     </Link>
                                                     <ul className="dropdown-menu" aria-labelledby="blog_submenu">
                                                         <li><Link onClick={ClickHandler} to="/blog">Our Blogs</Link></li>
-                                                        <li><Link onClick={ClickHandler} to="/blog-single/How-Our-Software-Solutions-Drive-Insights.">Blog Details</Link></li>
+                                                        <li><Link onClick={ClickHandler} to={Blogs && Blogs.length > 0 ? `/blog-single/${Blogs[0].slug}` : "/blog"}>Blog Details</Link></li>
                                                     </ul>
                                                 </li>
                                                 <li><Link onClick={ClickHandler} to="/contact">Help Center</Link></li>

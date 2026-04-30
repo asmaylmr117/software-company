@@ -3,7 +3,7 @@ import icon1 from '../../../images/icons/icon_bulb.svg'
 import icon2 from '../../../images/icons/icon_user_rating.svg'
 import icon3 from '../../../images/icons/icon_hand_shake.svg'
 import ModalVideo from 'react-modal-video'
-import eImg from '../../../images/about/about_image_7.webp'
+import eImg from '../../../images/hero/it_solution_hero_image_1.webp'
 
 
 const EmpoweringSuccess = (props) => {

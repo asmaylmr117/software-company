@@ -54,14 +54,13 @@ const BlogList = (props) => {
                                     <div className="blog_post_block content_over_layout">
                                         <div className="blog_post_image">
                                             <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`} className="image_wrap">
-                                                <img src={bImg} alt="Blog Post" />
+                                                <img src={getImageUrl(blog.screens)} alt="Blog Post" />
                                             </Link>
                                         </div>
                                         <div className="blog_post_content">
                                             <div className="post_meta_wrap">
                                                 <ul className="category_btns_group unordered_list">
-                                                    <li><Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>Branding</Link></li>
-                                                    <li><Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>UI/UX</Link></li>
+                                                    <li><Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>{blog.thumb}</Link></li>
                                                 </ul>
                                                 <ul className="post_meta unordered_list">
                                                     <li>
@@ -80,7 +79,7 @@ const BlogList = (props) => {
                                                 </Link>
                                             </h3>
                                             <p className="mb-0">
-                                                Embark on an enlightening journey through the realm of IT solutions as we delve into the latest technological advancements shaping the digital landscape.
+                                                {blog.description}
                                             </p>
                                         </div>
                                     </div>

@@ -8,10 +8,10 @@ import Scrollbar from '../../components/scrollbar/scrollbar'
 import Footer from '../../components/footer/Footer';
 import CtaSection from '../../components/CtaSection/CtaSection';
 import ProcessTechnology from '../../components/software-company-components/ProcessTechnology/ProcessTechnology';
-import srImg from '../../images/services/service_details_image_1.webp'
-import srImg2 from '../../images/services/service_details_image_2.webp'
-import srImg3 from '../../images/services/service_details_image_3.webp'
-import srImg4 from '../../images/services/service_details_image_4.webp'
+import srImg from '../../images/services/service_image_1.webp'
+import srImg2 from '../../images/services/service_image_5.webp'
+import srImg3 from '../../images/services/service_image_3.webp'
+import srImg4 from '../../images/services/service_image_4.webp'
 import icon from '../../images/icons/icon_check_3.svg'
 
 

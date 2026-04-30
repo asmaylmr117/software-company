@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import SimpleReactValidator from 'simple-react-validator';
-import Bg from '../../../images/backgrounds/bg_image_5.webp'
+import Bg from '../../../images/backgrounds/bg_image_4.webp'
 import { apiClient } from '../../../api/axiosConfig';
 
 const BusinessContact = (props) => {

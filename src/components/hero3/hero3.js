@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import CountUp from 'react-countup';
 import Bg from '../../images/hero/business_consulting_hero_section_bg.jpg'
 import shape1 from '../../images/hero/logo_google.svg'
-import shape2 from '../../images/hero/business_consulting_hero_image_1.webp'
+import shape2 from '../../images/hero/it_solution_hero_image_1.webp'
 import shape3 from '../../images/hero/business_consulting_hero_image_2.webp'
 import icon1 from '../../images/icons/icon_user_3.svg'
 import icon2 from '../../images/icons/icon_wallet.svg'
