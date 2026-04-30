@@ -4,7 +4,7 @@ import sIcon1 from '../../images/icon/c_01.svg'
 import sIcon2 from '../../images/icon/c_02.svg'
 import sIcon3 from '../../images/icon/c_03.svg'
 import sIcon4 from '../../images/icon/c_04.svg'
-import Bg from '../../images/bg/counter_bg.jpg'
+import Bg from '../../images/backgrounds/bg_image_4.webp'
 
 
 const FunFact = [

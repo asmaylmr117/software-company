@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import SimpleReactValidator from 'simple-react-validator';
 import Bg from '../../../images/backgrounds/bg_image_5.webp'
+import { apiClient } from '../../../api/axiosConfig';
 
 const BusinessContact = (props) => {
 
+    const [status, setStatus] = useState(null);
     const [forms, setForms] = useState({
         name: '',
         email: '',
@@ -23,17 +25,34 @@ const BusinessContact = (props) => {
         }
     };
 
-    const submitHandler = e => {
+    const submitHandler = async e => {
         e.preventDefault();
         if (validator.allValid()) {
             validator.hideMessages();
-            setForms({
-                name: '',
-                email: '',
-                company: '',
-                phone: '',
-                message: ''
-            })
+            setStatus('loading');
+            try {
+                await apiClient.post('/contact', {
+                    name: forms.name,
+                    email: forms.email,
+                    subject: 'Business Consulting Inquiry',
+                    phone: forms.phone,
+                    company: forms.company,
+                    message: forms.message
+                });
+                setStatus('success');
+                setForms({
+                    name: '',
+                    email: '',
+                    company: '',
+                    phone: '',
+                    message: ''
+                });
+                setTimeout(() => setStatus(null), 3000);
+            } catch (error) {
+                console.error("Error sending message", error);
+                setStatus('error');
+                setTimeout(() => setStatus(null), 3000);
+            }
         } else {
             validator.showMessages();
         }
@@ -135,12 +154,14 @@ const BusinessContact = (props) => {
                                             </textarea>
                                             {validator.message('message', forms.message, 'required')}
                                         </div>
-                                        <button type="submit" className="btn btn-primary">
-                                            <span className="btn_label" data-text="Send Request">Send Request</span>
+                                        <button type="submit" className="btn btn-primary" disabled={status === 'loading'}>
+                                            <span className="btn_label" data-text={status === 'loading' ? 'Sending...' : 'Send Request'}>{status === 'loading' ? 'Sending...' : 'Send Request'}</span>
                                             <span className="btn_icon">
                                                 <i className="fa-solid fa-arrow-up-right"></i>
                                             </span>
                                         </button>
+                                        {status === 'success' && <div className="alert alert-success mt-3" role="alert">Your message was sent successfully!</div>}
+                                        {status === 'error' && <div className="alert alert-danger mt-3" role="alert">Failed to send message. Please try again.</div>}
                                     </div>
                                 </div>
                             </form>

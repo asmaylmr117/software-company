@@ -5,7 +5,7 @@ import avatar2 from '../../../images/avatar/avatar_10.webp'
 import avatar3 from '../../../images/avatar/avatar_9.webp'
 import avatar4 from '../../../images/avatar/avatar_8.webp'
 import Bg from '../../../images/icons/icon_quote_2.svg'
-import abImg1 from '../../../images/about/about_image_8.webp'
+import abImg1 from '../../../images/hero/it_solution_hero_image_1.webp'
 import abImg2 from '../../../images/icons/icon_wallet.svg'
 
 import { Link } from "react-router-dom";

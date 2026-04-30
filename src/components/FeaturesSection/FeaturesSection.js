@@ -6,7 +6,7 @@ import sIcon2 from '../../images/icons/icon_check.svg'
 import sIcon3 from '../../images/icons/icon_like.svg'
 import sIcon4 from '../../images/icons/icon_dart_board.svg'
 import Bg from '../../images/shapes/bg_pattern_1.svg'
-import fimg from '../../images/about/about_image_1.webp'
+import fimg from '../../images/hero/pexels-hoodzie-16062771.jpg'
 
 const FunFact = [
     {

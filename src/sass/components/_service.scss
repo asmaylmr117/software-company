@@ -10,6 +10,9 @@
 		border-radius: var(--bs-border-radius-sm);
 		img {
 			transition: 0.3s;
+			width: 100%;
+			height: 420px;
+			object-fit: cover;
 		}
 	}
 	&:hover {
@@ -28,6 +31,9 @@
 		z-index: 2;
 		padding: 40px;
 		position: absolute;
+	}
+	.service_description {
+		color: var(--bs-white);
 	}
 	.service_title {
 		font-size: 32px;

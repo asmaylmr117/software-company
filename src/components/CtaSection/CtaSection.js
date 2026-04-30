@@ -1,5 +1,5 @@
 import React from 'react';
-import Bg from '../../images/backgrounds/bg_image_1.webp'
+import Bg from '../../images/backgrounds/bg_image_4.webp'
 import { Link } from "react-router-dom";
 
 const CtaSection = (props) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Bg1 from '../../images/shapes/it_solution_hero_bg_1.svg'
-import Bg2 from '../../images/hero/it_solution_hero_image_2.webp'
+import Bg2 from '../../images/hero/business_consulting_hero_image_2.webp'
 import heroImg from '../../images/hero/it_solution_hero_image_1.webp'
 import icon from '../../images/icons/icon_stars_trustpilot.svg'
 import avatar1 from '../../images/avatar/avatar_1.webp'
@@ -46,7 +46,7 @@ const Hero = () => {
                     </div>
                     <div className="col-lg-5">
                         <ul className="it_solution_hero_images unordered_list">
-                            <li>
+                            <li >
                                 <img src={heroImg} alt="Techco - IT Solution - Hero" />
                             </li>
                             <li>
@@ -55,21 +55,7 @@ const Hero = () => {
                                     <p>
                                         Worldwide Country has lots of clients
                                     </p>
-                                    <ul className="avatar_group unordered_list">
-                                        <li>
-                                            <img src={avatar1} alt="Techco - Avatar" />
-                                        </li>
-                                        <li>
-                                            <img src={avatar2} alt="Techco - Avatar" />
-                                        </li>
-                                        <li>
-                                            <img src={avatar3} alt="Techco - Avatar" />
-                                        </li>
-                                        <li>
-                                            5k+
-                                        </li>
-                                    </ul>
-                                </div>
+                                    </div>
                             </li>
                             <li>
                                 <ul className="categories unordered_list_block">
@@ -81,8 +67,8 @@ const Hero = () => {
                                     </li>
                                     <li>
                                         <Link to="/">
-                                            <i className="fa-solid fa-plus"></i>
                                             <span>Web Development</span>
+                                            <i className="fa-solid fa-plus"></i>
                                         </Link>
                                     </li>
                                     <li>
@@ -100,7 +86,7 @@ const Hero = () => {
                                             <svg
                                                 role="progressbar"
                                                 width="260"
-                                                height="260"
+                                                height="210"
                                                 viewBox="0 0 100 100"
                                                 aria-valuemin="0"
                                                 aria-valuemax="100"

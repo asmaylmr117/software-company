@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useProjects } from '../../hooks/useQueries';
 import { getImageUrl } from '../../api/axiosConfig';
-import { Pagination, A11y } from 'swiper';
+import { Pagination, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -47,7 +47,8 @@ const ProjectSection = (props) => {
             <div className="portfolio_carousel">
                 <Swiper
                     // install Swiper modules
-                    modules={[Pagination, A11y]}
+                    modules={[Pagination, A11y, Autoplay]}
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
                     slidesPerView={1}
                     loop={true}
                     spaceBetween= {30}
@@ -68,7 +69,7 @@ const ProjectSection = (props) => {
                             <div className="portfolio_block" >
                                 <div className="portfolio_image">
                                     <Link onClick={ClickHandler} className="portfolio_image_wrap bg-light" to={`/portfolio_details/${project.slug}`}>
-                                        <img src={getImageUrl(project.pImg)} alt="Mobile App Design" />
+                                        <img src={getImageUrl(project.pImg)} alt="Mobile App Design" style={{ height: '380px', objectFit: 'cover', width: '100%' }} />
                                     </Link>
                                 </div>
                                 <div className="portfolio_content">

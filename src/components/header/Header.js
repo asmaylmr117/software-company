@@ -42,7 +42,7 @@ const Header = (props) => {
         }
 
         window.googleTranslateElementInit = () => {
-            if (!document.querySelector('.goog-te-combo')) {
+            if (!document.querySelector('#google_translate_element .goog-te-combo')) {
                 new window.google.translate.TranslateElement(
                     { pageLanguage: 'en', includedLanguages: 'ar,en,es,fr,de,it,ja,zh-CN,zh-TW' },
                     'google_translate_element'
@@ -519,6 +519,7 @@ const Header = (props) => {
                                             </ul>
                                         </li>
                                         <li><Link onClick={ClickHandler} to="/contact">Contact</Link></li>
+
                                     </ul>
                                 </div>
                             </nav>
@@ -539,15 +540,14 @@ const Header = (props) => {
                                     </button>
                                 </li>
                                 <li>
-                                    <div id="google_translate_element"></div>
+                                    <div 
+                                        id="google_translate_element" 
+                                        className="d-none d-lg-block me-3" 
+                                        style={{ height: '40px', overflow: 'hidden', display: 'flex', alignItems: 'center' }}
+                                    ></div>
                                 </li>
                                 <li>
-                                    <Link onClick={ClickHandler} className="btn btn-outline-light" to="/pricing">
-                                        <span className="btn_label" data-text="Get Started">Get Started</span>
-                                        <span className="btn_icon">
-                                            <i className="fa-solid fa-arrow-up-right"></i>
-                                        </span>
-                                    </Link>
+                                    
                                 </li>
                             </ul>
                         </div>

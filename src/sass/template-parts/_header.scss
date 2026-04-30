@@ -798,6 +798,38 @@
 	}
 }
 
+// Google Translate Customization
+#google_translate_element {
+	.goog-te-gadget {
+		font-size: 0px !important;
+		color: transparent !important;
+		display: flex;
+		align-items: center;
+		
+		span {
+			display: none !important;
+		}
+
+		.goog-te-combo {
+			font-size: 14px !important;
+			margin: 0 !important;
+			padding: 8px 12px !important;
+			border-radius: 5px;
+			border: 1px solid var(--bs-border-color);
+			outline: none;
+			color: var(--bs-dark);
+			cursor: pointer;
+		}
+	}
+}
+
+body {
+	top: 0 !important;
+}
+.skiptranslate iframe {
+	display: none !important;
+}
+
 // Mobile Menu Button - Start
 .mobile_menu_btn {
 	width: 50px;

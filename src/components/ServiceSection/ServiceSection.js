@@ -46,7 +46,7 @@ const ServiceSection = (props) => {
                 )}
 
                 <div className="row">
-                    {services.slice(0, 5).map((service, srv) => (
+                    {services.slice(0, 6).map((service, srv) => (
                         <div className={`${service.col || 'col-lg-4'} mt-30`} key={srv}>
                             <div className="service_block">
                                 {service.sImg && (
