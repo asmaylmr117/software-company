@@ -1,4 +1,4 @@
-
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import about1 from '../../images/about/about_image_9.webp';
 import about2 from '../../images/about/about_image_11.webp';
