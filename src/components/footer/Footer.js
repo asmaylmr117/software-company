@@ -26,7 +26,7 @@ const Footer = (props) => {
                     <div className="diract_contact_links text-white">
                         <div className="iconbox_block layout_icon_left">
                             <div className="iconbox_icon">
-                                <img src={icon1} alt="Mail SVG Icon" />
+                                <img src={icon1} alt="Mail SVG Icon" width="40" height="40" loading="lazy" decoding="async" />
                             </div>
                             <div className="iconbox_content">
                                 <h3 className="iconbox_title">Write to us</h3>
@@ -37,7 +37,7 @@ const Footer = (props) => {
                         </div>
                         <div className="iconbox_block layout_icon_left">
                             <div className="iconbox_icon">
-                                <img src={icon2} alt="Calling Check SVG Icon" />
+                                <img src={icon2} alt="Calling Check SVG Icon" width="40" height="40" loading="lazy" decoding="async" />
                             </div>
                             <div className="iconbox_content">
                                 <h3 className="iconbox_title"> Call Us (EG)</h3>
@@ -48,7 +48,7 @@ const Footer = (props) => {
                         </div>
                         <div className="iconbox_block layout_icon_left">
                             <div className="iconbox_icon">
-                                <img src={icon3} alt="Map Mark Check SVG Icon" />
+                                <img src={icon3} alt="Map Mark Check SVG Icon" width="40" height="40" loading="lazy" decoding="async" />
                             </div>
                             <div className="iconbox_content">
                                 <h3 className="iconbox_title">Our Office</h3>
@@ -68,15 +68,15 @@ const Footer = (props) => {
                                     </p>
                                     <form className="footer_newslatter" onSubmit={SubmitHandler}>
                                         <label htmlFor="footer_mail_input">
-                                            <img src={icon4} alt="Mail SVG Icon" />
+                                            <img src={icon4} alt="Mail SVG Icon" width="20" height="20" loading="lazy" decoding="async" />
                                         </label>
                                         <input id="footer_mail_input" type="email" name="email" placeholder="Enter your email" />
-                                        <button type="submit"><i className="fa-solid fa-paper-plane"></i></button>
+                                        <button type="submit" aria-label="Subscribe to newsletter"><i className="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
                                     </form>
                                     <ul className="social_links_block unordered_list">
-                                        <li><Link onClick={ClickHandler} to="/https://www.facebook.com/profile.php?id=61572502871735&rdid=8xc6apLvAp2T2MAa&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19wsZuVhd4%2F#">Facebook</Link></li>
-                                        <li><Link onClick={ClickHandler} to="/">Twitter</Link></li>
-                                        <li><Link onClick={ClickHandler} to="https://www.linkedin.com/company/m-softawre2030">Linkdin</Link></li>
+                                        <li><a href="https://www.facebook.com/profile.php?id=61572502871735" target="_blank" rel="noopener noreferrer" aria-label="Follow Meta Software on Facebook">Facebook</a></li>
+                                        <li><Link onClick={ClickHandler} to="/" aria-label="Follow Meta Software on Twitter">Twitter</Link></li>
+                                        <li><a href="https://www.linkedin.com/company/m-softawre2030" target="_blank" rel="noopener noreferrer" aria-label="Follow Meta Software on LinkedIn">LinkedIn</a></li>
                                     </ul>
                                 </div>
                             </div>

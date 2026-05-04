@@ -85,13 +85,13 @@ const Header = (props) => {
                         <div className="col-xl-3 col-lg-2 col-5">
                             <div className="site_logo">
                                 <Link onClick={ClickHandler} className="site_link" to="/">
-                                    <img src={logo} alt="Site Logo – Techco – IT Solutions & Technology, Business Consulting, Software Company Site Template" />
+                                    <img src={logo} alt="Meta Software – Home" width="150" height="40" />
                                 </Link>
                                 <div className="badge bg-danger-subtle text-danger">We’re Hiring</div>
                             </div>
                         </div>
                         <div className="col-xl-6 col-lg-7 col-2">
-                            <nav className="main_menu navbar navbar-expand-lg">
+                            <nav className="main_menu navbar navbar-expand-lg" aria-label="Main navigation">
                                 <div className="main_menu_inner collapse navbar-collapse justify-content-lg-center" id="main_menu_dropdown">
                                     <ul className="main_menu_list unordered_list justify-content-center">
                                         <li className="dropdown">
@@ -118,7 +118,7 @@ const Header = (props) => {
                                                                         <Link onClick={ClickHandler} className="iconbox_block_2" to="/about">
                                                                             <span className="icon_title_wrap">
                                                                                 <small className="iconbox_icon">
-                                                                                    <img src={icon1} alt="Wifi SVG Icon" />
+                                                                                    <img src={icon1} alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async" />
                                                                                 </small>
                                                                                 <small className="iconbox_title">About Us</small>
                                                                             </span>
@@ -131,7 +131,7 @@ const Header = (props) => {
                                                                         <Link onClick={ClickHandler} className="iconbox_block_2" to="/pricing">
                                                                             <span className="icon_title_wrap">
                                                                                 <small className="iconbox_icon">
-                                                                                    <img src={icon2} alt="Dollar SVG Icon" />
+                                                                                    <img src={icon2} alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async" />
                                                                                 </small>
                                                                                 <small className="iconbox_title">Our Pricing</small>
                                                                             </span>
@@ -144,7 +144,7 @@ const Header = (props) => {
                                                                         <Link onClick={ClickHandler} className="iconbox_block_2" to="/portfolio">
                                                                             <span className="icon_title_wrap">
                                                                                 <small className="iconbox_icon">
-                                                                                    <img src={icon3} alt="Chart SVG Icon" />
+                                                                                    <img src={icon3} alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async" />
                                                                                 </small>
                                                                                 <small className="iconbox_title">Portfolio</small>
                                                                             </span>
@@ -157,7 +157,7 @@ const Header = (props) => {
                                                                         <Link onClick={ClickHandler} className="iconbox_block_2" to={Projects && Projects.length > 0 ? `/portfolio_details/${Projects[0].slug}` : "/portfolio"}>
                                                                             <span className="icon_title_wrap">
                                                                                 <small className="iconbox_icon">
-                                                                                    <img src={icon4} alt="Event Tag SVG Icon" />
+                                                                                    <img src={icon4} alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async" />
                                                                                 </small>
                                                                                 <small className="iconbox_title">Portfolio Details</small>
                                                                             </span>
@@ -170,7 +170,7 @@ const Header = (props) => {
                                                                         <Link onClick={ClickHandler} className="iconbox_block_2" to="/team">
                                                                             <span className="icon_title_wrap">
                                                                                 <small className="iconbox_icon">
-                                                                                    <img src={icon5} alt="User Check SVG Icon" />
+                                                                                    <img src={icon5} alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async" />
                                                                                 </small>
                                                                                 <small className="iconbox_title">Team</small>
                                                                             </span>
@@ -183,7 +183,7 @@ const Header = (props) => {
                                                                         <Link onClick={ClickHandler} className="iconbox_block_2" to={Teams && Teams.length > 0 ? `/team-single/${Teams[0].slug}` : "/team"}>
                                                                             <span className="icon_title_wrap">
                                                                                 <small className="iconbox_icon">
-                                                                                    <img src={icon6} alt="Users SVG Icon" />
+                                                                                    <img src={icon6} alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async" />
                                                                                 </small>
                                                                                 <small className="iconbox_title">Team Details</small>
                                                                             </span>
@@ -196,7 +196,7 @@ const Header = (props) => {
                                                                         <Link onClick={ClickHandler} className="iconbox_block_2" to="/service">
                                                                             <span className="icon_title_wrap">
                                                                                 <small className="iconbox_icon">
-                                                                                    <img src={icon7} alt="Pen SVG Icon" />
+                                                                                    <img src={icon7} alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async" />
                                                                                 </small>
                                                                                 <small className="iconbox_title">Services</small>
                                                                             </span>
@@ -209,7 +209,7 @@ const Header = (props) => {
                                                                         <Link onClick={ClickHandler} className="iconbox_block_2" to={Services && Services.length > 0 ? `/service-single/${Services[0].slug}` : "/service"}>
                                                                             <span className="icon_title_wrap">
                                                                                 <small className="iconbox_icon">
-                                                                                    <img src={icon7} alt="Pen SVG Icon" />
+                                                                                    <img src={icon7} alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async" />
                                                                                 </small>
                                                                                 <small className="iconbox_title">Service Details</small>
                                                                             </span>
@@ -232,7 +232,7 @@ const Header = (props) => {
                                                                 <li>
                                                                     <div className="review_short_info_2">
                                                                         <div className="review_admin_logo">
-                                                                            <img src={icon8} alt="Client Logo" />
+                                                                                <img src={icon8} alt="Client logo" width="80" height="30" loading="lazy" decoding="async" />
                                                                         </div>
                                                                         <div className="review_info_content">
                                                                             <ul className="rating_block unordered_list">
@@ -249,7 +249,7 @@ const Header = (props) => {
                                                                 <li>
                                                                     <div className="review_short_info_2">
                                                                         <div className="review_admin_logo">
-                                                                            <img src={icon9} alt="Client Logo" />
+                                                                                <img src={icon9} alt="Client logo" width="80" height="30" loading="lazy" decoding="async" />
                                                                         </div>
                                                                         <div className="review_info_content">
                                                                             <ul className="rating_block unordered_list">
@@ -269,14 +269,14 @@ const Header = (props) => {
                                                             <div className="site_author bg-primary">
                                                                 <div className="author_box">
                                                                     <div className="author_image bg-light">
-                                                                        <img src={icon10} alt="Site Author" />
+                                                                        <img src={icon10} alt="CEO Maverick Phoenix" width="80" height="80" loading="lazy" decoding="async" />
                                                                     </div>
                                                                     <div className="author_box_content">
                                                                         <h3 className="author_name text-white">Maverick Phoenix</h3>
                                                                         <span className="author_designation text-white">CEO At Techco</span>
                                                                     </div>
                                                                     <div className="quote_icon">
-                                                                        <img src={icon11} alt="Quote Icon" />
+                                                                        <img src={icon11} alt="" aria-hidden="true" width="30" height="24" loading="lazy" decoding="async" />
                                                                     </div>
                                                                 </div>
                                                                 <p className="mb-0 text-white">
@@ -431,23 +431,23 @@ const Header = (props) => {
                                                             <div className="social_area">
                                                                 <ul className="social_icons_block unordered_list" data-text="Follow Us:">
                                                                     <li>
-                                                                        <Link onClick={ClickHandler} to="/">
-                                                                            <i className="fa-brands fa-facebook-f"></i>
+                                                                        <Link onClick={ClickHandler} to="/" aria-label="Follow us on Facebook">
+                                                                            <i className="fa-brands fa-facebook-f" aria-hidden="true"></i>
                                                                         </Link>
                                                                     </li>
                                                                     <li>
-                                                                        <Link onClick={ClickHandler} to="/">
-                                                                            <i className="fa-brands fa-twitter"></i>
+                                                                        <Link onClick={ClickHandler} to="/" aria-label="Follow us on Twitter">
+                                                                            <i className="fa-brands fa-twitter" aria-hidden="true"></i>
                                                                         </Link>
                                                                     </li>
                                                                     <li>
-                                                                        <Link onClick={ClickHandler} to="/">
-                                                                            <i className="fa-brands fa-linkedin-in"></i>
+                                                                        <Link onClick={ClickHandler} to="/" aria-label="Follow us on LinkedIn">
+                                                                            <i className="fa-brands fa-linkedin-in" aria-hidden="true"></i>
                                                                         </Link>
                                                                     </li>
                                                                     <li>
-                                                                        <Link onClick={ClickHandler} to="/">
-                                                                            <i className="fa-brands fa-dribbble"></i>
+                                                                        <Link onClick={ClickHandler} to="/" aria-label="Follow us on Dribbble">
+                                                                            <i className="fa-brands fa-dribbble" aria-hidden="true"></i>
                                                                         </Link>
                                                                     </li>
                                                                 </ul>
@@ -458,7 +458,7 @@ const Header = (props) => {
                                                             <div className="megamenu_case bg-primary">
                                                                 <h3>Computer Software</h3>
                                                                 <h4>Astarte Medical</h4>
-                                                                <img src={cases} alt="Case" />
+                                                                <img src={cases} alt="Case Study: Astarte Medical Computer Software" width="300" height="200" loading="lazy" decoding="async" />
                                                                 <Link onClick={ClickHandler} className="btn" to="/portfolio">
                                                                     <span className="btn_label" data-text="Read Case">Read Case</span>
                                                                     <span className="btn_icon">
@@ -505,10 +505,11 @@ const Header = (props) => {
                                         type="button"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#main_menu_dropdown"
-                                        aria-expanded="false"
-                                        aria-label="Toggle navigation"
+                                        aria-expanded={mobailActive ? 'true' : 'false'}
+                                        aria-label="Toggle mobile navigation menu"
+                                        aria-controls="main_menu_dropdown"
                                     >
-                                        <i className="far fa-bars"></i>
+                                        <i className="far fa-bars" aria-hidden="true"></i>
                                     </button>
                                 </li>
                                 <li>

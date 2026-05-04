@@ -32,7 +32,7 @@ const Hero = () => {
                                 <li>
                                     <div className="review_short_info">
                                         <div className="d-flex">
-                                            <img src={icon} alt="Techco - Trustpilot Review" />
+                                            <img src={icon} alt="Techco - Trustpilot Review" width="120" height="30" loading="lazy" decoding="async" />
                                             <span>4.8</span>
                                         </div>
                                         <div className="review_counter">From <b>200+</b> reviews</div>
@@ -44,7 +44,7 @@ const Hero = () => {
                     <div className="col-lg-5">
                         <ul className="it_solution_hero_images unordered_list">
                             <li >
-                                <img src={heroImg} alt="Techco - IT Solution - Hero" />
+                                <img src={heroImg} alt="Techco - IT Solution - Hero" width="600" height="600" fetchpriority="high" decoding="async" />
                             </li>
                             <li>
                                 <div className="worldwide_clients">

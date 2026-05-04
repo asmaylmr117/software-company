@@ -142,8 +142,15 @@ const MobileMenu = () => {
                     <ListItem className={item.id === openId ? 'active' : null} key={mn}>
                         {item.submenu ?
                             <Fragment>
-                                <p onClick={() => setOpenId(item.id === openId ? 0 : item.id)}>{item.title}
-                                    <i className={item.id === openId ? 'fa fa-angle-up' : 'fa fa-angle-down'}></i>
+                                <p
+                                    onClick={() => setOpenId(item.id === openId ? 0 : item.id)}
+                                    role="button"
+                                    tabIndex={0}
+                                    aria-expanded={item.id === openId ? 'true' : 'false'}
+                                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setOpenId(item.id === openId ? 0 : item.id); }}
+                                >
+                                    {item.title}
+                                    <i className={item.id === openId ? 'fa fa-angle-up' : 'fa fa-angle-down'} aria-hidden="true"></i>
                                 </p>
                                 <Collapse in={item.id === openId} timeout="auto" unmountOnExit>
                                     <List className="subMenu">

@@ -34,7 +34,7 @@ const Hero3 = (props) => {
                             </Link>
                             <div className="google_reviews">
                                 <div className="review_admin_logo">
-                                    <img src={shape1} alt="Google Logo" />
+                                    <img src={shape1} alt="Google Logo" width="92" height="30" loading="lazy" decoding="async" />
                                 </div>
                                 <div className="review_info_content">
                                     <ul className="rating_block unordered_list">
@@ -51,7 +51,7 @@ const Hero3 = (props) => {
                     </div>
                     <div className="col-lg-6">
                         <div className="business_consulting_hero_image">
-                            <img className="hero_image" src={shape2} alt="Business Consulting" />
+                            <img className="hero_image" src={shape2} alt="Business Consulting" width="600" height="600" fetchpriority="high" decoding="async" />
                             <div className="funfact_block capsule_layout wow fadeInUp" data-wow-delay=".1s">
                                 <div className="funfact_content">
                                     <div className="counter_value">
@@ -61,12 +61,12 @@ const Hero3 = (props) => {
                                     <h3 className="funfact_title mb-0">Happy Customer</h3>
                                 </div>
                                 <div className="funfact_icon">
-                                    <img src={icon1} alt="Techco - SVG Icon User" />
+                                    <img src={icon1} alt="Techco - SVG Icon User" width="40" height="40" loading="lazy" decoding="async" />
                                 </div>
                             </div>
                             <div className="funfact_block middle capsule_layout wow fadeInUp" data-wow-delay=".2s">
                                 <div className="funfact_icon">
-                                    <img src={icon2} alt="Techco - SVG Icon Wallet" />
+                                    <img src={icon2} alt="Techco - SVG Icon Wallet" width="40" height="40" loading="lazy" decoding="async" />
                                 </div>
                                 <div className="funfact_content">
                                     <h3 className="funfact_title mb-0">Company Value</h3>
@@ -90,7 +90,7 @@ const Hero3 = (props) => {
                 </div>
             </div>
             <div className="decoration_item shape_1">
-                <img src={shape3} alt="Shape" />
+                <img src={shape3} alt="Business Consulting Hero Decoration" width="600" height="600" loading="lazy" decoding="async" aria-hidden="true" />
             </div>
         </section>
     )
