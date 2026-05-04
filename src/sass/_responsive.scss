@@ -886,6 +886,42 @@ Responsive For Mobile & Tablet Devices
 	.diract_contact_links .iconbox_block.layout_icon_left p {
 		font-size: 16px;
 	}
+	// About Section Fix - Small Screens
+	.about_image_2 {
+		margin-left: 0;
+		flex-direction: column;
+		align-items: stretch;
+		.image_wrap {
+			max-width: 100%;
+			width: 100%;
+			img {
+				width: 100%;
+				object-fit: cover;
+				height: 240px;
+			}
+		}
+	}
+	.about_funfact_info {
+		width: 100%;
+		max-width: 100%;
+		padding: 24px 20px 20px;
+		.btn {
+			position: static;
+			display: inline-flex;
+			margin-top: 24px;
+		}
+		.icon_globe {
+			display: none;
+		}
+		.about_funfact_counter {
+			gap: 30px;
+			margin-top: 24px;
+			justify-content: flex-start;
+			.counter_value {
+				font-size: 36px;
+			}
+		}
+	}
 	.blog_post_block.content_over_layout .blog_post_content {
 		padding: 40px 40px 80px;
 	}
@@ -1085,6 +1121,18 @@ Responsive For Mobile & Tablet Devices
 	}
 	.iconbox_block {
 		padding: 40px 40px 35px;
+	}
+	.about_funfact_info {
+		padding: 20px 16px;
+		.about_funfact_counter {
+			gap: 20px;
+			.counter_value {
+				font-size: 30px;
+			}
+			.funfact_title {
+				font-size: 14px;
+			}
+		}
 	}
 	.funfact_block {
 		padding: 40px 30px;
@@ -1319,4 +1367,71 @@ Responsive For Mobile & Tablet Devices
 	}
 }
 /* Media Screen 375px - End
+================================================== */
+
+/* Media Screen 480px - About Section Fix - Start
+================================================== */
+@media screen and (max-width: 480px) {
+	.about_and_case_section {
+		padding: 80px 0 60px;
+	}
+	.about_image_2 {
+		margin-left: 0;
+		gap: 12px;
+		flex-direction: column;
+		align-items: stretch;
+		margin-bottom: 0;
+		.image_wrap {
+			max-width: 100%;
+			width: 100%;
+			border-radius: 12px;
+			overflow: hidden;
+			img {
+				width: 100%;
+				height: 220px;
+				object-fit: cover;
+			}
+		}
+		.space_line {
+			display: none;
+		}
+	}
+	.about_funfact_info {
+		width: 100%;
+		max-width: 100%;
+		padding: 20px 16px 20px;
+		.customer_count {
+			> ul {
+				> li {
+					width: 40px;
+					height: 40px;
+					font-size: 13px;
+				}
+			}
+		}
+		.about_funfact_counter {
+			gap: 24px;
+			margin-top: 20px;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			.counter_value {
+				font-size: 32px;
+			}
+			.funfact_title {
+				font-size: 13px;
+			}
+		}
+		.btn {
+			position: static;
+			display: inline-flex;
+			margin-top: 20px;
+			padding: 0 16px;
+			font-size: 14px;
+		}
+		.icon_globe {
+			display: none;
+		}
+	}
+}
+/* Media Screen 480px - About Section Fix - End
 ================================================== */
