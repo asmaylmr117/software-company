@@ -31,7 +31,7 @@ const Footer = (props) => {
                             <div className="iconbox_content">
                                 <h3 className="iconbox_title">Write to us</h3>
                                 <p className="mb-0">
-                                    RM@MetaSoftware.eg
+                                    RM@Software.eg
                                 </p>
                             </div>
                         </div>
@@ -42,7 +42,7 @@ const Footer = (props) => {
                             <div className="iconbox_content">
                                 <h3 className="iconbox_title"> Call Us (EG)</h3>
                                 <p className="mb-0">
-                                    +(20) 1500 072 001
+                                    +(96) 1666915691
                                 </p>
                             </div>
                         </div>
@@ -53,7 +53,7 @@ const Footer = (props) => {
                             <div className="iconbox_content">
                                 <h3 className="iconbox_title">Our Office</h3>
                                 <p className="mb-0">
-                                Egypt, Giza, 26th of July Axis - Mall of Arabia
+                                Egypt, cairo
                                 </p>
                             </div>
                         </div>
@@ -105,7 +105,7 @@ const Footer = (props) => {
                                         <li>
                                             <Link onClick={ClickHandler} to="/about">
                                                 <span className="icon_list_text">
-                                                    About Meta Software
+                                                    About 
                                                 </span>
                                             </Link>
                                         </li>
