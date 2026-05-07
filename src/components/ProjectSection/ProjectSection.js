@@ -12,9 +12,48 @@ const ProjectSection = (props) => {
         window.scrollTo(10, 0);
     }
 
-    const { data: Project, isLoading } = useProjects();
+    const { data: Project, isLoading, isError } = useProjects();
 
-    if (isLoading) return <div className="text-center section_space">Loading...</div>;
+    // ✅ حالة التحميل
+    if (isLoading) return (
+        <div className="text-center section_space">
+            <p>Loading Projects...</p>
+        </div>
+    );
+
+   
+    if (isError || !Project || !Array.isArray(Project) || Project.length === 0) return (
+        <section className="portfolio_section xb-hidden section_space pb-0">
+            <div className="container">
+                <div className="heading_block">
+                    <div className="row align-items-end">
+                        <div className="col-lg-7">
+                            <div className="heading_focus_text">
+                                <span className="badge bg-secondary text-white">Crafting</span>
+                                Success With 😍 Project
+                            </div>
+                            <h2 className="heading_text">Our Recent Best Works</h2>
+                            <p className="heading_description mb-0">
+                                Our recent projects highlight our expertise in delivering tailored solutions.
+                            </p>
+                        </div>
+                        <div className="col-lg-5 d-none d-lg-flex justify-content-end">
+                            <Link onClick={ClickHandler} to={'/portfolio'} className="btn btn-primary">
+                                <span className="btn_label" data-text="All Works">All Works</span>
+                                <span className="btn_icon">
+                                    <i className="fa-solid fa-arrow-up-right"></i>
+                                </span>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+              
+                <div className="text-center py-5">
+                    <p className="text-muted">Projects are currently unavailable. Please try again later.</p>
+                </div>
+            </div>
+        </section>
+    );
 
     return (
         <section className="portfolio_section xb-hidden section_space pb-0">
@@ -30,7 +69,7 @@ const ProjectSection = (props) => {
                                 Our Recent Best Works
                             </h2>
                             <p className="heading_description mb-0">
-                                Our recent projects highlight our expertise in delivering tailored solutions that meet the unique needs and objectives of our clients,custom software.
+                                Our recent projects highlight our expertise in delivering tailored solutions that meet the unique needs and objectives of our clients, custom software.
                             </p>
                         </div>
                         <div className="col-lg-5 d-none d-lg-flex justify-content-end">
@@ -46,14 +85,13 @@ const ProjectSection = (props) => {
             </div>
             <div className="portfolio_carousel">
                 <Swiper
-                    // install Swiper modules
                     modules={[Pagination, A11y, Autoplay]}
                     autoplay={{ delay: 3000, disableOnInteraction: false }}
                     slidesPerView={1}
-                    loop={true}
-                    spaceBetween= {30}
-                    allowTouchMove= {true}
-                    centeredSlides= {true}
+                    loop={Project.length > 1} 
+                    spaceBetween={30}
+                    allowTouchMove={true}
+                    centeredSlides={true}
                     pagination={{ clickable: true }}
                     speed={400}
                     parallax={true}
@@ -63,13 +101,21 @@ const ProjectSection = (props) => {
                         },
                     }}
                 >
-
+                    
                     {Project.slice(0, 5).map((project, prj) => (
                         <SwiperSlide key={prj}>
-                            <div className="portfolio_block" >
+                            <div className="portfolio_block">
                                 <div className="portfolio_image">
-                                    <Link onClick={ClickHandler} className="portfolio_image_wrap bg-light" to={`/portfolio_details/${project.slug}`}>
-                                        <img src={getImageUrl(project.pImg)} alt="Mobile App Design" style={{ height: '380px', objectFit: 'cover', width: '100%' }} />
+                                    <Link
+                                        onClick={ClickHandler}
+                                        className="portfolio_image_wrap bg-light"
+                                        to={`/portfolio_details/${project.slug}`}
+                                    >
+                                        <img
+                                            src={getImageUrl(project.pImg)}
+                                            alt={project.title || 'Project Image'}
+                                            style={{ height: '380px', objectFit: 'cover', width: '100%' }}
+                                        />
                                     </Link>
                                 </div>
                                 <div className="portfolio_content">
@@ -79,9 +125,17 @@ const ProjectSection = (props) => {
                                         </Link>
                                     </h3>
                                     <ul className="category_list unordered_list">
-                                        <li><Link onClick={ClickHandler} to={`/portfolio_details/${project.slug}`}>{project.sub}</Link></li>
+                                        <li>
+                                            <Link onClick={ClickHandler} to={`/portfolio_details/${project.slug}`}>
+                                                {project.sub}
+                                            </Link>
+                                        </li>
                                     </ul>
-                                    <Link onClick={ClickHandler} className="btn btn-outline-light" to={`/portfolio_details/${project.slug}`}>
+                                    <Link
+                                        onClick={ClickHandler}
+                                        className="btn btn-outline-light"
+                                        to={`/portfolio_details/${project.slug}`}
+                                    >
                                         <span className="btn_label" data-text="Explore">Explore</span>
                                         <span className="btn_icon">
                                             <i className="fa-solid fa-arrow-up-right"></i>
@@ -95,7 +149,7 @@ const ProjectSection = (props) => {
             </div>
             <div className="container text-center d-block d-lg-none">
                 <div className="btns_group pb-0">
-                    <Link onClick={ClickHandler} className="btn btn-primary" to="/pricing">
+                    <Link onClick={ClickHandler} className="btn btn-primary" to="/portfolio">
                         <span className="btn_label" data-text="All Works">All Works</span>
                         <span className="btn_icon">
                             <i className="fa-solid fa-arrow-up-right"></i>
