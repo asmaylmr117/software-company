@@ -22,7 +22,6 @@ const PortfolioPage = () => {
         setActiveFilter(filter);
     };
 
-    // Safe default value
     const {
         data: Projects = [],
         isLoading,
@@ -30,7 +29,6 @@ const PortfolioPage = () => {
         error
     } = useProjects();
 
-    // Loading state
     if (isLoading) {
         return (
             <div className="text-center section_space">
@@ -39,7 +37,6 @@ const PortfolioPage = () => {
         );
     }
 
-    // Error state
     if (isError) {
         return (
             <div className="text-center section_space">
@@ -49,22 +46,24 @@ const PortfolioPage = () => {
         );
     }
 
-    // Ensure array safety
     const safeProjects = Array.isArray(Projects) ? Projects : [];
 
-    // Filter logic
+    const projectList =
+        safeProjects.length > 9
+            ? safeProjects.slice(9, 18)
+            : safeProjects;
+
     const filteredProjects =
         activeFilter === 'all'
-            ? safeProjects.slice(9, 18)
-            : safeProjects
-                  .slice(9, 18)
-                  .filter(
-                      (project) =>
-                          project?.category === activeFilter
-                  );
+            ? projectList
+            : projectList.filter(
+                (project) =>
+                    project?.category === activeFilter
+            );
 
     return (
         <Fragment>
+
             <Header />
 
             <main className="page_content about-page">
@@ -76,10 +75,11 @@ const PortfolioPage = () => {
                 />
 
                 <section className="portfolio_section section_space bg-light">
+
                     <div className="container">
 
-                        {/* Filter Buttons */}
                         <div className="filter_elements_nav">
+
                             <ul className="unordered_list justify-content-center">
 
                                 <li
@@ -118,15 +118,19 @@ const PortfolioPage = () => {
                                 </li>
 
                             </ul>
+
                         </div>
 
-                        {/* Projects */}
                         <div className="filter_elements_wrapper row">
 
                             {filteredProjects.length > 0 ? (
+
                                 filteredProjects.map((project, index) => (
 
-                                    <div className="col-lg-6" key={project?._id || index}>
+                                    <div
+                                        className="col-lg-6"
+                                        key={project?._id || index}
+                                    >
 
                                         <div className="portfolio_block portfolio_layout_2">
 
@@ -137,11 +141,13 @@ const PortfolioPage = () => {
                                                     className="portfolio_image_wrap bg-light"
                                                     to={`/portfolio_details/${project?.slug || ''}`}
                                                 >
+
                                                     <img
                                                         src={getImageUrl(project?.pImg)}
                                                         alt={project?.title || 'Portfolio'}
                                                         loading="lazy"
                                                     />
+
                                                 </Link>
 
                                             </div>
@@ -162,6 +168,7 @@ const PortfolioPage = () => {
                                                 <ul className="category_list unordered_list">
 
                                                     <li>
+
                                                         <Link
                                                             onClick={ClickHandler}
                                                             to={`/portfolio_details/${project?.slug || ''}`}
@@ -170,10 +177,13 @@ const PortfolioPage = () => {
 
                                                             {' '}
                                                             {project?.thumb1 || 'No Tag'}
+
                                                         </Link>
+
                                                     </li>
 
                                                     <li>
+
                                                         <Link
                                                             onClick={ClickHandler}
                                                             to={`/portfolio_details/${project?.slug || ''}`}
@@ -182,7 +192,9 @@ const PortfolioPage = () => {
 
                                                             {' '}
                                                             {project?.thumb2 || 'No Company'}
+
                                                         </Link>
+
                                                     </li>
 
                                                 </ul>
@@ -194,15 +206,21 @@ const PortfolioPage = () => {
                                     </div>
 
                                 ))
+
                             ) : (
+
                                 <div className="col-12 text-center">
+
                                     <h4>No Projects Found</h4>
+
                                 </div>
+
                             )}
 
                         </div>
 
                     </div>
+
                 </section>
 
                 <CtaSection />
@@ -211,6 +229,7 @@ const PortfolioPage = () => {
 
             <Footer />
             <Scrollbar />
+
         </Fragment>
     );
 };
