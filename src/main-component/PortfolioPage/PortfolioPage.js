@@ -12,16 +12,12 @@ import CtaSection from '../../components/CtaSection/CtaSection';
 
 const PortfolioPage = () => {
 
-    const [activeFilter, setActiveFilter] = useState('all');
-
+   
     const ClickHandler = () => {
         window.scrollTo(10, 0);
     };
 
-    const handleFilterClick = (filter) => {
-        setActiveFilter(filter);
-    };
-
+   
     const {
         data: Project,
         isLoading,
@@ -48,26 +44,9 @@ const PortfolioPage = () => {
         );
     }
 
-    const projectList =
-        Project.length > 9
-            ? Project.slice(9, 18)
-            : Project;
+   const projectList = Project;
 
-    const filteredProjects =
-        activeFilter === 'all'
-            ? projectList
-            : projectList.filter((project) => {
-
-                const category =
-                    project?.category ||
-                    project?.sub ||
-                    '';
-
-                return category
-                    .toLowerCase()
-                    .includes(activeFilter.toLowerCase());
-
-            });
+    const filteredProjects = projectList;
 
     return (
         <Fragment>
@@ -86,48 +65,7 @@ const PortfolioPage = () => {
 
                     <div className="container">
 
-                        <div className="filter_elements_nav">
-
-                            <ul className="unordered_list justify-content-center">
-
-                                <li
-                                    className={activeFilter === 'all' ? 'active' : ''}
-                                    onClick={() => handleFilterClick('all')}
-                                >
-                                    See All
-                                </li>
-
-                                <li
-                                    className={activeFilter === 'technology' ? 'active' : ''}
-                                    onClick={() => handleFilterClick('technology')}
-                                >
-                                    Technology
-                                </li>
-
-                                <li
-                                    className={activeFilter === 'helpdesk' ? 'active' : ''}
-                                    onClick={() => handleFilterClick('helpdesk')}
-                                >
-                                    Helpdesk
-                                </li>
-
-                                <li
-                                    className={activeFilter === 'analysis' ? 'active' : ''}
-                                    onClick={() => handleFilterClick('analysis')}
-                                >
-                                    Analysis
-                                </li>
-
-                                <li
-                                    className={activeFilter === 'marketing' ? 'active' : ''}
-                                    onClick={() => handleFilterClick('marketing')}
-                                >
-                                    Marketing
-                                </li>
-
-                            </ul>
-
-                        </div>
+                       
 
                         <div className="filter_elements_wrapper row">
 
