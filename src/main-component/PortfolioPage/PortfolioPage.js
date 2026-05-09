@@ -1,82 +1,218 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from "react-router-dom";
+
 import { useProjects } from '../../hooks/useQueries';
 import { getImageUrl } from '../../api/axiosConfig';
+
 import Header from '../../components/header/Header';
 import PageTitle from '../../components/pagetitle/PageTitle';
 import Scrollbar from '../../components/scrollbar/scrollbar';
 import Footer from '../../components/footer/Footer';
 import CtaSection from '../../components/CtaSection/CtaSection';
 
-const PortfolioPage = (props) => {
+const PortfolioPage = () => {
 
     const [activeFilter, setActiveFilter] = useState('all');
 
     const ClickHandler = () => {
         window.scrollTo(10, 0);
-    }
+    };
 
     const handleFilterClick = (filter) => {
         setActiveFilter(filter);
+    };
+
+    // Safe default value
+    const {
+        data: Projects = [],
+        isLoading,
+        isError,
+        error
+    } = useProjects();
+
+    // Loading state
+    if (isLoading) {
+        return (
+            <div className="text-center section_space">
+                <h3>Loading Projects...</h3>
+            </div>
+        );
     }
 
-    const { data: Project, isLoading } = useProjects();
+    // Error state
+    if (isError) {
+        return (
+            <div className="text-center section_space">
+                <h3>Failed to load projects</h3>
+                <p>{error?.message || 'Something went wrong'}</p>
+            </div>
+        );
+    }
 
-    if (isLoading) return <div className="text-center section_space">Loading...</div>;
+    // Ensure array safety
+    const safeProjects = Array.isArray(Projects) ? Projects : [];
 
-    const filteredProjects = activeFilter === 'all'
-        ? Project?.slice(9, 18)
-        : Project?.slice(9, 18).filter(project => project.category === activeFilter);
+    // Filter logic
+    const filteredProjects =
+        activeFilter === 'all'
+            ? safeProjects.slice(9, 18)
+            : safeProjects
+                  .slice(9, 18)
+                  .filter(
+                      (project) =>
+                          project?.category === activeFilter
+                  );
 
     return (
         <Fragment>
             <Header />
+
             <main className="page_content about-page">
-                <PageTitle pageTitle={'Our Portfolio'} pagesub={'Portfolio 😍'} pageTop={'Our'} />
+
+                <PageTitle
+                    pageTitle={'Our Portfolio'}
+                    pagesub={'Portfolio 😍'}
+                    pageTop={'Our'}
+                />
+
                 <section className="portfolio_section section_space bg-light">
                     <div className="container">
+
+                        {/* Filter Buttons */}
                         <div className="filter_elements_nav">
                             <ul className="unordered_list justify-content-center">
-                                <li className={activeFilter === 'all' ? 'active' : ''} onClick={() => handleFilterClick('all')}>See All</li>
-                                <li className={activeFilter === 'technology' ? 'active' : ''} onClick={() => handleFilterClick('technology')}>Technology</li>
-                                <li className={activeFilter === 'helpdesk' ? 'active' : ''} onClick={() => handleFilterClick('helpdesk')}>Helpdesk</li>
-                                <li className={activeFilter === 'analysis' ? 'active' : ''} onClick={() => handleFilterClick('analysis')}>Analysis</li>
-                                <li className={activeFilter === 'marketing' ? 'active' : ''} onClick={() => handleFilterClick('marketing')}>Marketing</li>
+
+                                <li
+                                    className={activeFilter === 'all' ? 'active' : ''}
+                                    onClick={() => handleFilterClick('all')}
+                                >
+                                    See All
+                                </li>
+
+                                <li
+                                    className={activeFilter === 'technology' ? 'active' : ''}
+                                    onClick={() => handleFilterClick('technology')}
+                                >
+                                    Technology
+                                </li>
+
+                                <li
+                                    className={activeFilter === 'helpdesk' ? 'active' : ''}
+                                    onClick={() => handleFilterClick('helpdesk')}
+                                >
+                                    Helpdesk
+                                </li>
+
+                                <li
+                                    className={activeFilter === 'analysis' ? 'active' : ''}
+                                    onClick={() => handleFilterClick('analysis')}
+                                >
+                                    Analysis
+                                </li>
+
+                                <li
+                                    className={activeFilter === 'marketing' ? 'active' : ''}
+                                    onClick={() => handleFilterClick('marketing')}
+                                >
+                                    Marketing
+                                </li>
+
                             </ul>
                         </div>
+
+                        {/* Projects */}
                         <div className="filter_elements_wrapper row">
-                            {filteredProjects.map((project, prj) => (
-                                <div className="col-lg-6" key={prj}>
-                                    <div className="portfolio_block portfolio_layout_2">
-                                        <div className="portfolio_image">
-                                            <Link onClick={ClickHandler} className="portfolio_image_wrap bg-light" to={`/portfolio_details/${project.slug}`}>
-                                                <img src={getImageUrl(project.pImg)} alt="Mobile App Design" />
-                                            </Link>
-                                        </div>
-                                        <div className="portfolio_content">
-                                            <h3 className="portfolio_title">
-                                                <Link onClick={ClickHandler} to={`/portfolio_details/${project.slug}`}>
-                                                    {project.title}
+
+                            {filteredProjects.length > 0 ? (
+                                filteredProjects.map((project, index) => (
+
+                                    <div className="col-lg-6" key={project?._id || index}>
+
+                                        <div className="portfolio_block portfolio_layout_2">
+
+                                            <div className="portfolio_image">
+
+                                                <Link
+                                                    onClick={ClickHandler}
+                                                    className="portfolio_image_wrap bg-light"
+                                                    to={`/portfolio_details/${project?.slug || ''}`}
+                                                >
+                                                    <img
+                                                        src={getImageUrl(project?.pImg)}
+                                                        alt={project?.title || 'Portfolio'}
+                                                        loading="lazy"
+                                                    />
                                                 </Link>
-                                            </h3>
-                                            <ul className="category_list unordered_list">
-                                                <li><Link onClick={ClickHandler} to={`/portfolio_details/${project.slug}`}><i className="fa-solid fa-tags"></i> {project.thumb1}</Link></li>
-                                                <li><Link onClick={ClickHandler} to={`/portfolio_details/${project.slug}`}><i className="fa-solid fa-building"></i> {project.thumb2}</Link></li>
-                                            </ul>
+
+                                            </div>
+
+                                            <div className="portfolio_content">
+
+                                                <h3 className="portfolio_title">
+
+                                                    <Link
+                                                        onClick={ClickHandler}
+                                                        to={`/portfolio_details/${project?.slug || ''}`}
+                                                    >
+                                                        {project?.title || 'Untitled Project'}
+                                                    </Link>
+
+                                                </h3>
+
+                                                <ul className="category_list unordered_list">
+
+                                                    <li>
+                                                        <Link
+                                                            onClick={ClickHandler}
+                                                            to={`/portfolio_details/${project?.slug || ''}`}
+                                                        >
+                                                            <i className="fa-solid fa-tags"></i>
+
+                                                            {' '}
+                                                            {project?.thumb1 || 'No Tag'}
+                                                        </Link>
+                                                    </li>
+
+                                                    <li>
+                                                        <Link
+                                                            onClick={ClickHandler}
+                                                            to={`/portfolio_details/${project?.slug || ''}`}
+                                                        >
+                                                            <i className="fa-solid fa-building"></i>
+
+                                                            {' '}
+                                                            {project?.thumb2 || 'No Company'}
+                                                        </Link>
+                                                    </li>
+
+                                                </ul>
+
+                                            </div>
+
                                         </div>
+
                                     </div>
+
+                                ))
+                            ) : (
+                                <div className="col-12 text-center">
+                                    <h4>No Projects Found</h4>
                                 </div>
-                            ))}
+                            )}
+
                         </div>
+
                     </div>
                 </section>
 
                 <CtaSection />
+
             </main>
+
             <Footer />
             <Scrollbar />
         </Fragment>
-    )
+    );
 };
 
 export default PortfolioPage;
