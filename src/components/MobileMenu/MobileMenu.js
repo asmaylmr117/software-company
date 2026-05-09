@@ -97,12 +97,12 @@ const MobileMenu = () => {
         {
             id: 5,
             title: 'Portfolio',
-            link: '/porfolio',
+            link: '/portfolio',
             submenu: [
                 {
                     id: 51,
                     title: 'Portfolio',
-                    link: '/porfolio'
+                    link: '/portfolio'
                 },
                 {
                     id: 52,
