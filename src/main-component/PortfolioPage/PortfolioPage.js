@@ -23,10 +23,9 @@ const PortfolioPage = () => {
     };
 
     const {
-        data: Projects = [],
+        data: Project,
         isLoading,
-        isError,
-        error
+        isError
     } = useProjects();
 
     if (isLoading) {
@@ -37,29 +36,38 @@ const PortfolioPage = () => {
         );
     }
 
-    if (isError) {
+    if (
+        isError ||
+        !Project ||
+        !Array.isArray(Project)
+    ) {
         return (
             <div className="text-center section_space">
                 <h3>Failed to load projects</h3>
-                <p>{error?.message || 'Something went wrong'}</p>
             </div>
         );
     }
 
-    const safeProjects = Array.isArray(Projects) ? Projects : [];
-
     const projectList =
-        safeProjects.length > 9
-            ? safeProjects.slice(9, 18)
-            : safeProjects;
+        Project.length > 9
+            ? Project.slice(9, 18)
+            : Project;
 
     const filteredProjects =
         activeFilter === 'all'
             ? projectList
-            : projectList.filter(
-                (project) =>
-                    project?.category === activeFilter
-            );
+            : projectList.filter((project) => {
+
+                const category =
+                    project?.category ||
+                    project?.sub ||
+                    '';
+
+                return category
+                    .toLowerCase()
+                    .includes(activeFilter.toLowerCase());
+
+            });
 
     return (
         <Fragment>
@@ -139,12 +147,12 @@ const PortfolioPage = () => {
                                                 <Link
                                                     onClick={ClickHandler}
                                                     className="portfolio_image_wrap bg-light"
-                                                    to={`/portfolio_details/${project?.slug || ''}`}
+                                                    to={`/portfolio_details/${project.slug}`}
                                                 >
 
                                                     <img
-                                                        src={getImageUrl(project?.pImg)}
-                                                        alt={project?.title || 'Portfolio'}
+                                                        src={getImageUrl(project.pImg)}
+                                                        alt={project.title || 'Project'}
                                                         loading="lazy"
                                                     />
 
@@ -158,9 +166,9 @@ const PortfolioPage = () => {
 
                                                     <Link
                                                         onClick={ClickHandler}
-                                                        to={`/portfolio_details/${project?.slug || ''}`}
+                                                        to={`/portfolio_details/${project.slug}`}
                                                     >
-                                                        {project?.title || 'Untitled Project'}
+                                                        {project.title}
                                                     </Link>
 
                                                 </h3>
@@ -171,27 +179,12 @@ const PortfolioPage = () => {
 
                                                         <Link
                                                             onClick={ClickHandler}
-                                                            to={`/portfolio_details/${project?.slug || ''}`}
+                                                            to={`/portfolio_details/${project.slug}`}
                                                         >
                                                             <i className="fa-solid fa-tags"></i>
 
                                                             {' '}
-                                                            {project?.thumb1 || 'No Tag'}
-
-                                                        </Link>
-
-                                                    </li>
-
-                                                    <li>
-
-                                                        <Link
-                                                            onClick={ClickHandler}
-                                                            to={`/portfolio_details/${project?.slug || ''}`}
-                                                        >
-                                                            <i className="fa-solid fa-building"></i>
-
-                                                            {' '}
-                                                            {project?.thumb2 || 'No Company'}
+                                                            {project.sub || project.thumb1}
 
                                                         </Link>
 
