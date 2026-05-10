@@ -33,18 +33,12 @@ const ServiceSection = (props) => {
                     object-fit: cover;
                 }
 
-                /* طبقة الظلال الرئيسية أسفل الكارد لإبراز النص */
+                /* طبقة الظلال تغطي الكارد كامل */
                 .service_block::after {
                     content: '';
                     position: absolute;
                     inset: 0;
-                    background: linear-gradient(
-                        to bottom,
-                        rgba(0, 0, 0, 0.05) 0%,
-                        rgba(0, 0, 0, 0.25) 40%,
-                        rgba(0, 0, 0, 0.75) 75%,
-                        rgba(0, 0, 0, 0.90) 100%
-                    );
+                    background: rgba(0, 0, 0, 0.55);
                     z-index: 1;
                     border-radius: inherit;
                 }
