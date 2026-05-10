@@ -12,6 +12,59 @@ const ServiceSection = (props) => {
 
     return (
         <section className="service_section section_space xb-hidden pb-0">
+            <style>{`
+                .service_block {
+                    position: relative;
+                    overflow: hidden;
+                    border-radius: 16px;
+                }
+
+                .service_block .service_image {
+                    position: absolute;
+                    inset: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 0;
+                }
+
+                .service_block .service_image img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                /* طبقة الظلال الرئيسية أسفل الكارد لإبراز النص */
+                .service_block::after {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(
+                        to bottom,
+                        rgba(0, 0, 0, 0.05) 0%,
+                        rgba(0, 0, 0, 0.25) 40%,
+                        rgba(0, 0, 0, 0.75) 75%,
+                        rgba(0, 0, 0, 0.90) 100%
+                    );
+                    z-index: 1;
+                    border-radius: inherit;
+                }
+
+                .service_block .service_content {
+                    position: relative;
+                    z-index: 2;
+                    padding: 24px;
+                }
+
+                /* ظلال نصية إضافية لمزيد من الوضوح */
+                .service_block .service_title a {
+                    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+                }
+
+                .service_block .service_description {
+                    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+                }
+            `}</style>
+
             <div className="container">
                 <div className="heading_block text-center">
                     <div className="heading_focus_text">
