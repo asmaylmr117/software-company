@@ -33,12 +33,12 @@ const ServiceSection = (props) => {
                     object-fit: cover;
                 }
 
-                /* طبقة الظلال تغطي الكارد كامل */
+                
                 .service_block::after {
                     content: '';
                     position: absolute;
                     inset: 0;
-                    background: rgba(0, 0, 0, 0.55);
+                    background: rgba(70, 130, 180, 0.45);
                     z-index: 1;
                     border-radius: inherit;
                 }
@@ -49,7 +49,7 @@ const ServiceSection = (props) => {
                     padding: 24px;
                 }
 
-                /* ظلال نصية إضافية لمزيد من الوضوح */
+                
                 .service_block .service_title a {
                     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
                 }
