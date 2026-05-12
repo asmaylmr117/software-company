@@ -38,18 +38,12 @@ const Policy = [
 
 
 const WhyUs = (props) => {
-
     return (
         <section className="service_section section_space bg-light">
             <div className="container">
-                <div className="row align-items-center justify-content-lg-between">
-                    <div className="col-lg-6">
-                        <div className="image_wrap">
-                            <img src={wImg} alt="Techco - About"/>
-                        </div>
-                    </div>
-                    <div className="col-lg-6">
-                        <div className="ps-lg-5">
+                <div className="row justify-content-center">
+                    <div className="col-lg-8">
+                        <div className="text-center">
                             <div className="heading_block">
                                 <div className="heading_focus_text">
                                     <span className="badge bg-secondary text-white">Why Us</span>
@@ -59,7 +53,7 @@ const WhyUs = (props) => {
                                     Why Our Services are Better Than Others?
                                 </h2>
                             </div>
-                            <ul className="service_facilities_group unordered_list">
+                            <ul className="service_facilities_group unordered_list justify-content-center">
                                 {Policy.map((policy, pitem) => (
                                     <li key={pitem}>
                                         <strong className="iconbox_block layout_icon_left">
