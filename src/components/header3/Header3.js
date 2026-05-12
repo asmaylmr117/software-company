@@ -524,15 +524,9 @@ const Header3 = (props) => {
                                     </button>
                                 </li>
                                 <div id="google_translate_element"></div>
-                                <li>
-                                    <Link onClick={ClickHandler} className="btn btn-light" to="/pricing">
-                                        <span className="btn_label" data-text="Get Started">Get Started</span>
-                                        <span className="btn_icon">
-                                            <i className="fa-solid fa-arrow-up-right"></i>
-                                        </span>
-                                    </Link>
-                                </li>
+                                
                             </ul>
+                        
                         </div>
                     </div>
                 </div>
