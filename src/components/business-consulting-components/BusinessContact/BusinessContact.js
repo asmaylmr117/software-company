@@ -62,7 +62,7 @@ const BusinessContact = (props) => {
 
         <section className="calltoaction_section parallaxie" style={{ backgroundImage: `url(${Bg})` }}>
             <div className="container">
-                <div className="row justify-content-lg-end">
+               <div className="row justify-content-center">
                     <div className="col-lg-7">
                         <div className="instant_contact_form bg-primary shadow-none">
                             <div className="small_title text-white">
