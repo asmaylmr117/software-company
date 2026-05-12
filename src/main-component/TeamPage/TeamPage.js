@@ -7,7 +7,7 @@ import PageTitle from '../../components/pagetitle/PageTitle'
 import Scrollbar from '../../components/scrollbar/scrollbar'
 import Footer from '../../components/footer/Footer';
 import CtaSection from '../../components/CtaSection/CtaSection';
-import tImg from '../../images/hero/business_consulting_hero_image_1.webp'
+import tImg from '../../images/hero/it_solution_hero_image_1.webp'
 import sImg1 from '../../images/icons/icon_facebook.svg'
 import sImg2 from '../../images/icons/icon_twitter_x.svg'
 import sImg3 from '../../images/icons/icon_linkedin.svg'
