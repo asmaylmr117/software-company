@@ -12,7 +12,7 @@ import icon9 from '../../images/clients/client_logo_10.webp'
 import icon10 from '../../images/avatar/avatar_7.webp'
 import icon11 from '../../images/icons/icon_quote.svg'
 import logo from '../../images/site_logo/site_logo_3.svg'
-import cases from '../../images/case/case_image_4.webp'
+import cases from '../../images/team/team_member_image_2.webp'
 import MobileMenu from '../MobileMenu/MobileMenu'
 
 const Header3 = (props) => {
@@ -478,7 +478,7 @@ const Header3 = (props) => {
                                                         <div className="col-lg-3">
                                                             <div className="megamenu_case bg-primary">
                                                                 <h3>Computer Software</h3>
-                                                                <h4>Astarte Medical</h4>
+                                                                <h4>Astarte Medical</h4> 
                                                                 <img src={cases} alt="Case" />
                                                                 <Link onClick={ClickHandler} className="btn" to="/portfolio">
                                                                     <span className="btn_label" data-text="Read Case">Read Case</span>
