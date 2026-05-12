@@ -12,7 +12,7 @@ import icon9 from '../../images/clients/client_logo_10.webp'
 import icon10 from '../../images/avatar/avatar_7.webp'
 import icon11 from '../../images/icons/icon_quote.svg'
 import logo from '../../images/site_logo/site_logo_3.svg'
-import cases from '../../images/team/team_member_image_2.webp'
+import cases from '../../images/avatar/avatar_7.webp'
 import MobileMenu from '../MobileMenu/MobileMenu'
 
 const Header3 = (props) => {
