@@ -1,7 +1,9 @@
 # Getting Started with Create React App
 [![Thehco](Capture3.PNG)](https://perfbuddy.com/report/OccfMa9y3)
 link live: [https://software-company-mu.vercel.app/](https://software-company-mu.vercel.app/).\
-backend repository: [https://github.com/asmaylmr117/portfolio-vercel] \
+backend repository: [https://github.com/asmaylmr117/portfolio-vercel]  
+Dashboard admin : [https://github.com/asmaylmr117/Portfolio-Admin]
+
 ## 🔗 Live Demo
 
 🛍️ View the live site:  
